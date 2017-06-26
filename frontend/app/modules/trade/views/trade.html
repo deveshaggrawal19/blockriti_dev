@@ -1,0 +1,239 @@
+<!-- TOP/NAV -->
+      <!--<div layout="row" layout="row"  layout-align="space-around">
+
+      <md-progress-circular ng-disabled="!vm.activated" class="md-hue-2" md-diameter="120px"></md-progress-circular>
+	  </div>-->
+<div class="material_block">
+  <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+</div>
+
+<logged-in-nav></logged-in-nav>
+
+<div class="page-content-margin nav-modi-temp">
+
+    <!-- Deposit/Withdraw FAB -->
+    <deposit-withdraw></deposit-withdraw>
+
+
+    <md-grid-list flex md-cols-xs="1" md-cols-sm="2" md-cols-md="12" md-cols="12" md-row-height-gt-sm="1:1" md-row-height="fit" md-gutter="27px" md-gutter-md="16px" md-gutter-sm="8px" md-gutter-xs="8px">
+    <!-- <md-grid-list md-cols-xs="1" md-cols-sm="4" md-cols-md="9" md-cols="12" md-row-height-gt-md="5:7" md-row-height-md="4:7"
+                  md-row-height-sm="1:1" md-row-height-xs="5:2" md-gutter="27px" md-gutter-md="16px" md-gutter-sm="8px"
+                  md-gutter-xs="8px"> -->
+
+		
+        <!-- GRAPH -->
+        <md-grid-tile id="graph-grid-title" ng-if="$mdMedia('gt-sm') || vm.displayGraph" md-rowspan="4" md-colspan="12" md-colspan-md="12" md-colspan-sm="2" md-colspan-xs="1"  md-whiteframe="2">
+            <!-- GRAPH/CHART -->
+            <md-card id="graph-card" class="dark-cards" layout-fill layout="column">
+               <!--  <div style="position: absolute; background-color: rgba(255, 255, 255, 0.05); width: 100%; height: 32px"></div> -->
+                
+                <div class="graph-top-bar-container" layout="row" layout-align="center center">
+
+                    <div flex></div>
+
+                    <div flex></div>
+
+                </div>
+
+                <div class="graph-top-bar-container" layout="row" layout-align="center center">
+                    <div flex></div>
+                    
+                </div>
+
+                <div id="graph-container" flex="75">
+                    <graph data="data" default-zoom="defaultZoom"></graph>
+                </div>
+
+                
+            </md-card>
+
+        </md-grid-tile>				
+
+        <!-- BOTTOM ROW - open, current buy/sell, most recent -->
+        <!-- OPEN ORDERS -->
+        <md-grid-tile ng-if="$mdMedia('gt-sm') || vm.displayOpen" md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <!-- OPEN ORDER -->
+            <md-card class="dark-cards" layout-fill>
+                    <md-content>
+                        <md-tabs md-stretch-tabs='always' class="md-primary" md-no-pagination="true">
+                            <md-tab>
+                                <md-tab-label>OPEN</md-tab-label>
+                                <md-tab-body class="current-tab">
+
+                                  <md-list class="table-fixed-width">
+
+                                      <md-list class="list-sub-head" layout="row">
+                                          <md-subheader class="orders-type-title" flex="15">Type</md-subheader>
+                                          <md-subheader flex="20">Price</md-subheader>
+                                          <md-subheader flex="30">Amount</md-subheader>
+                                          <md-subheader flex="25">Value</md-subheader>
+                                          <md-subheader id="cancel-all-orders-container" flex="10">
+                                          <!-- <md-subheader class="cancel-open-order-container" flex="10" > -->
+                                              <md-icon ng-if="orders.length > 0;" id="cancel-all-orders" class="mdi mdi-close-circle cancel-open-order" ng-click="vm.confirmCancelAllOrders($event);">
+                                                <md-tooltip>Cancel All Orders</md-tooltip>
+                                              </md-icon>
+                                          </md-subheader>
+                                      </md-list>
+
+                                      <md-virtual-repeat-container id="vertical-container">
+
+                                          <md-list-item md-virtual-repeat="order in orders" class="repeated-item" flex="" md-item-size="28">
+                                              <md-list class="order-list-transaction" ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+                                                  <md-list-item flex="15" class="order-transaction-information">{{ order.type | capitalize }}</md-list-item>
+                                                  <md-list-item flex="20" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ order.rate }}</md-list-item>
+                                                  <md-list-item flex="30" class="order-transaction-information">{{ order.amount | nineDigitsBitcoin }}</md-list-item>
+                                                  <md-list-item flex="25" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ order.value }}</md-list-item>
+                                                  <md-list-item flex="10" id="cancel-single-order">
+                                                      <md-icon class="mdi mdi-close-circle cancel-open-order" ng-click="vm.cancelOrder(order, $index);">
+                                                        <md-tooltip>Cancel Order</md-tooltip>
+                                                      </md-icon>
+                                                  </md-list-item>
+                                              </md-list>
+                                          </md-list-item>
+
+                                      </md-virtual-repeat-container>
+
+                                  </md-list>
+                                </md-tab-body>
+                            </md-tab>
+                            <md-tab>
+                                <md-tab-label>CLOSED</md-tab-label>
+                                <md-tab-body>
+                                    <md-list class="table-fixed-width">
+
+                                        <md-list class="list-sub-head" layout="row">
+                                            <md-subheader class="orders-type-title" flex="15">Type</md-subheader>
+                                            <md-subheader flex="25">Price</md-subheader>
+                                            <md-subheader flex="30">Amount</md-subheader>
+                                            <md-subheader flex="25">Value</md-subheader>
+
+                                        </md-list>
+
+                                        <md-virtual-repeat-container id="vertical-container">
+
+                                            <md-list-item md-virtual-repeat="order in closedOrders" class="repeated-item" flex="" md-item-size="28">
+                                                <md-list class="order-list-transaction" ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+                                                    <md-list-item flex="15" class="order-transaction-information">{{ order.type | capitalize }}</md-list-item>
+                                                    <md-list-item flex="25" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ order.price }}</md-list-item>
+                                                    <md-list-item flex="30" class="order-transaction-information">{{ order.amount | nineDigitsBitcoin }}</md-list-item>
+                                                    <md-list-item flex="25" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ order.value}}</md-list-item>
+                                                </md-list>
+                                            </md-list-item>
+
+                                        </md-virtual-repeat-container>
+
+                                    </md-list>
+                                </md-tab-body>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
+            </md-card>
+        </md-grid-tile>
+
+		<!-- class="instant-only-show" 
+		class="limit-only-show"  -->
+		
+        <!-- INSTANT/LIMIT ORDER -->
+        <md-grid-tile id="order-grid-title" ng-if="$mdMedia('gt-sm')" md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card layout-fill class="instant-only-show" style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+                    <instant-limit ng-cloak style="height: 90%"></instant-limit>
+                </md-content>
+            </md-card>
+        </md-grid-tile>
+	
+
+        <!-- INSTANT/LIMIT ORDER -->
+        <md-grid-tile id="order-grid-title" ng-if="$mdMedia('gt-sm')" md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card layout-fill class="limit-only-show" style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+                    <instant-limit ng-cloak style="height: 90%"></instant-limit>
+                </md-content>
+            </md-card>
+        </md-grid-tile>
+		
+  
+		
+		<!-- INSTANT/LIMIT if xs or sm -->
+        <md-grid-tile ng-if="$mdMedia('(max-width: 959px)')" md-rowspan="4" md-colspan="3" md-colspan-sm="2" md-colspan-xs="1">
+            <md-card layout-fill style="background: #f1f1f1;">
+                <md-content>
+                    <instant-limit ng-cloak></instant-limit>
+                </md-content>
+            </md-card>
+        </md-grid-tile>
+
+
+        <!-- MOST RECENT -->
+        <md-grid-tile ng-if="$mdMedia('gt-sm') || vm.displayRecent" id="most-recent"  md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <!-- MOST RECENT -->
+            <md-card class="dark-cards" layout-fill>
+                <md-toolbar class="md-table-toolbar md-default">
+                    <div class="md-toolbar-tools">
+                        <span>MOST RECENT</span>
+                    </div>
+                </md-toolbar>
+
+                <md-list class="table-fixed-width">
+                    <md-list class="list-sub-head" layout="row">
+                        <md-subheader flex="30">Price</md-subheader>
+                        <md-subheader flex="40">Amount</md-subheader>
+                        <md-subheader flex="30">Value</md-subheader>
+                    </md-list>
+
+                    <div md-virtual-repeat-container>
+                        <md-list-item md-virtual-repeat="trade in currentTrade" class="repeated-item" flex="" md-item-size="28">
+                            <md-list ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+                                <md-list-item flex="30"><i class="fa fa-inr" aria-hidden="true"></i>{{ trade.rate }}</md-list-item>
+                                <md-list-item flex="40">{{ trade.amount | nineDigitsBitcoin }}</md-list-item>
+                                <md-list-item flex="30"><i class="fa fa-inr" aria-hidden="true"></i>{{ trade.rate * trade.amount }}</md-list-item>
+                            </md-list>
+                        </md-list-item>
+                    </div>
+                </md-list>
+            </md-card>
+        </md-grid-tile>			
+		
+
+        <!-- CURRENT BUY/SELL COMBINED - when screen is md only-->
+        <md-grid-tile ng-if="$mdMedia('md') || (vm.displayCurrent && $mdMedia('(max-width: 959px)'))" md-rowspan="4" md-colspan="4" md-colspan-md="8" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+          <!-- CURRENT BUY/SELL COMBINED (PHONE/TABLET VIEW) -->
+            <md-card class="dark-cards" layout-fill layout="column">
+                <md-content>
+                    <md-tabs md-stretch-tabs='always' class="md-primary">
+                        <md-tab>
+                            <md-tab-label>BUY (BID) ORDERS</md-tab-label>
+                            <md-tab-body class="current-tab" style="position: absolute">
+                                <current-card orders="currentBuy"></current-card>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>SELL (ASK) ORDERS</md-tab-label>
+                            <md-tab-body>
+                                <current-card orders="currentSell"></current-card>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </md-card>
+        </md-grid-tile>
+
+        <!-- CURRENT BUY -->
+        <md-grid-tile ng-if="$mdMedia('gt-md')" md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="1" md-colspan-xs="1"  md-whiteframe="2">
+            <!-- CURRENT BUY -->
+            <md-card class="dark-cards" layout-fill layout="column">
+                <current-card card-title="BUY (BID)" orders="currentBuy"></current-card>
+            </md-card>
+        </md-grid-tile>
+        <!-- CURRENT SELL -->
+        <md-grid-tile ng-if="$mdMedia('gt-md')" md-rowspan="4" md-colspan="4" md-colspan-md="4" md-colspan-sm="1" md-colspan-xs="1"  md-whiteframe="2">
+            <!-- CURRENT SELL -->
+            <md-card class="dark-cards" layout-fill layout="column">
+                <current-card card-title="SELL (ASK)" orders="currentSell"></current-card>
+            </md-card>
+        </md-grid-tile>
+
+    </md-grid-list>
+
+</div>
+

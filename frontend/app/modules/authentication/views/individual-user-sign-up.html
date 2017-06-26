@@ -1,0 +1,73 @@
+<div class="containe" role="main">
+    <div class="container" ng-init="loadListOfOrganizations()">
+        <form class="newUserBox" name="individualUserSignUpForm" ng-submit="individualUserSignUp(individualUserSignUpForm)" novalidate="novalidate">
+            <div class="signIn newUserSignin">
+                <div class="form-group">
+                    <div class="pageTitle loginTitle textAlign-C">
+                        <span style="">{{'NEW_USER_SIGN_IN'}}</span>
+                    </div>
+                    <md-input-container>
+                        <label>{{'FIRST_NAME'}}</label>
+                        <input ng-model="user.signUp.firstName" name="firstName" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                        <div ng-messages="individualUserSignUpForm.firstName.$error">
+                            <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <label>{{'LAST_NAME'}}</label>
+                        <input ng-model="user.signUp.lastName" name="lastName" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                        <div ng-messages="individualUserSignUpForm.lastName.$error">
+                            <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <label>{{'MOBILE_NUMBER'}}</label>
+                        <input ng-model="user.signUp.mobile" name="mobile" maxlength="10" placeholder="{{'MOBILE_HINT' }}" ng-pattern="/^[0-9]{10}$/" required>
+                        <div ng-messages="individualUserSignUpForm.mobile.$error">
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'INVALID_MOBILE' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <label>{{'EMAIL'}}</label>
+                        <input ng-model="user.signUp.email" name="email" ng-maxlength="100" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+                        <div ng-messages="individualUserSignUpForm.email.$error">
+                            <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'ENTER_VALID_EMAIL' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <label>{{'SYSTEM_ORGANIZATION'}}</label>
+                        <md-select ng-model="user.signUp.sysOrganization" name="sysOrganization" required>
+                            <md-option ng-repeat="sysOrg in sysOrgList" value="{{sysOrg}}">
+                                {{sysOrg.value}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="individualUserSignUpForm.sysOrganization.$error" ng-if="individualUserSignUpForm.$submitted">
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="padding-t-0 padding-20 pull-left textAlign-C fullWidth wizardFooter">
+                <md-button type="reset" class="md-raised" ng-click="onCancelClick()">{{"CANCEL"}}</md-button>
+                <md-button type="submit" class="md-raised md-warn">{{"REGISTER"}}</md-button>
+            </div>
+
+            <div style="clear: both;"></div>
+        </form>
+    </div>
+</div>

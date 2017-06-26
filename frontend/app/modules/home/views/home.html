@@ -1,0 +1,611 @@
+<!-- Opened via 'menu' button in top left -->
+<md-sidenav style="background: #03A9F4;" class="md-sidenav-right md-whiteframe-z2" md-component-id="home-menu-sidenav" md-is-open="sidenavOpen">
+
+    <div id="home-sidenav-menu-title">
+      <span><md-icon md-svg-icon="images/btcmonklogo.svg"></md-icon></span>
+    </div>
+
+    <md-content layout-padding style="background: #03A9F4;">
+        <md-list>
+            <md-list-item class="md-2-line home-menu-sidenav-list-items" ng-repeat="item in menuItems" ng-click="sidenavOpen = false; showHomeDialog($event, item.url);">
+                <i style="color:#fff;" class="{{ item.icon }}"></i>
+                <div class="md-list-item-text md-offset">
+                    <h3>{{item.name}}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+
+</md-sidenav>
+
+
+<div id="home-main-background-container" ng-cloak>
+  <!-- Main Background -->
+    <div id="home-main-background" class="parallax">
+<!-- 		<video id="bgVideo" autoplay loop poster="image.png">
+
+		  <source src="images/CORPORATE .webm" type="video/webm">
+		  <source src="images/CORPORATE.mp4" type="video/mp4">
+		</video> -->
+		
+		
+<!-- Crausal implementation -->		
+
+
+<!--  <section id="carousel" ng-carousel
+      ng-init="curSlide=1; numSlides=6"
+      ng-swipe-right="curSlide=curSlide-1" 
+      ng-swipe-left="curSlide=curSlide+1">
+
+      <ul>
+        <li><img src="http://lorempixel.com/800/600" />
+        <li><img src="http://lorempixel.com/801/600" />
+        <li><img src="http://lorempixel.com/802/600" />
+        <li><img src="http://lorempixel.com/803/600" />
+        <li><img src="http://lorempixel.com/804/600" />
+      </ul>
+      
+      <div id="prev-button" ng-hide="curSlide==1"
+        ng-click="curSlide=curSlide-1"> &lt; </div>
+      
+      <div id="next-button" ng-hide="curSlide==numSlides"
+        ng-click="curSlide=curSlide+1">&gt; </div>
+    </section> -->	
+		
+		
+        <div id="home-transparent-background">
+          <div id="home-nav-container" layout="row">
+              <div class="nav-title hom-nav">
+                  <span id="nav-title-span-margin">
+                      <md-icon class="taurus-logo-nav" md-svg-icon="images/tauruslogo1.svg"></md-icon>
+<!--                       <span id="home-nav-display-taurus">BTC</span>
+                      <span id="home-nav-display-exchange">Monk</span> -->
+                  </span>
+              </div>
+			 <div flex></div> 
+			  
+			  <!-- Volume price added on header -->
+			  
+			  <div class="state-data">
+				<span class="home-data-title-text">Buy Price</span>
+				<br>
+				  <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.lastPrice}}/&#579;
+
+				<!-- <p id="home-data-24h-change" ng-style="negativeValue(marketValues.perc)">{{ marketValues.perc | number : 2 }}%, <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.change }}/&#579;</p> -->
+			  </div>
+
+			<div style="width: 50px;"></div>  
+
+			  <div class="state-data">
+				<span class="home-data-title-text">Sell Price</span>
+				<br>
+				  <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.lastPrice-220}}/&#579;
+
+				<!-- <p id="home-data-24h-change" ng-style="negativeValue(marketValues.perc)">{{ marketValues.perc | number : 2 }}%, <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.change }}/&#579;</p> -->
+			  </div>			
+			
+<!-- 			  <div class="state-data">
+				<span class="home-data-title-text">Volume</span>
+				<br>
+				<span>{{ marketValues.volume | currency : "&#579;" }}</span>
+			  </div> -->			  
+			  
+			   <!-- Volume price ends on header -->			  
+
+              <div flex></div>
+
+              <md-button class="md-icon-button nav-button" ng-click="showLoginRegisterDialog($event, 'login')">
+                <md-tooltip md-direction="down">Login</md-tooltip>
+                  <i id="home-menu-button-icon" class="mdi mdi-account nav-button-icons"></i>
+              </md-button>
+
+              <md-button class="md-icon-button nav-button" ng-click="showLoginRegisterDialog($event, 'register')">
+                <md-tooltip md-direction="down">Register</md-tooltip>
+                  <i id="home-menu-button-icon" class="mdi mdi-account-plus nav-button-icons"></i>
+              </md-button>
+			  
+
+
+              <md-button id="home-menu-button" class="md-icon-button nav-button" ng-click="openSidenav()">
+                <md-tooltip md-direction="down">Menu</md-tooltip>
+                  <i class="mdi mdi-menu nav-button-icons"></i>
+              </md-button>
+
+          </div>
+
+          <!-- Background Text -->
+          <div layout="row" id="home-background-text-layout">
+
+		  
+            <div flex></div>
+
+              <div id="home-background-text-container" layout="column" layout-align="center center">
+
+                  <div flex></div>
+
+
+                  <div class="home-background-image-text">
+                      <span style="color: #FFEB3B; font-weight: bold; font-size: 69px;">Safe, Secure Bitcoin Storage</span><br> 106,350 people trust their Bitcoins with Blockriti.
+                  </div>
+
+
+                  <div flex></div>
+
+                  <div flex id="home-price-card" layout-gt-xs="row" layout-xs="column">
+
+                      <div flex></div>
+                      <div flex></div>
+
+<!--                       <div style="background: rgba(236, 239, 241, .2); padding: 1%; color: #fff; border-radius: 3%; box-shadow: 0px 0px 3px #F5F5F5;">
+                        <span class="home-data-title-text">Price</span>
+                        <br>
+                          <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.lastPrice}}/&#579;
+
+                        <p id="home-data-24h-change" ng-style="negativeValue(marketValues.perc)">{{ marketValues.perc | number : 2 }}%, <i class="fa fa-inr" aria-hidden="true"></i> {{ marketValues.change }}/&#579;</p>
+                      </div> -->
+
+                      <div flex></div>
+
+<!--                       <div style="background: rgba(236, 239, 241, .2); padding: 1%; color: #fff; border-radius: 3%; box-shadow: 0px 0px 3px #F5F5F5;">
+                        <span class="home-data-title-text">Volume</span>
+                        <br>
+                        <span>{{ marketValues.volume | currency : "&#579;" }}</span>
+                      </div> -->
+
+                      <div flex></div>
+                      <div flex></div>
+
+                  </div>
+
+                  <div flex></div>
+				  
+				  <!-- -------------------------------------------------------------- -->
+<!-- 				 <div class="banner-btn" layout="row" layout-align="">
+					  <md-button class="md-icon-button nav-button btn-sign-in" ng-click="showLoginRegisterDialog($event, 'login')">
+						<md-tooltip md-direction="down">Login</md-tooltip>
+						  <i id="home-menu-button-icon" class="mdi mdi-account nav-button-icons"></i> Sign In
+					  </md-button>
+
+					  <md-button class="md-icon-button nav-button sinup-colr" ng-click="showLoginRegisterDialog($event, 'register')">
+						<md-tooltip md-direction="down">Register</md-tooltip>
+						  <i id="home-menu-button-icon" class="mdi mdi-account-plus nav-button-icons"></i> Sign Up
+					  </md-button>			  
+				 </div>	 -->			  
+				<!-- -------------------------------------------------------------- -->	
+
+<!--                   <div ng-if="home.displayLinkToDemo()" layout="column" layout-align="center center" style="margin-top: 50px;">
+                    <form name="demoForm" id="go-to-demo-form" ng-submit="home.goDemoRegister($event)" layout="column" layout-align="center center">
+                      <md-input-container>
+                        <label>Enter Email Address To Try Demo</label>
+                        <input ng-model="home.demoRegisterEmail" name="email" required type="email" md-no-asterisk md-autofocus ng-change="">
+                      </md-input-container>
+
+                      <md-button class="home-button" type="submit" aria-label="Submit">
+                          demo
+                      </md-button>
+                    </form>
+                   <div class="btc-prices" style="background: #ff5722; width: 100%; padding: 1%;">
+                       <label>btc to inr</label>
+                        <md-input-container id="btc-inr-convertor">
+                            <input id="btc-count" value="1" ng-change="home.getBTCINRPrice()" ng-model="btcCount" md-autofocus="true" />
+                        </md-input-container> &#579; = {{btc_final_inr_price}} INR
+                    </div> 
+                  </div> -->
+                  <div ng-if="!home.displayLinkToDemo()">
+                    <md-button class="home-button" id="trade-now-button" aria-label="trade now" ng-click="home.goToTrade()">
+                      trade now
+                    </md-button>
+                  </div>
+                  <div flex></div>
+                  <div flex></div>
+
+              </div>
+
+              <div flex></div>
+
+          </div>
+
+
+          <!-- Down Arrow FAB-->
+          <md-fab-speed-dial id="home-fab" class="md-scale" ng-click="scrollTo()">
+              <md-fab-trigger>
+                  <md-button class="md-fab" md-color="#64ffda" aria-label="down">
+                      <i id="home-fab-down-icon" class="mdi mdi-chevron-down"></i>
+                  </md-button>
+              </md-fab-trigger>
+          </md-fab-speed-dial>
+
+          </div>
+        </div>
+</div>
+
+
+<div>
+
+    <div style="">
+		<div layout-xs="column" layout="row">
+			<div class="height_medium app-download" style="background: #000; z-index: 2;">
+			<div style="width:90%; margin:0 auto; display:table; height:200px;">
+		
+                  <div ng-if="home.displayLinkToDemo()" layout="column" layout-align="center center" style="margin-top: 80px;">
+                    <form name="demoForm" id="go-to-demo-form" ng-submit="home.goDemoRegister($event)" layout="row" layout-align="center center" style="width: 70%;">
+                      <md-input-container style="width: 80%;">
+                        <label>Enter Email Address To Get Updates</label>
+                        <input ng-model="home.demoRegisterEmail" name="email" required type="email" md-no-asterisk md-autofocus ng-change="" style="width: 100%;">
+                      </md-input-container>
+
+                      <md-button class="home-button" type="submit" aria-label="Submit">
+                          Subscribe 
+                      </md-button>
+
+                    </form>
+                  </div>
+                  <div ng-if="!home.displayLinkToDemo()">
+                    <md-button class="home-button" id="trade-now-button" aria-label="trade now" ng-click="home.goToTrade()">
+                      Trade Now
+                    </md-button>
+                  </div>				  
+			</div>	
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<div>
+    <div class="home-information-section" id="what-is-bitcoin" layout="column" style="background: white;">
+
+      <div flex style="background:white; z-index:1;"></div>
+
+      <h2 class="home-sub-section-title-text" style="margin-bottom:50px; color: #242424;"><span>How</span> <span style="color:#00b2e2;">BLOC</span><span style="color:#ff5722;">KRITI</span> is driving internet ecosystem</h2>
+	  <div layout-xs="column" layout="row">
+		  <div flex="33" class="media-device" style="border: 1px solid rgba(0,0,0,0.3); border-right: none; padding: 1%;">
+			  <div class="feature-icon-block"><img src="images/hybrid-wallet.png"></div>
+			  <h4>WHAT IS A HYBRID WALLET?</h4>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus.</p>
+			   <md-button class="md-warn" style="background: #ff5722; color: #fff;">Demo</md-button>
+		  </div>
+		  <div flex="33" class="media-device" style="border: 1px solid rgba(0,0,0,0.3); border-right: none; padding: 1%;">
+			  <div class="feature-icon-block"><img src="images/non-hybrid.png"></div>
+			  <h4>NON-HYBRID WALLETS ARE NOT SAFE.</h4>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus.</p>
+			  <md-button class="md-warn" style="background: #ff5722; color: #fff;">Demo</md-button>
+		  </div>
+		  <div flex="33" class="media-device" style="border: 1px solid rgba(0,0,0,0.3); padding: 1%;">
+			  <div class="feature-icon-block"><img src="images/desktop_icon.png"></div>
+			  <h4>WHAT ABOUT DESKTOP CLIENTS?</h4>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus.</p>
+			  <md-button class="md-warn" style="background: #ff5722; color: #fff;">Demo</md-button>
+		  </div>	  
+	  </div>
+
+
+      <div flex></div>
+
+<!--       <h2 style="color: #455A64;">Why Taurus?</h2>
+      <div class="explanation" layout="column">
+          <p>Taurus is Canada's first fee-free bitcoin exchange that allows you to trade with other users at no cost. Buying and selling happens in real time, 24/7! We constantly improve usability and develop new features based on our customers’ feedback. Join now for a seamless trading experience!</p>
+      </div>
+
+      <div flex></div> -->
+
+    </div>
+</div>
+
+<div style="background: #242424;">
+	<div layout="column">
+		<div class="explanation" layout="column"><h3 style="text-transform: capitalize; color: #fff;">professional bitcoin traders</h3><p>Limitless options beautifully packed in a blockriti for bitcoin exchange.</p></div>
+	</div>
+    <div style="width: 80%; margin: 0 auto; ">
+		<div layout-xs="column" layout-sm="column" layout="row">
+
+<!-- 			<div flex>
+				<div style="padding-left: 1.5rem; padding-right: 1.5rem; margin-top: 50px;">
+					<img src="images/ipad-iphone.png" alt="" style="width:100%; margin-bottom:-5px;">
+				</div>
+			</div> -->
+			
+			<div flex>
+				<div style="padding-left: 1.5rem; padding-right: 1.5rem; margin-top: 50px;">
+					<div class="vc_column-inner">
+						<div class="wpb_wrapper">
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-margin.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Bitcoin Margin Trading</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+								</div>
+							</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-adv.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Advanced Order Types</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Consectetur adipiscing elit, lorem ipsum dolor sit amet.</div>
+								</div>
+							</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none">
+						<span class="w-separator-h"></span></div>
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-audit.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Proof of Reserves Audits</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Dolor lorem ipsum sit amet, adipiscing elit consectetur.</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			
+			<div flex>
+				<div style="padding-left: 1.5rem; padding-right: 1.5rem; margin-top: 50px;">
+					<div class="vc_column-inner">
+						<div class="wpb_wrapper">
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-margin.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Bitcoin Margin Trading</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+								</div>
+							</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-adv.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Advanced Order Types</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Consectetur adipiscing elit, lorem ipsum dolor sit amet.</div>
+								</div>
+							</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none">
+						<span class="w-separator-h"></span></div>
+							<div class="w-iconbox iconpos_left style_default color_contrast">
+								<div class="w-iconbox-icon"><img src="images/icon-audit.png" ></div>
+								<div class="w-iconbox-meta">
+									<h4 class="w-iconbox-title" style="font-size:16px; margin-bottom: 0px; color: rgba(255,255,255,1);">Proof of Reserves Audits</h4>
+									<div class="w-iconbox-text" style="color: rgba(255,255,255,0.8);">Dolor lorem ipsum sit amet, adipiscing elit consectetur.</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+
+<div>
+
+    <div style="">
+		<div layout-xs="column" layout="row">
+			<div class="height_medium app-download">
+				<div style="width:90%; margin:0 auto; display:table; height:200px;">
+					<div class="w-actionbox-text"><h2> BLOCKRITI GET UPDATES! <span style="font-weight: 300; color: rgba(24, 24, 24, 1);">NEW DESTINATION FOR BTC TRADING</span></h2></div>
+					<div>
+						<md-input-container class="md-icon-float md-block">
+						  <!-- Use floating label instead of placeholder -->
+						  <label style="color: rgba(255,255,255, 0.8);">Name</label>
+						  <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+						  <input ng-model="user.name" type="text">
+						</md-input-container>
+
+						<md-input-container md-no-float class="md-block">
+						  <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+						  <input ng-model="user.phone" type="text" placeholder="Phone Number">
+						</md-input-container>
+
+						<md-input-container class="md-block">
+						  <!-- Use floating placeholder instead of label -->
+						  <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+						  <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+						</md-input-container>	
+					</div>
+					<div class="w-actionbox-controls">
+						<a class="w-btn color_white style_raised icon_atleft" href="#" style="font-size:19px;">
+							<!-- <i class="fa fa-usd"></i> -->
+							<span class="w-btn-label">Subscribe</span>
+							<span class="ripple-container"></span>
+						</a>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div>
+    <div class="home-information-section back-img" style="background:linear-gradient(rgba(36, 36, 36, 1),  rgba(36, 36, 36, 1)), url('images/Bitcoin-uhd-wallpaper.jpg'); background-position: center center; background-size: cover; background-repeat: no-repeat; " id="what-is-bitcoin" layout="column">
+
+      <div flex></div>
+	  <h1 style="font-size:34px; color: #fff;">What our users say</h1>
+	  
+  <div layout="row">	  
+	<div style="background: rgba(255,255,255,0.3); border: 1px solid white; margin-left: 60px; margin-right:40px;">
+	  <div style="margin-top: 10px;"><img style="width: 100px; height:100px; border-radius: 50%;" src="images/avatar_2x.png"></div>
+      <h2 class="home-sub-section-title-text">Alulim</h2>
+      <div class="explanation" layout="column">
+          <p>Bitcoin is a decentralized peer-to-peer platform and currency. It is a novel, truly borderless way of transmitting value from one person to another without any third party. With the fast pace of consumer and merchant adoption Bitcoin is bringing a paradigm shift in the world of finance. Become part of the monetary revolution!</p>
+      </div>
+	</div>
+	<div style="background: rgba(255,255,255,0.3); border: 1px solid white; margin-left: 40px; margin-right:60px;">
+	  <div style="margin-top: 10px;"><img style="width: 100px; height:100px; border-radius: 50%;" src="images/avatar_2x.png"></div>
+	  <h2 class="home-sub-section-title-text">Alulim</h2>
+      <div class="explanation" layout="column">
+          <p>BLOCKRITI is India's first bitcoin exchange that allows you to trade with other users at little cost. Buying and selling happens in real time, 24/7! We constantly improve usability and develop new features based on our customers’ feedback. Join now for a seamless trading experience!</p>
+      </div>
+	</div>
+  </div>	
+      <div flex></div>
+
+    </div>
+</div>
+
+
+
+<div>
+	<div layout="column" class="l-section-h i-cf home-information-section" style="background: white;">
+	<div flex></div>
+		<div layout-xs="column" layout-sm="column" layout="row" class="g-cols type_default valign_middle" style="width: 90%; margin: 0 auto;">
+
+			<div flex class="vc_col-sm-6 wpb_column vc_column_container animate_afl animate_start" style="margin-right: 20px;" >
+				<div class="vc_column-inner" style="margin-top: 70px;">
+					<div class="wpb_wrapper">
+						<div class="wpb_text_column ">
+						<div class="wpb_wrapper">
+						<h2>Saftey Production</h2>
+						</div>
+						</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+						<div class="wpb_text_column ">
+							<div class="wpb_wrapper">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in purus. Praesent viverra, est vitae efficitur auctor, nibh orci varius ligula, gravida molestie enim justo ut diam. Praesent eget congue lacus, ut viverra neque.</p>
+							</div>
+						</div>
+
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+						<div class="w-btn-wrapper align_left ">
+							<a class="w-btn style_raised color_primary icon_atleft active" href="#"><i class="fa fa-star-o"></i><span class="w-btn-label">See Features</span><span class="ripple-container"></span></a>
+						</div>
+						<div class="w-btn-wrapper align_left"><a class="w-btn style_raised color_white icon_atright" href="#"><i class="fa fa-angle-right"></i><span class="w-btn-label">Learn More</span><span class="ripple-container"></span></a></div>
+					</div>
+				</div>
+			</div>
+			<div flex class="vc_col-sm-6 wpb_column vc_column_container animate_afl animate_start" style="margin-left: 20px;">
+				<div class="vc_column-inner" style="margin-top: 70px;">
+					<div class="wpb_wrapper">
+						<div class="wpb_text_column ">
+						<div class="wpb_wrapper">
+						<h2>Security of Bitcoin</h2>
+						</div>
+						</div>
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+						<div class="wpb_text_column ">
+							<div class="wpb_wrapper">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in purus. Praesent viverra, est vitae efficitur auctor, nibh orci varius ligula, gravida molestie enim justo ut diam. Praesent eget congue lacus, ut viverra neque.</p>
+							</div>
+						</div>
+
+						<div class="w-separator type_invisible size_small thick_1 style_solid color_border cont_none"><span class="w-separator-h"></span></div>
+						<div class="w-btn-wrapper align_left ">
+							<a class="w-btn style_raised color_primary icon_atleft active" href="#"><i class="fa fa-star-o"></i><span class="w-btn-label">See Features</span><span class="ripple-container"></span></a>
+						</div>
+						<div class="w-btn-wrapper align_left"><a class="w-btn style_raised color_white icon_atright" href="#"><i class="fa fa-angle-right"></i><span class="w-btn-label">Learn More</span><span class="ripple-container"></span></a></div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	<div flex></div>	
+	</div>
+</div>
+
+
+
+
+<div>
+    <div class="footer" id='' style="text-align:center; background: #242424;" >
+		<div class="footer-custom">
+			<div layout="row">
+				  <div class="" flex>
+					<ul>
+					  <h4>DOCUMENTATION</h4>
+					  <li><a href="/faq">FAQ</a></li>
+					  <li><a href="/terms">Terms &amp; Conditions</a></li>
+					  <li><a href="/privacy">Privacy Policy</a></li>
+					  <li><a href="/kyc_anti_fraud">KYC &amp; Anti Fraud</a></li>
+					</ul>
+
+				  </div>
+
+				  <div class="" flex>
+					<ul>
+					  <h4>HOW IT WORKS</h4>
+					  <li><a href="#" target="_blank">How to use blockriti</a></li>
+					  <li><a href="#">Bitcoin for Beginners</a></li>
+					  <li><a href="#" target="_blank">Practice Trading</a></li>
+
+					  
+					</ul>
+
+				  </div>
+
+				  <div class="" flex>
+					<ul>
+					  <h4>TOOLS</h4>
+					  <li><a href="#">Trade API</a></li>
+					  <li><a href="#" target="_blank">Block Explorer</a></li>
+					  <li><a href="#" target="_blank">Bitcoin Trading Course</a></li>
+					  <li><a href="#" target="_blank">Referral Program</a></li>
+					</ul>
+
+				  </div>
+
+				  <div class="" flex>
+					<ul>
+					  <h4>BLOCKRITI</h4>
+					  <li><a href="#" target="_blank">Our Home Page</a></li>
+					  <li><a href="#" target="_blank">Blog</a></li>
+					  <li><a href="#">Contact &amp; Support</a></li>
+					  <li><a href="#">About Us</a></li>
+					</ul>	
+
+				  </div>
+<!-- 				  <div class="" flex>
+					  <div id="" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="false" class="" style="margin-top: 20px;" title="Twitter Timeline">
+						<a class="twitter-timeline"  data-width="300" data-height="300"  href="https://twitter.com/TwitterDev/timelines/539487832448843776">Curated tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					  </div>
+				  </div> -->
+			</div>		 
+		</div>
+		<div layout="row">			   
+			  <div class="explanation" style="color: rgba(255,255,255, 0.7);">				  
+				  <p>copyright &copy;2017 BLOCKRITI </p>
+			  </div>	
+		</div>
+    </div>
+</div>
+<!-- <div>
+    <div class="home-information-section" id='home-panel-4' layout="column">
+
+        <div flex></div>
+
+        <h2 style="color: #455A64;">What is Bitcoin?</h2>
+        <div class="explanation" layout="column">
+            <p>Bitcoin is a decentralized peer-to-peer platform and currency. It is a novel, truly borderless way of transmitting value from one person to another without any third party. With the fast pace of consumer and merchant adoption Bitcoin is bringing a paradigm shift in the world of finance. Become part of the monetary revolution!</p>
+        </div>
+
+        <div flex></div>
+
+        <h2 style="color: #455A64;">Why Taurus?</h2>
+        <div class="explanation" layout="column">
+            <p>Taurus is Canada's first fee-free bitcoin exchange that allows you to trade with other users at no cost. Buying and selling happens in real time, 24/7! We constantly improve usability and develop new features based on our customers’ feedback. Join now for a seamless trading experience!</p>
+        </div>
+
+        <div flex></div>
+
+    </div>
+</div>
+<div>
+    <div class="home-information-section" id='home-panel-5' layout="column">
+
+        <div flex></div>
+
+        <h2 style="color: #455A64;">What is Bitcoin?</h2>
+        <div class="explanation" layout="column">
+            <p>Bitcoin is a decentralized peer-to-peer platform and currency. It is a novel, truly borderless way of transmitting value from one person to another without any third party. With the fast pace of consumer and merchant adoption Bitcoin is bringing a paradigm shift in the world of finance. Become part of the monetary revolution!</p>
+        </div>
+
+        <div flex></div>
+
+        <h2 style="color: #455A64;">Why Taurus?</h2>
+        <div class="explanation" layout="column">
+            <p>Taurus is Canada's first fee-free bitcoin exchange that allows you to trade with other users at no cost. Buying and selling happens in real time, 24/7! We constantly improve usability and develop new features based on our customers’ feedback. Join now for a seamless trading experience!</p>
+        </div>
+
+        <div flex></div>
+
+    </div>
+</div> -->

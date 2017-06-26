@@ -1,0 +1,282 @@
+<div id="instant-limit-tabs-container">
+    <md-tabs md-stretch-tabs='always' class="md-primary" md-no-pagination="true" md-selected="selectedTab">
+
+        <md-tab md-on-select="selectedTab = 0">
+            <md-tab-label>{{ instantLimit.instantLimitLabel }}</md-tab-label>
+        </md-tab>
+
+        <md-tab md-on-select="selectedTab = 1" ng-if="instantLimit.showBuySell">
+            <md-tab-label>{{ instantLimit.buySellLabel }}</md-tab-label>
+        </md-tab>
+
+        <md-tab md-on-select="selectedTab = 2" ng-if="instantLimit.showAmount">
+            <md-tab-label>Amount</md-tab-label>
+        </md-tab>
+
+    </md-tabs>
+</div>
+
+<!-- Instant Limit Content -->
+<div ng-show="instantLimit.instantLimitContent" style="height: calc(100% - 48px);" layout="column" class="instant-limit-container">
+
+    <md-button class="md-primary md-raised cust-btn instant-btn"  ng-click="instantLimit.createBuySell(); instantLimit.instantLimitLabel = 'INSTANT';">
+        <i class="mdi mdi-run"></i>
+        INSTANT ORDER
+    </md-button>
+
+    <md-button class="md-primary md-raised cust-btn limit-btn" style="background-color: #ef5350 !important;" ng-click="instantLimit.createBuySell(); instantLimit.instantLimitLabel = 'LIMIT';">
+        <i class="mdi mdi-clock"></i>
+        LIMIT ORDER
+    </md-button>
+	
+    <md-button class="md-primary md-raised cust-btn limit-btn" style="background-color: #242424 !important;" ng-click="instantLimit.createBuySell(); instantLimit.instantLimitLabel = 'STOP';">
+        <i class="mdi mdi-close-network"></i>
+        STOP ORDER
+    </md-button>	
+
+    <div flex></div>
+
+</div>
+
+
+
+<!-- Buy/Sell Content -->
+<div ng-if="instantLimit.buySellContent" layout="column" style="height: calc(100% - 48px);" class="instant-limit-container">
+
+    <!-- <div flex></div> -->
+
+    <md-button class="md-primary md-raised cust-btn buy-only" ng-click="instantLimit.createAmount(); instantLimit.buySellLabel = 'BUY';">
+        BUY
+    </md-button>
+
+    <!-- <div flex></div> -->
+
+    <md-button class="md-primary md-raised cust-btn sell-only" style="background-color: #ef5350 !important;" ng-click="instantLimit.createAmount();  instantLimit.buySellLabel = 'SELL';">
+        SELL
+    </md-button>
+
+    <div flex></div>
+
+</div>
+
+<!-- AMOUNT -->
+<div ng-show="instantLimit.showAmount" id="instant-limit-amount">
+
+    <md-progress-linear class="md-accent" md-mode="indeterminate" ng-disabled="instantLimit.showProgressBar"></md-progress-linear>
+
+    <!-- AMOUNT INSTANT -->
+    <div ng-if="instantLimit.instantLimitLabel === 'INSTANT'" class="instant-limit-container height-100-percent">
+
+        <form class="height-100-percent" name="instantAmountForm" layout="column" autocomplete="off" ng-submit="instantLimit.orderInstant.amount && instantAmountForm.$valid && instantLimit.submitInstantOrder(instantLimit.buySellLabel)">
+
+            <div flex></div>
+
+            <md-input-container  class="instant-limit-order-amount">		
+			
+                <label style="color: #242424;">Volumn of btc best order</label>
+                <md-icon ng-if="instantLimit.buySellLabel === 'BUY'" style="margin-top:-5px;margin-left:-20px; color: #242424;">&#579;</md-icon>
+                <md-icon ng-if="instantLimit.buySellLabel !== 'BUY'">
+                    <i class="fa fa-inr" style="margin-left:-20px; color:#242424;" aria-hidden="true"></i>
+                </md-icon>
+                <input style="color:#242424;" name="amount" ng-model="instantLimit.orderInstant.amount" ng-model-options="{debounce: 200}" ng-change="instantLimit.getInstantOrderApproximation(instantLimit.orderInstant.amount, instantLimit.buySellLabel)" type="number" ng-init="instantLimit.disableScrollOnNumberInput()" step="{{ instantLimit.instantStepAmount }}" ng-min="instantLimit.instantAmountMin" ng-max="instantLimit.instantAmountMax" md-no-asterisk>
+
+            </md-input-container>			
+			
+			
+            <md-input-container  class="instant-limit-order-amount">		
+			
+                <label style="color: #242424;">Price</label>
+                <md-icon ng-if="instantLimit.buySellLabel === 'SELL'" style="margin-top:-5px;margin-left:-20px; color: #242424;">&#579;</md-icon>
+                <md-icon ng-if="instantLimit.buySellLabel !== 'SELL'">
+                    <i class="fa fa-inr" style="margin-left:-20px; color:#242424;" aria-hidden="true"></i>
+                </md-icon>
+                <input style="color:#242424;" name="amount" ng-model="instantLimit.orderInstant.amount" ng-model-options="{debounce: 200}" ng-change="instantLimit.getInstantOrderApproximation(instantLimit.orderInstant.amount, instantLimit.buySellLabel)" type="number" ng-init="instantLimit.disableScrollOnNumberInput()" step="{{ instantLimit.instantStepAmount }}" ng-min="instantLimit.instantAmountMin" ng-max="instantLimit.instantAmountMax" md-no-asterisk disabled>
+                <div style="color:#242424;" ng-messages="instantAmountForm.amount.$error">
+                    <div ng-message="min">Minimum
+                        <span ng-if="instantLimit.sellBitcoin">&#579;</span>
+                        <span ng-if="!instantLimit.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                        <span >{{ instantLimit.instantAmountMin }}.</span>
+                    </div>
+                    <div ng-message="max">Maximum amount is
+                        <span ng-if="instantLimit.sellBitcoin">&#579;</span>
+                        <span ng-if="!instantLimit.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                        <span >{{ instantLimit.instantAmountMax }}.</span>
+                    </div>
+                    <!-- <div ng-message="required">Required field.</div> -->
+                </div>
+            </md-input-container>
+
+            <div flex></div>
+
+            <div layout="row">
+
+                <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                    <span>Subtotal:</span>
+                    <span>Fee:</span>
+                    <span>Approx.{{ instantLimit.buySellLabel === "SELL" ? 'INR' : 'BTC' }}:</span>
+                </div>
+                <div flex></div>
+
+				
+                <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                    <div ng-if="instantLimit.buySellLabel === 'SELL'">
+                        <span><i class="fa fa-inr" aria-hidden="true"></i>{{ instantLimit.instantOrderData.approx}}</span><br>
+                        <span><i class="fa fa-inr" aria-hidden="true"></i>{{ instantLimit.instantOrderData.fee}}</span><br>
+                        <span><i class="fa fa-inr" aria-hidden="true"></i>{{ instantLimit.instantOrderData.net }}</span>
+                    </div>
+                    <div ng-if="instantLimit.buySellLabel !== 'SELL'">
+                        <span>{{instantLimit.instantOrderData.approx  | currency : "&#579;" : 8}}</span><br>
+                        <span>{{instantLimit.instantOrderData.fee | currency : "&#579;" : 8}}</span><br>
+                        <span>{{instantLimit.instantOrderData.net | currency : "&#579;" : 8}}</span>
+                    </div>
+                </div>
+				
+            </div>
+
+			<div flex></div>
+			<div>
+				<i class="mdi mdi-information-outline"></i>
+			</div>	
+			
+            <div flex></div>
+
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="instantLimit.disableOrderButton">
+                COMPLETE
+            </md-button>
+
+            <div flex></div>
+
+        </form>
+
+    </div>
+
+    <!-- AMOUNT LIMIT -->
+    <div ng-if="instantLimit.instantLimitLabel === 'LIMIT'" class="instant-limit-container height-100-percent">
+
+        <form name="instantLimit.limitOrderForm" class="height-100-percent" layout="column" autocomplete="off" ng-submit="instantLimit.orderLimit.amount && instantLimit.orderLimit.rate && instantLimit.limitOrderForm.$valid && instantLimit.submitLimitOrder(instantLimit.buySellLabel)">
+
+            <div flex></div>
+
+            <md-input-container style="color: #242424;" class="md-block instant-limit-order-amount">
+                <label style="color: #242424;">BTC</label>
+                <md-icon style="color: #242424;">&#579;</md-icon>
+                <input style="color: #242424;" name="amount" ng-model="instantLimit.orderLimit.amount" type="number" ng-init="instantLimit.disableScrollOnNumberInput()" step="any" ng-min="instantLimit.limitAmountMin" ng-max="instantLimit.limitAmountMax" md-no-asterisk>
+                <div ng-messages="instantLimit.limitOrderForm.amount.$error">
+                    <div ng-message="min">Minimum &#579;{{ instantLimit.limitAmountMin }}.</div>
+                    <div ng-message="max">Maximum amount is &#579;{{ instantLimit.limitAmountMax }}.</div>
+                    <!-- <div ng-message="required">Required field.</div> -->
+                </div>
+            </md-input-container>
+
+            <div flex></div>
+
+            <md-input-container style="color: #242424;" class="md-block">
+                <label style="color: #242424;">Price (best order)</label>
+                <md-icon style="color: #242424;"><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                <input style="color: #242424;" ng-model="instantLimit.orderLimit.rate" type="number" name="rate" ng-init="instantLimit.disableScrollOnNumberInput()" step="0.01" ng-min="instantLimit.limitRateMin" ng-max="instantLimit.limitRateMax" md-no-asterisk>
+                <div style="color: #242424;" ng-messages="instantLimit.limitOrderForm.rate.$error">
+                    <div style="color: #242424;" ng-message="min">Minimum <i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.limitRateMin}}.</div>
+                    <div style="color: #242424;" ng-message="max">Maximum amount is <i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.limitRateMax}}.</div>
+                    <!-- <div ng-message="required">Required field.</div> -->
+                </div>
+            </md-input-container>
+
+            <div flex></div>
+
+            <div layout="row"  class="instant-limit-container">
+
+                <div style="color: #242424;" layout="column" class="instant-limit-text-right">				
+                  <span>Total:</span>
+                </div>
+                <div flex></div>
+                <div style="color: #242424;" layout="column" class="instant-limit-text-left">
+                  <span><i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.orderLimit.amount * instantLimit.orderLimit.rate}}</span><br>
+                </div>
+
+            </div>
+
+            <div flex></div>
+			
+			<div>
+			<i class="mdi mdi-information-outline"></i>
+			</div>
+			
+			<div flex></div>
+			
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="instantLimit.disableOrderButton">
+                COMPLETE
+            </md-button>
+
+            <div flex></div>
+        </form>
+
+    </div>
+
+    <!-- AMOUNT STOP -->
+    <div ng-if="instantLimit.instantLimitLabel === 'STOP'" class="instant-limit-container height-100-percent">
+
+        <form name="instantLimit.limitOrderForm" class="height-100-percent" layout="column" autocomplete="off" ng-submit="instantLimit.orderLimit.amount && instantLimit.orderLimit.rate && instantLimit.limitOrderForm.$valid && instantLimit.submitLimitOrder(instantLimit.buySellLabel)">
+
+            <div flex></div>
+
+            <md-input-container style="color: #242424;" class="md-block instant-limit-order-amount">
+                <label style="color: #242424;">Amount</label>
+                <md-icon style="color: #242424;">&#579;</md-icon>
+                <input style="color: #242424;" name="amount" ng-model="instantLimit.orderLimit.amount" type="number" ng-init="instantLimit.disableScrollOnNumberInput()" step="any" ng-min="instantLimit.limitAmountMin" ng-max="instantLimit.limitAmountMax" md-no-asterisk>
+                <div ng-messages="instantLimit.limitOrderForm.amount.$error">
+                    <div ng-message="min">Minimum &#579;{{ instantLimit.limitAmountMin }}.</div>
+                    <div ng-message="max">Maximum amount is &#579;{{ instantLimit.limitAmountMax }}.</div>
+                    <!-- <div ng-message="required">Required field.</div> -->
+                </div>
+            </md-input-container>
+
+            <div flex></div>
+
+            <md-input-container style="color: #242424;" class="md-block">
+                <label style="color: #242424;">Rate</label>
+                <md-icon style="color: #242424;"><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                <input style="color: #242424;" ng-model="instantLimit.orderLimit.rate" type="number" name="rate" ng-init="instantLimit.disableScrollOnNumberInput()" step="0.01" ng-min="instantLimit.limitRateMin" ng-max="instantLimit.limitRateMax" md-no-asterisk>
+                <div style="color: #242424;" ng-messages="instantLimit.limitOrderForm.rate.$error">
+                    <div style="color: #242424;" ng-message="min">Minimum <i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.limitRateMin}}.</div>
+                    <div style="color: #242424;" ng-message="max">Maximum amount is <i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.limitRateMax}}.</div>
+                    <!-- <div ng-message="required">Required field.</div> -->
+                </div>
+            </md-input-container>
+
+            <div flex></div>
+
+            <div layout="row"  class="instant-limit-container">
+
+                <div style="color: #242424;" layout="column" class="instant-limit-text-right">
+                  <span>Total:</span>
+                </div>
+                <div flex></div>
+                <div style="color: #242424;" layout="column" class="instant-limit-text-left">
+                  <span><i class="fa fa-inr" aria-hidden="true"></i> {{ instantLimit.orderLimit.amount * instantLimit.orderLimit.rate}}</span><br>
+                </div>
+
+            </div>
+
+			<div flex></div>
+			
+			<div>
+				<i class="mdi mdi-information-outline"></i>
+			</div>	
+			            			
+            <div flex></div>
+
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="instantLimit.disableOrderButton">
+                COMPLETE
+            </md-button>
+
+            <div flex></div>
+        </form>
+
+    </div>
+
+
+</div>

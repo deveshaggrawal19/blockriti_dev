@@ -1,0 +1,13 @@
+Options FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^.gitignore$ index.php [L]
+RewriteRule ^(.*).csv$ $1.csv [L]
+RewriteRule ^ripple.txt$ ripple.txt [L]
+RewriteRule ^test$ test.php [L]
+
+# Everything else to the CI controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+#RewriteRule ^[a-zA-Z][a-zA-Z]/(.*)$ index.php?/$1 [L]

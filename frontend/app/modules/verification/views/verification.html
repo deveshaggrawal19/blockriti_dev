@@ -1,0 +1,495 @@
+<logged-in-nav></logged-in-nav>
+
+<md-button class="md-warn md-raised verification-skip" ng-click="vm.goToTrade()">
+    Skip
+</md-button>
+
+<div id="verification-page" class="verification-page-container nav-modi-temp" ng-controller="VerificationCtrl">
+
+
+
+<div layout="row" layout-xs="column">
+  <div flex>
+  <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg" style="background: #ff5722;"> </md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">KYC Details</span>
+            <span class="md-subhead">upload your kyc details here</span>
+          </md-card-header-text>
+        </md-card-header>
+
+        <md-card-title>
+          <md-card-title-text>
+         
+            <span class="md-subhead">Acceptable file types are .pdf, .jpg, and .jpeg between 50 KB and 5 MB.</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button style="background: rgb(234, 234, 234);">Upload Photo ID</md-button>
+          <md-button style="background: rgb(216, 216, 216);">Upload Utility Bill</md-button>
+        </md-card-actions>
+        <md-card-content>
+          
+		<div class="" style="height: 113px; display: inline-block; width: 100px;">
+		   <img ng-src="images/Bitcoin-uhd-wallpaper.jpg" width="100" class="img-responsive" />
+		</div>
+		
+		<div class="" style="height: 113px; width: 100px; float: left; margin-right: 42px;">
+		   <img ng-src="images/Bitcoin-uhd-wallpaper.jpg" width="100" class="img-responsive" />
+		</div>		
+			 
+        </md-card-content>
+      </md-card>
+  </div>
+  <div flex>
+  
+	<div>
+	  <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">User Details</span>
+            <span class="md-subhead">verify for level 2</span>
+          </md-card-header-text>
+        </md-card-header>
+
+        <md-card-content>
+          
+		<div class="" style="">
+			<div class="settings-panel-container" layout="column">
+
+				<table md-table>
+					<tbody md-body>
+
+					  <tr md-row>
+						  <th class="user-info-subheader">Basic Details</th>
+					  </tr>
+						<tr md-row>
+							<td md-cell><strong>Name</strong></td>
+							<td md-cell>shrikant B</td>
+						</tr>
+
+						<tr md-row>
+							<th class="user-info-subheader">Verification</th>
+						</tr>
+						<tr md-row>
+							<td md-cell><strong>Verified</strong></td>
+							<td md-cell>YES</td>
+							<td><i class="mdi mdi-check" style="color:green;"></i></td>
+						</tr>
+
+					  <tr md-row>
+							<td md-cell><strong>Verification Level</strong></td>
+							<td md-cell>
+								<md-button  class="md-primary" ng-click="settingsCtrl.continueVerification()">
+								Verify/Upgrade
+								</md-button>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>		
+			 
+        </md-card-content>
+      </md-card>
+	</div>
+	
+  </div>
+</div>
+
+
+<div layout="row" layout-xs="column">
+  <div flex>
+  <md-card>
+        <md-card-header>
+          <md-card-header-text>
+            <span class="md-title">Bank</span>
+            <span class="md-subhead">add bank account for transactions</span>
+          </md-card-header-text>
+        </md-card-header>
+
+        <md-card-title>
+          <md-card-title-text>         
+            <span class="md-subhead">information about bank account</span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+          
+		<div class="" style="">
+			<div ng-app="angularjs-starter" ng-controller="MainCtrl">
+			   <fieldset  data-ng-repeat="choice in choices" style="margin-bottom: 20px;">
+				  <select style="height: 42px;">
+					 <option>Visa</option>
+					 <option>Master</option>
+					 <option>Other</option>
+				  </select>
+				  
+				  <input type="text" style="height: 36px;" ng-model="choice.name" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" name="" placeholder="Enter Account Number">
+				  <button class="add" ng-click="addNewChoice()">add account</button>
+				  <button class="remove" ng-click="removeChoice()"><span style="color: red;">-</span></button>
+			   </fieldset>
+
+			</div>
+		</div>		
+			 
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>View Detail</md-button>
+
+        </md-card-actions>		
+		
+      </md-card>
+  </div>
+  <div flex>
+  
+	<div>
+	  <md-card>
+        <md-card-header>
+          <md-card-header-text>
+            <span class="md-title">Added Account</span>
+            <span class="md-subhead"></span>
+          </md-card-header-text>
+        </md-card-header>
+
+        <md-card-content>  
+		<div style="min-height: 165px; ">        
+			 <md-list class="list-sub-head" layout="row">
+				  <md-subheader class="orders-type-title" flex="15">Date</md-subheader>
+				  <md-subheader flex="20">Bank name</md-subheader>
+				  <md-subheader flex="30">Payee name</md-subheader>
+				  <md-subheader flex="25">Status</md-subheader>
+				  <md-subheader id="cancel-all-orders-container" flex="10">
+				
+					  <md-icon ng-if="orders.length > 0;" id="cancel-all-orders" class="mdi mdi-close-circle cancel-open-order" ng-click="vm.confirmCancelAllOrders($event);">
+						<md-tooltip>Cancel All Orders</md-tooltip>
+					  </md-icon>
+				  </md-subheader>
+			  </md-list>
+			  <md-virtual-repeat-container id="vertical-container">
+
+				  <md-list-item  class="repeated-item" flex="" md-item-size="28">
+					  <md-list class="order-list-transaction" ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+						  <md-list-item flex="15" class="order-transaction-information">{{ account.date | capitalize }}</md-list-item>
+						  <md-list-item flex="20" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ bank.name | capitalize}}</md-list-item>
+						  <md-list-item flex="30" class="order-transaction-information">{{ payee.name | capitalize }}</md-list-item>
+						  <md-list-item flex="25" class="order-transaction-information"><i class="fa fa-inr" aria-hidden="true"></i>{{ account.status }}</md-list-item>
+						  <md-list-item flex="10" id="cancel-single-order">
+							  <md-icon class="mdi mdi-close-circle cancel-open-order" ng-click="vm.cancelOrder(order, $index);">
+								<md-tooltip>Cancel Order</md-tooltip>
+							  </md-icon>
+						  </md-list-item>
+					  </md-list>
+				  </md-list-item>
+
+			  </md-virtual-repeat-container>			  
+		</div>			  
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>View Detail</md-button>
+        </md-card-actions>			
+		
+      </md-card>
+	</div>
+	
+  </div>
+</div>
+
+<!-- 
+    <md-expansion-panel-group>
+
+        
+        <md-expansion-panel md-component-id='verificationFirst'>
+
+            <md-expansion-panel-collapsed>
+
+                <div class="md-title" layout="column" layout-align="center left">
+                    Verification Level One
+                </div>
+
+                <div class="md-summary" layout="column" layout-align="center left">
+                    Grants trading and deposit/withdraw privileges via all available methods except for Interac Online.
+                </div>
+
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded class="tabBackground-expandable">
+
+                <md-expansion-panel-header>
+
+                    <div class="md-title" layout="column" layout-align="center left">
+                        Verification Level One
+                    </div>
+
+                    <div class="md-summary" layout="column" layout-align="center left">
+                        Grants trading and deposit/withdraw privileges via all available methods except for Interac
+                        Online.
+                    </div>
+
+                    <md-progress-linear class="verification-progress-bar" md-mode="indeterminate" ng-disabled="vm.verificationOneProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content class="expansionPanel">
+
+                    <div class="verification-panel-container" layout="column">
+
+                        <div layout="row" flex="80" flex-md="100" class="formSection" layout-wrap>
+
+                            <div id="verification_text1">
+                                <p>
+                                    In order to comply with the international anti-money laundering (AML) laws and
+                                    regulations BTC Monk verifies the identity of its clients.
+                                </p>
+                            </div>
+
+                            <form name="vm.verificationOneForm" id="verification-one-form" layout-wrap flex="100" class="md-inline-form">
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>First Name</label>
+                                        <input required type='text' name="firstName"
+                                               ng-model="vm.verificationOne.firstName" maxlength="50" ng-disabled="!vm.verificationOneForm.firstName.$touched && vm.verificationOne.firstName">
+                                        <div ng-messages="vm.verificationOneForm.firstName.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Last Name</label>
+                                        <input required type="text" name="lastName" maxlength="50"
+                                               ng-model="vm.verificationOne.lastName" ng-disabled="!vm.verificationOneForm.lastName.$touched && vm.verificationOne.lastName">
+                                        <div ng-messages="vm.verificationOneForm.lastName.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Date of Birth<small> (must be 18+)</small></label>
+
+                                        <md-datepicker flex name="dob" ng-model="vm.verificationOne.dob"
+                                                       class="md-block" required md-max-date="vm.maxDob" flex-gt-sm md-open-on-focus readonly ng-disabled="!vm.verificationOneForm.dob.$touched && vm.verificationOne.dob">
+                                        </md-datepicker>
+                                        <div ng-messages="vm.verificationOneForm.dob.$error">
+                                            <div ng-message="required">Required field.</div>
+                                            <div ng-message="valid">The entered value is not a date!</div>
+                                            <div ng-message="maxdate">Date is too early!</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Address</label>
+                                    <input name="address" type="text" ng-model="vm.verificationOne.address" required
+                                           maxlength="200">
+                                    <div ng-messages="vm.verificationOneForm.address.$error">
+                                        <div ng-message="required">Required field.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>City</label>
+                                        <input name="city" type="text" ng-model="vm.verificationOne.city" required
+                                               maxlength="50">
+                                        <div ng-messages="vm.verificationOneForm.city.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Province/State</label>
+                                        <input name="province" type="text" ng-model="vm.verificationOne.province"
+                                               required maxlength="50">
+                                        <div ng-messages="vm.verificationOneForm.province.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Country</label>
+                                        <md-select ng-model="vm.verificationOne.country" required>
+                                            <md-option ng-repeat="country in vm.allowedCountries" value="{{ country }}">
+                                                {{ country }}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="vm.verificationOneForm.country.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Postal Code / ZIP</label>
+                                        <input name="postalCode" type="text" ng-model="vm.verificationOne.postalCode"
+                                               required maxlength="10">
+                                        <div ng-messages="vm.verificationOneForm.postalCode.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Occupation</label>
+                                        <input name="occupation" type="text" ng-model="vm.verificationOne.occupation"
+                                               required maxlength="100">
+                                        <div ng-messages="vm.verificationOneForm.occupation.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Phone Number</label>
+                                        <input required name="phone" type="tel" id="testing"
+                                               ng-model="vm.verificationOne.phone" maxlength="15">
+                                        <div ng-messages="vm.verificationOneForm.phone.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+                            </form>
+
+                            <div layout="column" layout-fill layout-align="start center">
+                                <small> Acceptable file types are .pdf, .jpg, and .jpeg between 50 KB and 5 MB.</small>
+                            
+                                <div layout-gt-sm="row">
+
+                                        <form name="vm.photoForm" id="photoForm">
+                                            <div class="verification-one-file-upload">
+                                                <md-button id="photo-id-btn" ng-click="vm.triggerFileBrowser('photo-id-input')">
+                                                    <label>Upload Photo ID</label>
+                                                </md-button>
+                                                <md-icon class="mdi mdi-check-circle verification-file-upload-success"></md-icon>
+                                                <input id="photo-id-input" class="verification-file-upload-input" ng-model="vm.verificationOne.photo" type="file" name="photoId" ngf-select accept=".pdf,.jpg,.jpeg" ngf-pattern="'.pdf,.jpg,.jpeg'" ngf-max-size="5MB" ngf-min-size="50KB" required ngf-model-invalid="errorFile" ng-change="vm.showUploadSuccess(vm.photoForm.photoId.$error, 'photo-id-btn')">
+                                                <div class="validation-messages" ng-show="vm.photoForm.photoId.$dirty && vm.photoForm.photoId.$error">
+                                                    <div ng-show="vm.photoForm.photoId.$error.pattern">File type must be .pdf, .jpg, or .jpeg.</div>
+                                                    <div ng-show="vm.photoForm.photoId.$error.maxSize">Maximum file size is 5MB.</div>
+                                                    <div ng-show="vm.photoForm.photoId.$error.minSize">Minimum file size is 50KB.</div>
+                                                    <div ng-show="vm.photoForm.photoId.$error.required && !vm.photoForm.photoId.$error.maxSize && !vm.photoForm.photoId.$error.minSize && !vm.photoForm.photoId.$error.pattern">Required field.</div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="user_id" value="{{ user_id }}">
+                                        </form>
+
+                                        <form name="vm.billUtilityForm" id="billUtilityForm" action="">
+                                            <div class="verification-one-file-upload">
+                                                <md-button id="utility-bill-btn" ng-click="vm.triggerFileBrowser('utility-bill-input')">
+                                                    <label>Upload Utility Bill</label>
+                                                </md-button>
+                                                <md-icon class="mdi mdi-check-circle verification-file-upload-success"></md-icon>
+                                                <input id="utility-bill-input" class="verification-file-upload-input" ng-model="vm.verificationOne.utilityBill" type="file" name="utilityBill" ngf-select accept=".pdf,.jpg,.jpeg" ngf-pattern="'.pdf,.jpg,.jpeg'" ngf-max-size="5MB" ngf-min-size="50KB" required ngf-model-invalid="errorFile" ng-change="vm.showUploadSuccess(vm.billUtilityForm.utilityBill.$error, 'utility-bill-btn')">
+                                                <div class="validation-messages" ng-show="vm.billUtilityForm.utilityBill.$dirty && vm.billUtilityForm.utilityBill.$error">
+                                                    <div ng-show="vm.billUtilityForm.utilityBill.$error.pattern">File type must be .pdf, .jpg, or .jpeg!</div>
+                                                    <div ng-show="vm.billUtilityForm.utilityBill.$error.maxSize">Maximum file size is 5MB.</div>
+                                                    <div ng-show="vm.billUtilityForm.utilityBill.$error.minSize">Minimum file size is 50KB.</div>
+                                                    <div ng-show="vm.billUtilityForm.utilityBill.$error.required && !vm.billUtilityForm.utilityBill.$error.maxSize && !vm.billUtilityForm.utilityBill.$error.minSize && !vm.billUtilityForm.utilityBill.$error.pattern">Required field.</div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="user_id" value="{{ user_id }}">
+                                        </form>
+
+                                    </div>
+
+                                    <div class="verification-one-submit-container">
+                                        <md-button type="submit" class="md-primary md-raised" ng-click="vm.submitVerificationOne(vm.verificationOne)">
+                                            Submit
+                                        </md-button>
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+                </md-expansion-panel-content>
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+        <md-expansion-panel md-component-id='verificationSecond'>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title" layout="column" layout-align="center left">
+                    Verification Level Two
+                </div>
+
+                <div class="md-summary" layout="column" layout-align="center left">
+                    Grants the ability to deposit via Interac Online.
+                </div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header>
+                    <div class="md-title" layout="column" layout-align="center left">
+                        Verification Level Two
+                    </div>
+
+                    <div class="md-summary" layout="column" layout-align="center left">
+                        Grants the ability to deposit via Interac Online.
+                    </div>
+
+                    <md-progress-linear class="verification-progress-bar" md-mode="indeterminate" ng-disabled="vm.verificationTwoProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content class="expansionPanel">
+                    <div class="verification-panel-container" layout="column">
+                        <p>
+                            In order to comply with the international anti-money laundering laws and regulations (AML)
+                            BTC Monk verifies the identity of its clients.
+                            You are required to upload one of the following:
+                        </p>
+                        <div class="verification-text-center">
+                            <small> Acceptable file types are .pdf, .jpg, and .jpeg between 50 KB and 5 MB.</small>
+
+                            <form name="vm.verificationTwoForm" id="verificationTwoForm" ng-submit="vm.verificationTwoForm.$valid && vm.submitVerificationTwo(vm.verificationTwo)" layout-fill>
+
+                                <div layout="column" layout-align="start center">
+
+                                    <md-button id="void-cheque-btn" ng-click="vm.triggerFileBrowser('verification-two-document-input')">
+                                        <label>
+                                            Upload Bank Letter or Void Cheque
+                                        </label>
+                                    </md-button>
+                                    <md-icon class="mdi mdi-check-circle verification-file-upload-success"></md-icon>
+                                    <input id="verification-two-document-input" class="verification-file-upload-input" ng-model="vm.verificationTwo.verificationTwoDocument" type="file" name="verificationTwoDocument" ngf-select accept=".pdf,.jpg,.jpeg" ngf-pattern="'.pdf,.jpg,.jpeg'" ngf-max-size="5MB" ngf-min-size="50KB" required ngf-model-invalid="errorFile" ng-change="vm.showUploadSuccess(vm.verificationTwoForm.verificationTwoDocument.$error, 'void-cheque-btn')">
+                                   <div class="validation-messages" ng-show="vm.verificationTwoForm.verificationTwoDocument.$dirty && vm.verificationTwoForm.verificationTwoDocument.$error">
+                                        <div ng-show="vm.verificationTwoForm.verificationTwoDocument.$error.pattern">File type must be .pdf, .jpg, or .jpeg!</div>
+                                        <div ng-show="vm.verificationTwoForm.verificationTwoDocument.$error.maxSize">Maximum file size is 5MB!</div>
+                                        <div ng-show="vm.verificationTwoForm.verificationTwoDocument.$error.minSize">Minimum file size is 50KB!</div>
+                                        <div ng-show="vm.verificationTwoForm.verificationTwoDocument.$error.required && !vm.verificationTwoForm.verificationTwoDocument.$error.maxSize && !vm.verificationTwoForm.verificationTwoDocument.$error.minSize && !vm.verificationTwoForm.verificationTwoDocument.$error.pattern">Required field.</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="user_id" value="{{user_id}}">
+
+                                <div layout="row" layout-align="end">
+                                    <md-button type="submit" class="md-primary md-raised">
+                                        Submit
+                                    </md-button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </md-expansion-panel-content>
+            </md-expansion-panel-expanded>
+        </md-expansion-panel>
+    </md-expansion-panel-group> -->
+</div>

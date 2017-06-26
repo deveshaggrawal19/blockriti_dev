@@ -1,0 +1,182 @@
+<logged-in-nav></logged-in-nav>
+
+<!-- Deposit/Withdraw FAB -->
+<deposit-withdraw></deposit-withdraw>
+
+<div class="page-content-margin wallet-modi-temp" >
+
+<div style="margin-bottom: 60px !important;">
+	<div layout="row" layout-xs="column">
+	  <div flex>
+		   <h3>INR</h3>
+			<div layout="row" layout-xs="column">
+			   <div flex="50">
+					<md-card id="topbar-stats-balance" class="wallet-card" layout="column">
+						<span class=""><i class="fa fa-inr" aria-hidden="true"></i>  {{ loggedInNav.balance.cad_available }}</span>
+						<div class="label-wallet">Available</div>
+					</md-card> 
+					<div>
+					<md-button ng-click="dWCtrl.showTabDialog($event, 'deposit');" class="md-primary" style="color: white; background: rgb(255, 87, 34) !important;">Deposit</md-button>
+					</div>
+			   </div>
+			   <div flex="50">
+					<md-card id="topbar-stats-locked" class="wallet-card" layout="column">         
+						
+						<span class=""><i class="fa fa-inr" aria-hidden="true"></i> {{ loggedInNav.balance.cad_locked }}</span>
+						<div class="label-wallet">Locked</div>
+					</md-card>
+					<div>
+					<md-button ng-click="dWCtrl.showTabDialog($event, 'withdraw');" class="md-primary" style="color: white; background: rgb(255, 87, 34) !important;">Withdraw</md-button>
+					</div>
+			   </div> 
+			</div>	   
+	  </div>
+	  <div flex>
+		   <h3>BTC</h3>
+			<div layout="row" layout-xs="column">
+			   <div flex="50">
+					<md-card id="topbar-stats-balance" class="wallet-card" layout="column">
+						<span class="balance-value">{{ loggedInNav.balance.btc_available | nineDigitsBitcoin }}</span>
+						<div class="label-wallet">Available</div>
+					</md-card> 
+					<div>
+					<md-button ng-click="dWCtrl.showTabDialog($event, 'deposit');" ng-click="dWCtrl.showTabDialog($event, 'deposit');"class="md-primary" style="color: white; background: rgb(255, 87, 34) !important;">Deposit</md-button>
+					</div>
+			   </div>
+			   <div flex="50">
+					<md-card id="topbar-stats-locked" class="wallet-card" layout="column">         
+						
+						<span class="balance-value bitcoin-value">{{ loggedInNav.balance.btc_locked | nineDigitsBitcoin }}</span>
+						<div class="label-wallet">Locked</div>
+					</md-card>
+					<div>
+					<md-button ng-click="dWCtrl.showTabDialog($event, 'withdraw');" class="md-primary" style="color: white; background: rgb(255, 87, 34) !important;">Withdraw</md-button>
+					</div>
+			   </div> 
+			</div>		   
+	  </div>
+	</div>
+</div>
+
+    <md-content id="ledger-content" laout="column" flex>
+
+        <md-card id="wallet-card">
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools transactions-table-header" ng-hide="showFilters">
+                    <span>Transactions</span>
+                    <span flex></span>
+                    <a ng-href="{{ vm.url }}" download="wallet.csv">
+                        <md-button class="md-icon-button wallet-icon-buttons" aria-label="download as csv">
+                            <i class="mdi mdi-download" id="download-csv">
+                                <md-tooltip>Download CSV</md-tooltip>
+                            </i>
+                        </md-button>
+                    </a>
+                    <md-button class="md-icon-button wallet-icon-buttons" ng-click="showFilters = true">
+                        <i class="mdi mdi-filter">
+                            <md-tooltip>Filter</md-tooltip>
+                        </i>
+                    </md-button>
+                </div>
+                <div ng-show="showFilters" class="transactions-table-header" layout="row">
+
+                    <md-input-container class="mdi-icon-float md-block" flex>
+                        <label>Search</label>
+                        <md-icon class="mdi mdi-magnify"></md-icon>
+                        <input type="text" ng-model="search">
+                    </md-input-container>
+
+                    <md-input-container class="filter-select">
+                        <label>Type</label>
+                        <md-select ng-model="type">
+                            <md-option ng-repeat="type in vm.types" value="{{ type }}">
+                                {{ type | capitalize }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="filter-select">
+                        <label>Status</label>
+                        <md-select ng-model="status">
+                            <md-option ng-repeat="status in vm.statuses" value="{{ status }}">
+                                {{ status | capitalize }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="filter-select">
+                        <label>Action</label>
+                        <md-select ng-model="action">
+                            <md-option ng-repeat="action in vm.actions" ng-style="{'color': vm.actionColor(action)}" value="{{ action }}">
+                                {{ action }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-button class="md-icon-button" id="transactions-close-filter-button" ng-click="showFilters = false; ledgerFilter = search = action = type = status = '';">
+                    <!-- <md-button class="md-icon-button" id="transactions-close-filter-button" ng-click="showFilters = false; ledgerFilter = ''; action = ''; type = ''; status = '';"> -->
+                        <i id="transactions-close-filter" class="mdi mdi-close"></i>
+                        <md-tooltip>Clear Filter</md-tooltip>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-table-container>
+
+                <table md-table md-row-select="vm.options.rowSelection" multiple="{{vm.options.multiSelect}}">
+
+                    <thead md-head md-order="myOrder" ng-show="transactions.length > 0">
+                        <tr md-row>
+                            <th md-column md-order-by="date"><span>Date</span></th>
+                            <th md-column md-order-by="type"><span>Type</span></th>
+                            <th md-column md-order-by="status"><span>Status</span></th>
+                            <th md-column md-order-by="action"><span>Action</span></th>
+                            <th md-column md-order-by="btc"><span>Bitcoin</span></th>
+                            <th md-column md-order-by="cad"><span>INR</span></th>
+                            <th md-column md-order-by="rate"><span>Spot Price</span></th>
+                            <th md-column md-order-by="fee"><span>Fee</span></th>
+                            <th md-column md-order-by="net"><span>Net Received</span></th>
+                        </tr>
+                    </thead>
+
+                    <tbody md-body>
+                        <!-- <tr md-row ng-repeat="transaction in transactions | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit"> -->
+                        <tr md-row ng-repeat="transaction in transactions | toArray : false | orderBy: myOrder | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+
+                            <td md-cell>{{ transaction.date | date: 'short' }}</td>
+
+                            <td md-cell>{{ transaction.type | capitalize }}</td>
+
+                            <td class="status-icon" md-cell>
+                                <i class="mdi" ng-class="vm.statusIcon(transaction.status)">
+                                    <md-tooltip>{{ vm.statusTooltip(transaction.status) }}</md-tooltip>
+                                </i>
+                            </td>
+
+                            <td ng-style="{'color': vm.actionColor(transaction.action)}" md-cell>{{ transaction.action }}</td>
+
+                            <td md-cell>{{ transaction.btc | nineDigitsBitcoin }}</td>
+
+                            <td md-cell><i class="fa fa-inr" aria-hidden="true"></i> {{ transaction.cad }}</td>
+
+                            <td md-cell><i class="fa fa-inr" aria-hidden="true"></i> {{ transaction.rate }}{{ transaction.rate ? '/&#579;' : '' }}</td>
+
+                            <td ng-if="vm.bitcoinOrCad(transaction.action);" md-cell>{{ transaction.fee | nineDigitsBitcoin }}</td>
+                            <td ng-if="!vm.bitcoinOrCad(transaction.action);" md-cell><i class="fa fa-inr" aria-hidden="true"></i> {{ transaction.fee }}</td>
+
+                            <td ng-if="vm.bitcoinOrCad(transaction.action, transaction.btc);" md-cell>{{ transaction.net | nineDigitsBitcoin }}</td>
+                            <td ng-if="!vm.bitcoinOrCad(transaction.action, transaction.btc);" md-cell><i class="fa fa-inr" aria-hidden="true"></i> {{ transaction.net }}</td>
+                        </tr>
+                        <tr md-row ng-hide="transactions.length">
+                            <td md-cell ng-hide="transactions.length">No items to display.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
+            <md-table-pagination md-limit="vm.query.limit" md-limit-options="vm.limitOptions" md-page="vm.query.page" md-total="{{ transactions.length }}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks"></md-table-pagination>
+
+        </md-card>
+    </md-content>
+    <div id="bottom-spacing-for-fab"></div>
+</div>

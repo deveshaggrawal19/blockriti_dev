@@ -1,0 +1,12 @@
+cron:
+- description: check bitcoin deposits every 2 mins
+  url: /rest/cron/checkBitcoinDeposits
+  schedule: every 2 minutes synchronized
+
+- description: check bitcoin AutoWithdrawals Request every 2 mins
+  url: /rest/cron/bitcoinAutoWithdrawalsRequest
+  schedule: every 2 minutes synchronized
+
+- description: remove non associated protectimus tokens  every 5 mins
+  url: /rest/cron/garbageCollectionProtectimus
+  schedule: every 5 minutes synchronized

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html style="z-index: -4;">
+<head>
+    <title>BLOCKRITI</title>
+    <!-- <base href="/"> -->
+    <!-- <meta name="viewport" content="initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons">
+    <link rel="stylesheet" href="libs/angular-material/angular-material.min.css">
+    <link href="libs/mdi/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="styles/css/general.css">
+    <link rel="stylesheet" type="text/css" href="modules/home/styles/home.css">
+    <link rel="stylesheet" type="text/css" href="modules/trade/styles/trade.css">
+    <link rel="stylesheet" type="text/css" href="modules/deposit-withdraw/styles/deposit-withdraw.css">
+    <link rel="stylesheet" type="text/css" href="modules/settings/styles/settings.css">
+	
+    <link rel="stylesheet" type="text/css" href="modules/dashboard/styles/dashboard.css">		
+	<link rel="stylesheet" type="text/css" href="modules/escrow/styles/escrow.css">
+	<link rel="stylesheet" type="text/css" href="modules/merchant/styles/merchant.css">
+	<link rel="stylesheet" type="text/css" href="modules/buysell/styles/buysell.css">
+	
+    <link rel="stylesheet" type="text/css" href="modules/verification/styles/verification.css">
+    <link rel="stylesheet" type="text/css" href="modules/demo/styles/demo.css">
+
+    <link rel="stylesheet" type="text/css" href="modules/wallet/styles/wallet.css">
+    <link rel="stylesheet" type="text/css" href="modules/authentication/styles/login-auth.css">
+    <link rel="stylesheet" type="text/css" href="modules/logged-in-nav/styles/logged-in-nav.css">
+    <link rel="stylesheet" type="text/css" href="libs/angular-material-data-table/md-data-table.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/angular-material-expansion-panel/md-expansion-panel.css">
+    <link rel="stylesheet" type="text/css" href="libs/angular-material-keyboard/mdKeyboard.min.css">
+    <link rel="stylesheet" type="text/css" href="./styles/css/font-awesome.min.css"/>
+    <!-- Google recapthca -->
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            grecaptcha.render('registration-google-recaptcha', {
+                'sitekey': '6Lc79yQTAAAAAIkqkVyVvCl3-lFITPm9fHSaW7Tx'
+            });
+        };
+    </script>
+    <script type="text/javascript" src="https://assets.freshdesk.com/widget/freshwidget.js"></script>
+    <style type="text/css" media="screen, projection">
+        @import url(https://assets.freshdesk.com/widget/freshwidget.css);
+    </style>
+    <style>
+        *.md-fab,
+        *.md-primary.md-raised,
+        md-ink-bar{
+            background-color: #03A9F4 !important;
+        }
+
+    </style>
+</head>
+
+<body ng-app="taurus" ng-cloak>
+
+<ui-view></ui-view>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="libs/angular/angular.min.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.2/angularfire.min.js"></script>
+
+
+<!-- Start External js -->
+<!--<script src="libs/jquery/jquery.min.js"></script>-->
+<!--<script src="libs/jquery-ui/jquery-ui.min.js"></script>-->
+
+<!--<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<script src="libs/angular-ui-router/angular-ui-router.min.js"></script>
+<script src="libs/angular-animate/angular-animate.min.js"></script>
+<script src="libs/satellizer/satellizer.min.js"></script>
+<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+<!--<script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>-->
+<!--<script src="libs/datatables/media/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="libs/datatables-plugins/input.js"></script>-->
+<!--<script src="libs/angular-datatables/angular-datatables.min.js"></script>-->
+<script src="libs/angular-aria/angular-aria.min.js"></script>
+<script src="libs/angular-messages/angular-messages.min.js"></script>
+<script src="libs/angular-breadcrumb/angular-breadcrumb.min.js"></script>
+<script src="libs/ngMask/ngMask.min.js"></script>
+<script src="libs/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="libs/angular-cookies/angular-cookies.min.js"></script>
+<script src="libs/angularjs-slider/rzslider.min.js"></script>
+<script src="libs/angular-material/angular-material.min.js"></script>
+<script src="libs/angularjs-crypto/CryptoJSCipher.js"></script>
+<script src="libs/angularjs-crypto/angularjs-crypto.js"></script>
+<!--<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>-->
+<script type='text/javascript' src="libs/crypto-js/aes.js"></script>
+<!--<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/mode-ecb.js"></script>-->
+<script type='text/javascript' src="libs/crypto-js/mode-ecb.js"></script>
+<script src="libs/angular-material-expansion-panel/md-expansion-panel.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/techan/techan.js"></script>
+<script src="libs/angular-material-data-table/md-data-table.min.js"></script>
+<script src="libs/angular-material-keyboard/mdKeyboard.min.js"></script>
+<script src="libs/angular-toArrayFilter/toArrayFilter.js"></script>
+<script src="libs/angular-clipboard/angular-clipboard.js"></script>
+
+<script src="libs/jsencrypt/jsencrypt.min.js"></script>
+<script src="libs/angular-base64/angular-base64.js"></script>
+<script src="libs/angular-socket-io/socket.min.js"></script>
+
+<!-- End External  js -->
+
+<!-- Start developement js -->
+<script src="scripts/app.js"></script>
+
+<!-- Start constants js -->
+<script src="scripts/constants/baseConfig.js"></script>
+<script src="scripts/constants/apiConstants.js"></script>
+<script src="scripts/constants/commonConstants.js"></script>
+
+<!-- End constants js -->
+
+<!-- Start modules js -->
+<script src="modules/base/scripts/baseModule.js"></script>
+<script src="modules/home/scripts/homeModule.js"></script>
+<script src="modules/trade/scripts/tradeModule.js"></script>
+<script src="modules/demo/scripts/demoModule.js"></script>
+<script src="modules/wallet/scripts/walletModule.js"></script>
+<script src="modules/deposit-withdraw/scripts/depositWithdrawModule.js"></script>
+<script src="modules/settings/scripts/settingsModule.js"></script>
+
+<script src="modules/dashboard/scripts/dashboardModule.js"></script>
+<script src="modules/escrow/scripts/escrowModule.js"></script>
+<script src="modules/merchant/scripts/merchantModule.js"></script>
+<script src="modules/buysell/scripts/buysellModule.js"></script>
+
+<script src="modules/verification/scripts/verificationModule.js"></script>
+
+
+
+<script src="modules/authentication/scripts/authenticationModule.js"></script>
+<!-- <script src="modules/dashboard/scripts/dashBoardModule.js"></script> -->
+<script src="modules/logged-in-nav/scripts/loggedInNavModule.js"></script>
+<script src="modules/compareTo/scripts/compareToModule.js"></script>
+<!-- End modules js -->
+
+<!-- Start services js -->
+<script src="scripts/services/flash.js"></script>
+<script src="scripts/services/httpInterceptor.js"></script>
+<script src="scripts/services/httpService.js"></script>
+<script src="modules/base/scripts/services/baseService.js"></script>
+<script src="modules/authentication/scripts/service/AuthenticationService.js"></script>
+<script src="modules/authentication/scripts/service/RegisterService.js"></script>
+<!-- <script src="modules/dashboard/scripts/service/DashBoardService.js"></script> -->
+<script src="modules/trade/scripts/services/TradeService.js"></script>
+<script src="modules/demo/scripts/services/DemoService.js"></script>
+<script src="modules/wallet/scripts/services/WalletService.js"></script>
+<script src="scripts/services/toastMessagesService.js"></script>
+
+<script src="modules/logged-in-nav/scripts/services/loggedInNavService.js"></script>
+<script src="modules/deposit-withdraw/scripts/services/depositWithdrawService.js"></script>
+<script src="modules/settings/scripts/services/SettingsService.js"></script>
+
+<script src="modules/dashboard/scripts/services/dashboardService.js"></script>
+<script src="modules/escrow/scripts/services/escrowService.js"></script>
+<script src="modules/merchant/scripts/services/merchantService.js"></script>
+<script src="modules/buysell/scripts/services/buysellService.js"></script>
+
+<script src="modules/home/scripts/services/HomeService.js"></script>
+<script src="modules/verification/scripts/services/VerificationService.js"></script>
+<script src="modules/trade/scripts/services/AmountVisibleService.js"></script>
+<script src="modules/home/scripts/services/ShareEmailService.js"></script>
+
+
+<!-- End services js -->
+
+<!-- Filters -->
+<script src="scripts/filters/datefilter.js"></script>
+<!-- End Filters -->
+
+<!-- Start directives js -->
+<!-- <script src="modules/dashboard/scripts/directives/currentCardDirective.js"></script>
+<script src="modules/dashboard/scripts/directives/instantLimitDirective.js"></script>
+<script src="modules/dashboard/scripts/directives/graphDirective.js"></script> -->
+<script src="modules/trade/scripts/directives/currentCardDirective.js"></script>
+<script src="modules/trade/scripts/directives/instantLimitDirective.js"></script>
+<script src="modules/demo/scripts/directives/instantLimitDemoDirective.js"></script>
+<script src="modules/trade/scripts/directives/graphDirective.js"></script>
+<script src="modules/deposit-withdraw/scripts/directives/depositWithdrawDirective.js"></script>
+<script src="modules/demo/scripts/directives/depositWithdrawDemoDirective.js"></script>
+<script src="modules/logged-in-nav/scripts/directives/loggedInNavDirective.js"></script>
+<script src="modules/demo/scripts/directives/navDemoDirective.js"></script>
+<script src="modules/compareTo/directives/compareToDirective.js"></script>
+<script src="modules/authentication/scripts/directives/complexPasswordDirective.js"></script>
+
+<!-- End directives js -->
+
+<!-- Start controllers js -->
+<script src="scripts/controllers/MainCtrl.js"></script>
+<script src="scripts/controllers/homeController.js"></script>
+<script src="modules/home/scripts/controllers/HomeCtrl.js"></script>
+<!-- <script src="modules/home/scripts/controllers/SidenavMenuCtrl.js"></script> -->
+
+<script src="modules/authentication/scripts/controllers/AuthenticationCtrl.js"></script>
+<script src="modules/authentication/scripts/controllers/RegisterCtrl.js"></script>
+<!-- 	<script src="modules/dashboard/scripts/controllers/DashBoardCtrl.js"></script>
+  <script src="modules/dashboard/scripts/controllers/InstantLimitCtrl.js"></script> -->
+<script src="modules/trade/scripts/controllers/TradeCtrl.js"></script>
+<script src="modules/demo/scripts/controllers/DemoCtrl.js"></script>
+<script src="modules/trade/scripts/controllers/InstantLimitCtrl.js"></script>
+<script src="modules/demo/scripts/controllers/InstantLimitDemoCtrl.js"></script>
+<script src="modules/deposit-withdraw/scripts/controllers/DepositWithdrawCtrl.js"></script>
+<script src="modules/demo/scripts/controllers/DepositWithdrawDemoCtrl.js"></script>
+<script src="modules/wallet/scripts/controllers/WalletCtrl.js"></script>
+<script src="modules/settings/scripts/controllers/SettingsCtrl.js"></script>
+
+<script src="modules/dashboard/scripts/controllers/DashboardCtrl.js"></script>
+<script src="modules/escrow/scripts/controllers/EscrowCtrl.js"></script>
+<script src="modules/merchant/scripts/controllers/MerchantCtrl.js"></script>
+<script src="modules/buysell/scripts/controllers/BuysellCtrl.js"></script>
+
+<script src="modules/verification/scripts/controllers/VerificationCtrl.js"></script>
+<script src="modules/logged-in-nav/scripts/controllers/LoggedInNavCtrl.js"></script>
+<script src="modules/authentication/scripts/controllers/ResetPasswordCtrl.js"></script>
+<script src="modules/authentication/scripts/controllers/VerifyEmailCtrl.js"></script>
+
+
+<!-- End controllers js -->
+
+<!-- End developement js -->
+
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    /*var config = {
+        apiKey: "AIzaSyDTHkKrgfXVE0u5C7pYwO0EAWX7Cp0U33M",
+        authDomain: "btcmonk.firebaseapp.com",
+        databaseURL: "https://btcmonk.firebaseio.com",
+        storageBucket: "btcmonk.appspot.com",
+        messagingSenderId: "321487911868"
+    };*/
+    var config = {
+        apiKey: "AIzaSyCwI8ZiC0gybYhDM9Q0B4kgJWtIcQktAns",
+        authDomain: "blockriti-163505.firebaseapp.com",
+        databaseURL: "https://blockriti-163505.firebaseio.com",
+        projectId: "blockriti-163505",
+        storageBucket: "blockriti-163505.appspot.com",
+        messagingSenderId: "406715080311"
+    };
+    firebase.initializeApp(config);
+</script>
+</html>

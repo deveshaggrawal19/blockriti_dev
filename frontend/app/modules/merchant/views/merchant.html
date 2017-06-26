@@ -1,0 +1,127 @@
+<!-- <div class="material_block">
+  <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+</div> -->
+<logged-in-nav></logged-in-nav>
+<style>
+    .gridListdemoBasicUsage md-grid-list {
+        margin: 8px;
+    }
+    
+    .gray {
+        background: #f5f5f5;
+    }
+    
+    .green {
+        background: #b9f6ca;
+    }
+    
+    .yellow {
+        background: #ffff8d;
+    }
+    
+    .blue {
+        background: #84ffff;
+    }
+    
+    .purple {
+        background: #b388ff;
+    }
+    
+    .red {
+        background: #ff8a80;
+    }
+    
+    md-grid-tile {
+        transition: all 400ms ease-out 50ms;
+    }
+    
+    md-input-container,
+    md-select {
+        margin: 0 !important;
+        padding: 0px !important;
+    }
+
+</style>
+
+<div class="page-content-margin nav-modi-temp">
+    <div ng-cloak="" class="tabsdemoDynamicHeight">
+        <div class="md-padding" flex>
+            <md-progress-linear class="md-accent" md-mode="indeterminate" ng-disabled="vm.hideProgressBar"></md-progress-linear>
+        </div>
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card style="height : 100%;">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span style="font-size:20px;" class="md-headline">
+                                Seller Information
+                            </span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div>
+                            <div>
+                                Actual BTC : {{vm.sellerBalanceInfo.btc_actual}}
+                            </div>
+                            <div>
+                                Unconfirmed BTC : {{vm.sellerBalanceInfo.btc_unconfirmed}}
+                            </div>
+                            <div>
+                                <div>
+                                    Address : {{vm.sellerActivationData.address}}
+                                </div>
+                                <div>
+                                    QR : <img style="vertical-align: middle;" ng-src="{{vm.sellerActivationData.qr}}" width="50" height="50" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button style="width:100%; bottom:0px;" ng-if="vm.newSeller" class="md-raised md-primary" ng-click="vm.activateSeller($event);">
+                            Activate Seller
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+            <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card style="height : 100%;">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Payout</span>
+                        </md-card-title-text>
+                    </md-card-title>
+
+                    <md-card-content>
+                        <div layout="row">
+                            <form>
+                                <md-input-container>
+                                    <label>Amount</label>
+                                    <input ng-model="payout.amount">
+                                </md-input-container>
+                                <md-input-container style="width: 50%;top:-12px;">
+                                    <label>Currency</label>
+                                    <md-select ng-model="payout.currency">
+                                        <md-option><em>None</em></md-option>
+                                        <md-option ng-repeat="currency in vm.currencies" ng-value="currency">
+                                            {{currency}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container style="width: 100%;">
+                                    <label>Address</label>
+                                    <input ng-model="payout.address">
+                                </md-input-container>
+                            </form>
+                        </div>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button class="md-raised md-primary" ng-click="vm.processPayout();">
+                            Payout
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+    </div>
+</div>

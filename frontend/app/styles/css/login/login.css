@@ -1,0 +1,120 @@
+/************ signin Page start here **********/
+.form-signin {
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8), 3px 3px 3px -2px rgba(0, 0, 0, 0.2), 1px 2px 0px -3px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8), 3px 3px 3px -2px rgba(0, 0, 0, 0.2), 1px 2px 0px -3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8), 3px 3px 3px -2px rgba(0, 0, 0, 0.2), 1px 2px 0px -3px rgba(0, 0, 0, 0.12);
+  margin: 2% auto;
+  max-width: 332px;
+  padding: 20px 7px;
+  background-color: #FFF;
+}
+
+md-input-container {
+  display: inline-block;
+  margin: 5px 0;
+  padding: 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.forgotPassHoler {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 13px;
+  float: left;
+  padding: 0px 0 0px 0;
+}
+
+.forgotPass {
+  margin: 2px 5px 10px 5px;
+  font-size: 11px;
+  text-decoration: none;
+}
+.forgotPass:hover {
+  text-decoration: underline;
+}
+
+.signIn button {
+  margin: 20px 0px 0;
+  width: auto;
+  margin: 15px 0 auto;
+}
+
+.signIn .md-raised {
+  box-shadow: none;
+}
+
+.signIn .md-raised-login {
+  width: 100px;
+}
+
+.signIn .md-raised-loginUser {
+  box-shadow: none;
+  border: 1px solid #8BC34A;
+  color: #8BC34A;
+  width: 200px;
+}
+
+.signIn .butHolder {
+  border-top: 1px dotted #ccc;
+  float: left;
+  margin: 20px 0 0;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.padding-b-20 {
+  padding-bottom: 20px;
+}
+
+md-checkbox .md-label {
+  margin-top: 6px;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+  background-color: #F97524;
+}
+
+md-checkbox.md-default-theme.md-checked .md-ink-ripple,
+md-checkbox.md-checked .md-ink-ripple {
+  color: #F97524;
+}
+
+.signIn md-input-container .md-errors-spacer {
+  min-height: 18px !important;
+}
+
+md-select.md-default-theme .md-select-value.md-select-placeholder,
+md-select .md-select-value.md-select-placeholder {
+  color: #8d94a1;
+}
+
+.loginLinks {
+  padding-top: 30px !important;
+  padding-bottom: 15px !important;
+  display: block !important;
+  float: left !important;
+}
+.loginLinks a {
+  color: #F97524;
+  font-size: 12px;
+  margin: 2px 4px;
+}
+.loginLinks a:hover {
+  text-decoration: none !important;
+  color: #0270BB;
+}
+.loginLinks a .fa {
+  font-size: 15px;
+}
+
+.loginTitle {
+  height: 60px;
+}
+
+/*# sourceMappingURL=login.css.map */

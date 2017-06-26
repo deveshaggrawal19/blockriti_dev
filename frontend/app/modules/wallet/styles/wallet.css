@@ -1,0 +1,86 @@
+/* Wallet */
+#ledger-content table.md-table {
+    position: relative;
+}
+
+#ledger-content tbody.md-body.md-virtual-repeat-container {
+    display: table-row-group;
+}
+#ledger-content .md-virtual-repeat-scroller {
+    top: initial;
+    bottom: initial;
+}
+.filter-select {
+    margin-left: 25px;
+}
+.wallet-card { padding: 10px 0px 10px 10px;}
+.label-wallet {margin-top: 20px; margin-left: 7px;}
+
+/* ledger table, pagination align */
+md-select.md-table-select {
+    text-align: center;
+}
+/* Filter 'close'/'X' icon */
+#transactions-close-filter{
+    vertical-align: bottom;
+    /*margin: 16px 24px 12px 24px;*/
+    color: rgba(0,0,0,0.38);
+    /*line-height: 2;*/
+    font-size: 20px;
+}
+#transactions-close-filter-button {
+    margin-top: 14px;
+}
+.transactions-table-header {
+    height: 64px;
+}
+/* conditionally format action column*/
+.buyGreen {
+    color: rgb(76,175,80);
+}
+/*Status column*/
+.status-icon i {
+    font-size: 20px;
+}
+.status-icon i.mdi-check-circle {
+    color: rgb(76,175,80);
+}
+.status-icon i.mdi-close-circle {
+    color: orange;
+}
+.status-icon i.mdi-alert-circle {
+    color: red;
+}
+.status-icon i.mdi-timer-sand {
+    color: blue;
+}
+#wallet-card {
+    margin: 0;
+}
+#bottom-spacing-for-fab {
+    height: 60px;
+}
+
+.wallet-icon-buttons {
+}
+.wallet-icon-buttons i {
+    color: white;
+    font-size: 20px;
+}
+#download-csv {
+    font-size: 26px;
+    margin-top: -2px;
+    margin-left: -1px;
+}
+.wallet-modi-temp {width: 80%; float: right;}
+
+
+/*neeraj*/
+.filter-and-icon {position: absolute; z-index: 9999; right: 0; top: 7px;}
+.new-style {position: absolute; z-index: 999;  width: 100%;  background: white;}
+
+@media (max-width: 1279px) {
+	
+.wallet-modi-temp {width: 96%;}
+
+}

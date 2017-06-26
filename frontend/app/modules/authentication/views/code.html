@@ -1,0 +1,54 @@
+<div role="main">
+    <div class="col-xs-12 col-sm-12 ng-scope">
+
+        <form class="form-signin" name="userLoginForm" ng-submit="authenticate()" novalidate="novalidate">
+            <div class="signIn">
+                <div class="pageTitle loginTitle textAlign-C">
+                    <span style="">{{'AUTHETICATE'}}</span>
+                </div>
+
+                <div>
+                    <md-input-container class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>{{'CODE'}}</label>
+                        <md-icon class="fa fa-user"></md-icon>
+                        <input ng-model="code" name="code" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9@_\-./]+$/" required>
+                        <div ng-messages="code.$error">
+                            <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                        </div>
+                    </md-input-container>
+
+
+                </div>
+               
+                <div class=" padding-20 pull-left textAlign-C fullWidth">
+                    <button class="md-raised md-raised-login md-warn md-button md-ink-ripple" type="submit" aria-label="Primary">
+                        <span class="ng-scope">{{'AUTHENTICATE'}}</span>
+                    </button>
+                </div>
+                <div class="forgotPassHoler butHolder loginLinks">
+                    <span class="">                        
+                  
+                </div>
+                <!--<div class="butHolder">
+                    <div class="padding-20 pull-left textAlign-C fullWidth">
+                        <button class="md-raised md-raised-loginUser md-button md-ink-ripple" type="button" aria-label="Primary" ng-click="goToIndividualUserSignUp()">
+                            <span class="ng-scope"><i class="fa fa-user"></i> {{'JOIN_AS_USER'}}</span>
+                            <div class="md-ripple-container" style=""></div>
+                        </button>
+                    </div>
+                    <div class="padding-20 pull-left textAlign-C fullWidth">
+                        <button class="md-raised md-raised-loginUser md-button md-ink-ripple" type="button" aria-label="Primary">
+                            <span class="ng-scope"><i class="fa fa-hospital-o"></i> {{'JOIN_AS_ORGANIZATION'}}</span>
+                            <div class="md-ripple-container" style=""></div>
+                        </button>
+                    </div>
+                </div>-->
+                <div style="clear: both;"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /container -->

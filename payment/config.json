@@ -1,0 +1,23 @@
+{
+    "port": 9909,
+    "merchantFields": [
+        "address",
+        "licenseNumber",
+        "businessName"
+    ],
+    "localRedisHost":  "127.0.0.1",
+    "localRedisPort": "6379",
+    "localRedisDB": 0,
+    "localRedisAuth": "gJ7Z6za5",
+    "remoteRedisHost": "104.154.61.169",
+    "remoteRedisPort": "6379",
+    "remoteRedisDB": 0,
+    "remoteRedisAuth": "gJ7Z6za5",
+    "createAddressHost": "http://104.154.61.169:8000",
+    "pinVerificationHost": "https://blockriti-163505.appspot.com",
+    "brokerageHost": "https://1-dot-blockriti-163505.appspot.com/",
+    "pollLimit": 150,
+    "pollFrequency": 5000,
+    "firebaseKeyPath": "/opt/blockriti-payment-gateway-new/firebase.json",
+    "firebaseDatabaseURL": "https://blockriti-163505.firebaseio.com"
+}

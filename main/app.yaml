@@ -1,0 +1,40 @@
+application: blockriti-163505
+version: 1
+runtime: php55
+api_version: 1
+threadsafe: true
+instance_class: F1
+automatic_scaling:
+  min_idle_instances: 1
+  max_idle_instances: automatic # default value
+  max_concurrent_requests: 50
+  min_pending_latency: automatic
+  max_pending_latency: automatic
+resources:
+  cpu: 4
+  memory_gb: 4
+  disk_size_gb: 10
+
+inbound_services:
+- warmup
+handlers:
+  - url: /_ah/warmup
+    script: ui/index.php
+    login: admin
+  - url: /favicon\.ico
+    static_files: favicon.ico
+    upload: favicon\.ico
+  - url: /(.+\.php)$
+    script: \1
+    secure: always
+  - url: /(.+\.(gif|png|jpg|js|css))$
+    static_files: \1
+    upload: .+\.(gif|png|jpg|js|css)$
+    application_readable: true
+    secure: always
+  - url: /(.+)?/?
+    script: ui/index.php
+    secure: always
+  - url: .*
+    script: ui/index.php
+    secure: always

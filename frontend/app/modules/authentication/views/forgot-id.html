@@ -1,0 +1,78 @@
+<div class="container" role="main">
+
+    <div class="container">
+        <form class="newUserBox" name="forgotIdForm" ng-submit="forgotid(forgotIdForm)" novalidate="novalidate">
+
+            <div class="signIn newUserSignin">
+                <div class="pageTitle loginTitle textAlign-C">
+                    <span style="">{{'FORGOT_ID_TEXT'}}</span>
+                </div>
+
+                <div style="border:1px solid #CCC; padding:15px; margin-bottom:15px;">
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'EMAIL_CELL'}}</label>
+                            <input ng-model="user.forgotid.emailCellIdentity" name="emailCellIdentity" ng-maxlength="50" ng-change="enableDisableDocType(user.forgotid.emailCellIdentity)" ng-disabled="disableEmailCell" ng-pattern="/^[a-zA-Z0-9@_\-.]+$/" required>
+                            <div ng-messages="forgotIdForm.emailCellIdentity.$error">
+                                <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                <div ng-if="errorEmailCell">
+                                    <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                </div>
+                                <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div class="text-center">
+                        <span>OR</span>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'DOCUMENT_TYPE'}}</label>
+                            <md-select ng-model="user.forgotid.documentType" ng-change="enableDisableField(user.forgotid.documentType)" ng-disabled="disableDocType" name="documentType" required>
+                                <md-option ng-repeat="docType in docTypeList" value="{{docType.docTypeId}}">
+                                    {{docType.docTypeName }}
+                                </md-option>
+                            </md-select>
+                            <div ng-messages="forgotIdForm.documentType.$error">
+                                <div ng-if="errorDocType">
+                                    <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'DOCUMENT_REF'}}</label>
+                            <input ng-model="user.forgotid.documentRef" name="documentRef" ng-maxlength="50" ng-disabled="disableDocRef" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                            <div ng-messages="forgotIdForm.documentRef.$error">
+                                <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                <div ng-if="errorDocRef">
+                                    <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                </div>
+                                <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <label>{{'RETRIVAL_TEXT'}}</label>
+                        <input type="password" ng-model="user.forgotid.retrivalText" name="retrivalText" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                        <div ng-messages="forgotIdForm.retrivalText.$error">
+                            <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                            <div ng-message="required">{{'INPUT_REQ' }}</div>
+                            <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="padding-t-0 padding-20 pull-left textAlign-C fullWidth wizardFooter">
+                <md-button type="reset" class="md-raised" ng-click="onCancelClick()">{{"CANCEL"}}</md-button>
+                <md-button type="submit" class="md-raised md-warn">{{"SUBMIT"}}</md-button>
+            </div>
+            <div style="clear: both;"></div>
+        </form>
+    </div>
+
+</div>

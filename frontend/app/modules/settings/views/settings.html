@@ -1,0 +1,645 @@
+<logged-in-nav></logged-in-nav>
+
+<div class="settings-page-container set-modi-temp">
+
+    <!-- Deposit/Withdraw FAB -->
+    <deposit-withdraw></deposit-withdraw>
+        <md-expansion-panel-group>
+
+            <md-expansion-panel md-component-id='userInfoPanel'>
+
+                <md-expansion-panel-collapsed>
+                    <div class="md-title">User Information</div>
+                    <div class="md-summary">User submitted information.</div>
+                </md-expansion-panel-collapsed>
+
+                <md-expansion-panel-expanded>
+
+                    <md-expansion-panel-header>
+                        <div class="md-title">User Info</div>
+                        <div class="md-summary"></div>
+                    </md-expansion-panel-header>
+
+                    <md-expansion-panel-content class="">
+
+                        <div class="settings-panel-container" layout="column">
+
+                            <table md-table>
+                                <tbody md-body>
+
+                                  <tr md-row>
+                                      <th class="user-info-subheader">Basic Details</th>
+                                  </tr>
+                                    <tr md-row>
+                                        <td md-cell><strong>Name</strong></td>
+                                        <td md-cell>{{ userinfo.user_name }}</td>
+                                    </tr>
+
+                                    <tr md-row>
+                                        <th class="user-info-subheader">Verification</th>
+                                    </tr>
+                                    <tr md-row>
+                                        <td md-cell><strong>Verified</strong></td>
+                                        <td md-cell>{{ userinfo.verified }}</td>
+                                    </tr>
+                                  <!--
+                                  //Verification level doesn't exist in live system. There are only two states Verified & Unverified.
+                                    Admin can explicitly ban a user from from using interac.
+      -->
+
+                                  <tr md-row>
+                                        <td md-cell><strong>Verification Level</strong></td>
+                                        <td md-cell>
+                                                           <span id="verification-level-text">{{verification_status}}</span>
+                                            <!--       <md-button ng-if="userinfo.verification_level != '2' " class="md-primary" ng-click="settingsCtrl.continueVerification()">
+                                           -->
+                                            <md-button  class="md-primary" ng-click="settingsCtrl.continueVerification()">
+                                            Verify/Upgrade
+                                            </md-button>
+                                        </td>
+                                    </tr>
+                                    <div ng-if="setttingsCtrl.uploadedVerificationDocuments.length > 0">
+                                        <tr md-row>
+                                            <th class="user-info-subheader">Documents </th>
+                                        </tr>
+                                        <tr md-row ng-repeat="document in settingsCtrl.uploadedVerificationDocuments">
+                                            <td md-cell><strong>{{ document.filename }}</strong></td>
+                                            <td md-cell>{{ document.updated | date }}</td>
+                                           <!-- <td md-cell >{{document.status}}</td>-->
+                                            <td class="status-icon" md-cell>
+                                                <i class="mdi" ng-class="settingsCtrl.statusIcon(document.status)">
+                                                    <md-tooltip>{{ settingsCtrl.statusTooltip(document.status) }}</md-tooltip>
+                                                </i>
+                                            </td>
+                                        </tr>
+                                    </div>  
+                                </tbody>
+                            </table>
+                        </div>
+                    </md-expansion-panel-content>
+
+                    <md-expansion-panel-footer>
+                    </md-expansion-panel-footer>
+
+                </md-expansion-panel-expanded>
+
+            </md-expansion-panel>
+
+        </md-expansion-panel-group>
+
+
+    <div style="height:25px;"></div>
+    
+    <!-- PROFILE SETTINGS -->
+    <div>
+        <h3>Profile Settings</h3>
+    </div>
+    <md-expansion-panel-group>
+
+        <!-- password -->
+        <md-expansion-panel md-component-id='changePasswordPanel'>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Password</div>
+                <div class="md-summary">Change password</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Password</div>
+                    <div class="md-summary">Change password</div>
+
+                    <md-progress-linear class="expansion-panel-progress-bar" md-mode="indeterminate" ng-disabled="settingsCtrl.changePasswordProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+                    
+                    
+                    <div class="settings-panel-container" layout="column">
+
+                        <form name="settingsCtrl.passwordChangeForm" ng-submit="settingsCtrl.passwordChangeForm.$valid && settingsCtrl.submitPasswordChange(settingsCtrl.passwordChange)" layout="column">
+
+                            <md-input-container class="md-block">
+                                <label>Current Password</label>
+                                <input ng-model="settingsCtrl.passwordChange.currentPassword" type="password" md-no-asterisk="" name="currentPassword" required="">
+                                <div ng-messages="settingsCtrl.passwordChangeForm.currentPassword.$error">
+                                    <div ng-message="required">Required field.</div>
+                                </div>
+                            </md-input-container>
+                           
+                            <md-input-container class="md-block">
+                                <label>New Password</label>
+                                <input ng-model="settingsCtrl.passwordChange.newPassword" type="password" name="newPassword" required md-no-asterisk minlength="8" maxlength="32" complex-password>
+                                <div ng-messages="settingsCtrl.passwordChangeForm.newPassword.$error">
+                                    <div ng-message="minlength">Min 8 characters.</div>
+                                    <div ng-message="complexPassword">Need 3 of 4:<br> 1 uppercase letter<br> 1 lowercase letter<br> 1 digit<br> 1 special character</div>
+                                    <div ng-message="maxlength">Max 32 characters.</div>
+                                    <div ng-message="required">Required field.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <label>Retype Password</label>
+                                <input ng-model="settingsCtrl.passwordChange.retypePassword" type="password" md-no-asterisk="" name="retypePassword" compare-to="settingsCtrl.passwordChange.newPassword" required="">
+                                <div ng-messages="settingsCtrl.passwordChangeForm.retypePassword.$error">
+                                    <div ng-message="required">Required field.</div>
+                                    <div ng-message="compareTo">Passwords must match.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-button type="submit" class="md-primary md-raised">Submit</md-button>
+                        </form>
+                    </div>
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+    </md-expansion-panel-group>
+
+
+    <div style="height:25px;"></div>
+
+<!-- SECURITY SETTINGS -->
+    <div>
+        <h3>Security Settings</h3>
+    </div>
+    <md-expansion-panel-group>
+
+        <!-- google authenticator -->
+        <md-expansion-panel md-component-id='googleAuthPanel'>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Google Authenticator</div>
+                <div class="md-summary">{{ settingsCtrl.gauth }}</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Google Authenticator</div>
+                    <div class="md-summary">{{ settingsCtrl.gauth }}</div>
+
+                    <md-progress-linear class="expansion-panel-progress-bar" md-mode="indeterminate" ng-disabled="settingsCtrl.googleAuthenticatorProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+
+                    <div class="settings-panel-container" layout="column">
+                       
+                        <div style="width: 100%; height: 3.5em;">
+                            <!--<md-switch class="md-warn" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="Email" ng-model="emailState"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span md-colors="{color: 'warn'}">{{ emailState }}</span>
+                            </md-switch>-->
+							<md-switch ng-change="settingsCtrl.toggleAuthSwitch()" ng-model="settingsCtrl.gauth" class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="Email"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span ng-style="{'color': settingsCtrl.statusColor(settingsCtrl.gauth)}">{{ settingsCtrl.gauth }}</span>
+                            </md-switch>
+                        </div>
+                        <p ng-click="testFunction('hello')">Google Authenticator enables an additional layer of security for your account by requesting one-time passwords each time you perform a certain action. We highly recommend that you enable 2FA in order to better protect your account from possible attacks.</p>
+                        <div ng-if="settingsCtrl.gauth === 'Enabled' && settingsCtrl.qrimgsrc && localStorage.getItem('type') != '2fauth' && settingsCtrl.showGoogleAuthSubmit ">
+                            <ol>
+                                <li>
+                                    Install a Google Authenticator application on your smartphone or tablet. We recommend Google Authenticator, which can be downloaded here:
+                                    <ul>
+                                        <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a></li>
+                                        <li><a href="https://itunes.apple.com/ca/app/google-authenticator/id388497605?mt=8">iPhone</a></li>
+                                    </ul>
+                                </li>
+                                <li> After installing the Two-Factor software, you will need to configure the application to work with BTC Monk. To do so, scan the QR code found below, or type in the following secret code: </li>
+        						    <div layout="column" layout-align="center center">
+                                        <br>
+                                        <span>{{ settingsCtrl.secret }}</span>
+                                        <div>
+                                            <img ng-if="settingsCtrl.qrimgsrc" src="{{ settingsCtrl.qrimgsrc }}">
+                                        </div>
+                                    </div>
+                                <li>
+                                    After scanning the QR code, you will be given a 6-digit code. Please enter it:
+
+
+                                    <div class="settings-panel-container" layout="column">
+
+                                        <form name="settingsCtrl.googleAuthForm" ng-submit="settingsCtrl.submitGoogleAuth(settingsCtrl.googleAuthCode)" layout="column">
+                                            <md-input-container class="md-block">
+                                                <label>Code</label>
+                                                <input ng-model="settingsCtrl.googleAuthCode" name="code" type="password" md-maxlength="6" minlength="6" required md-no-asterisk>
+                                                <div ng-messages="settingsCtrl.googleAuthForm.code.$error">
+                                                <div ng-message="required">Required</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <md-button type="submit" class="md-primary md-raised">Submit</md-button>
+                                        </form>
+
+                                    </div>
+
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+            </md-expansion-panel-expanded>
+        </md-expansion-panel>
+        <!-- protectimus -->
+        <md-expansion-panel>
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Protectimus</div>
+                <div class="md-summary">Email: {{ settingsCtrl.pmail }}, SMS: {{ settingsCtrl.psms }}</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Protectimus</div>
+                    <div class="md-summary">Email: {{ settingsCtrl.pmail }}, SMS: {{ settingsCtrl.psms }}</div>
+
+                    <md-progress-linear class="expansion-panel-progress-bar" md-mode="indeterminate" ng-disabled="settingsCtrl.protectimusProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+                    <div class="settings-panel-container" layout="column">
+                        <h4>Email</h4>
+                        <div style="width: 100%; height: 3.5em;">
+
+                          <!--  <md-switch ng-change="settingsCtrl.toggleAuthSwitch()" ng-model="settingsCtrl.gauth" class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="Email"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span md-colors="{color: 'accent'}">{{ settingsCtrl.gauth }}</span>
+                            </md-switch>
+-->
+                            <md-switch class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="Email"  ng-change="settingsCtrl.togglePmailSwitch()" ng-model="settingsCtrl.pmail"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span ng-style="{'color': settingsCtrl.statusColor(settingsCtrl.pmail)}">{{ settingsCtrl.pmail }}</span>
+                            </md-switch>
+                        </div>
+                        <p>Protectimus Email enables an additional layer of security for your account by requesting one-time passwords each time you perform a certain action. We highly recommend that you enable Protectimus Mail in order to better protect your account from possible attacks.</p>
+                    </div>
+                    <div class="settings-panel-container" layout="column">
+                        <h4>SMS</h4>
+                         <div style="width: 100%; height: 3.5em;">
+                            <md-switch class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="SMS" ng-change="settingsCtrl.togglePsmsSwitch()" ng-model="settingsCtrl.psms"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span ng-style="{'color': settingsCtrl.statusColor(settingsCtrl.psms)}"">{{ settingsCtrl.psms }}</span>
+                            </md-switch>
+                        </div>
+
+
+                        <p>Protectimus SMS enables an additional layer of security for your account by requesting one-time passwords each time you perform a certain action. We highly recommend that you enable Protectimus SMS in order to better protect your account from possible attacks.</p>
+                        
+
+                        <div ng-if="settingsCtrl.psms === 'Enabled' ">
+                            <p>
+                                Please enter your phone number using the following format: XYYYZZZZZZZ where X is the country code (without the + sign), YYY is the area code and ZZZZZZZ is the phone number.
+                            </p>
+                            <form name="protectimusSmsForm" ng-submit="settingsCtrl.submitPhone()">
+                                <div class="settings-panel-container" layout="column">
+                                    <md-input-container class="md-block">
+                                        <label>Enter Phone Number</label>
+                                        <input ng-model="settingsCtrl.phone" name="phone" type="tel" required minlength="10" maxlength="15" md-no-asterisk>
+                                        <div ng-messages="protectimusSmsForm.phone.$error">
+                                            <div ng-message="minlength">Min length 10 digits.</div>
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-button type="submit" class="md-primary md-raised">Submit</md-button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+            </md-expansion-panel-expanded>
+        </md-expansion-panel>
+        <!-- pgp -->
+        <!--<md-expansion-panel>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">PGP</div>
+                <div class="md-summary">{{ settingsCtrl.pgp }}</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">PGP</div>
+                    <div class="md-summary">{{ settingsCtrl.pgp }}</div>
+
+                    <md-progress-linear class="expansion-panel-progress-bar" md-mode="indeterminate" ng-disabled="settingsCtrl.pgpProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+                    <div class="settings-panel-container" layout="column">
+                     
+                        <div style="width: 100%; height: 3.5em;">
+
+                            <md-switch class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;" aria-label="Buy/Sell" ng-model="settingsCtrl.pgp" ng-change="settingsCtrl.togglePgpSwitch()" class="md-accent" style="position: absolute; left: calc(50% - 30px); font-size: 1.9em;"
+                                       ng-true-value="'Enabled'" ng-false-value="'Disabled'">
+                                <span ng-style="{'color': settingsCtrl.statusColor(settingsCtrl.pgp)}"">{{ settingsCtrl.pgp }}</span>
+                            </md-switch>
+                        </div>
+                        <div class="settings-panel-container" layout="column">
+                            <form name="pgpForm" ng-submit="settingsCtrl.submitPgpKey(pgpKey)" layout="column">
+                                <md-input-container class="md-block">
+                                    <label>Enter PGP public key here</label>
+                                    <textarea ng-model="pgpKey" type="textarea" name="key" required md-no-asterisk></textarea>
+                                    <div ng-messages="pgpForm.key.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-button type="submit" class="md-primary md-raised">Submit</md-button>
+                            </form>
+                        </div>
+                    </div>
+
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+            </md-expansion-panel-expanded>
+        </md-expansion-panel>-->
+
+    </md-expansion-panel-group>
+
+    <div style="height:25px;"></div>
+
+    <!-- OTHER -->
+    <div>
+        <h3>Other</h3>
+    </div>
+    <md-expansion-panel-group>
+        <!-- api -->
+        <md-expansion-panel>
+            <md-expansion-panel-collapsed>
+                <div class="md-title">API</div>
+                <div class="md-summary">Configure API</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">API</div>
+                    <div class="md-summary">Configure API</div>
+
+                    <md-progress-linear class="expansion-panel-progress-bar" md-mode="indeterminate" ng-disabled="settingsCtrl.apiProgressBar"></md-progress-linear>
+
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+                    <div class="settings-panel-container" layout="column">
+
+                    <h3>Add API</h3>
+
+                        <form name="settingsCtrl.apiForm" layout="column">
+
+                            <md-input-container>
+                                <label>API Name</label>
+                                <input type="text" ng-model="settingsCtrl.api.name" name="name" required>
+                                <div ng-messages="settingsCtrl.apiForm.name.$error">
+                                    <div ng-message="required">Required field.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>API Secret</label>
+                                <input type="text" ng-model="settingsCtrl.api.secret" disabled="" required>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Withdrawal Bitcoin Address</label>
+                                <input type="text" ng-model="settingsCtrl.api.withdraw" name="bitcoinAddress" required>
+                                <div ng-messages="settingsCtrl.apiForm.bitcoinAddress.$error">
+                                    <div ng-message="required">Required field.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-button class="md-primary md-raised" ng-click="settingsCtrl.submitApi(settingsCtrl.api);">Submit</md-button>
+
+                        </form>
+
+                        <div flex></div>
+
+
+                        <br>
+                        <br>
+                        <h3 ng-if="settingsCtrl.showApiList">API Listing</h3>    
+                    </div>
+                    <div ng-if="settingsCtrl.showApiList" style="margin: 0 10%">
+                        <!-- <h3 style="margin: 0 10%">API Listing</h3> -->
+                        <md-table-container>
+                            <table md-table>
+                                <thead md-head>
+                                    <tr md-row>
+                                        <th md-column><span>Name</span></th>
+                                        <th md-column><span>Code</span></th>
+                                        <th md-column><span>Secret</span></th>
+                                        <th md-column><span>Actions</span></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="api in settingsCtrl.userApis">
+                                        <td md-cell><strong>{{ api.name | capitalize }}</strong></td>
+                                        <td md-cell>{{ api.code }}</td>
+                                        <td md-cell>
+                                            <div layout="row" layout-align="start center">
+                                                {{ api.secret }}  
+                                                <md-button ng-click="settingsCtrl.copyToClipboard(api.secret)">
+                                                    Copy
+                                                </md-button>
+                                            </div>
+                                        </td>
+                                        <td md-cell style="text-align: left;"> 
+                                            <md-button class="md-icon-button">
+                                                <md-tooltip>Delete</md-tooltip>
+                                                <i class="mdi mdi-close" ng-click="settingsCtrl.deleteApi(api.code)">
+                                                </i>
+                                            </md-button> 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                    </div>
+
+                    <div flex></div>
+
+                    <!-- </div> -->
+
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+        <!-- referral program -->
+        <md-expansion-panel>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Referral Program</div>
+                <div class="md-summary">Referral link</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Referral Program</div>
+                    <div class="md-summary">Referral link</div>
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+                    <div class="settings-panel-container" layout="column">
+
+                       
+                        <p>Share the following link to earn 10% of the Trading fees generated by your referrals</p>
+                        <a href="{{ settingsCtrl.referralLink.referralLink }}">{{ settingsCtrl.referralLink.referralLink }}</a>
+                        <ul>
+                            <li>Only new sign-ups qualify</li>
+                            <li>You cannot refer yourself</li>
+                            <li>BTC Monk reserves the right to change the fee at any time</li>
+                        </ul>
+
+                    </div>
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+        <!-- Terms of Service -->
+        <md-expansion-panel>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Terms of Service</div>
+                <div class="md-summary">Terms and Conditions for using BTCMonk Exchange</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Terms of Service</div>
+                    <div class="md-summary">Terms and Conditions for using BTCMonk</div>
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+                    <div class="settings-panel-container" layout="column">
+                        <h2>Terms of Service</h2>
+                        <p>By using BTC Monk Bitcoin Exchange, accessing the website, or using any service provided by BTC Monk, you agree to the following terms of service. Continued use of the BTC Monk website demonstrates that you agree with our terms of service.</p>
+                        <p>Throughout the following terms of service, BTC Monk Bitcoin Exchange may be referred to as "us", "our", "we", "the website", and "BTC Monk". Users of BTC Monk include but are not limited to registered members, as well as any visitor who uses the website in any way, shape or form. The term cryptocurrency may be used to describe any form of digital currency, including but not limited to Bitcoin.</p>
+                        <p>By opening an account or accessing the BTC Monk Website, you agree to the following terms:</p>
+                        <ol>
+                            <li>You accept both the Terms of Service and the Privacy Policy
+                                <ol>
+                                    <li>These policies may be changed at any time, with or without notice. It is your responsibility to regularly review the policies of BTC Monk.</li>
+                                </ol>
+                            </li>
+                            <li>You are at least 18 years of age, or the age of majority in your country.</li>
+                            <li>You must not be a resident or citizen of the United States of America or any territories of the United States of America.</li>
+                            <li>You accept that the purchase and sale of cryptocurrency (Bitcoin) involves risk. Due to the constant price fluctuations, you may increase or lose value in your assets at any time.</li>
+                            <li>You acknowledge that purchasing Bitcoin (or any other digital currency offered by BTC Monk) involves risk and you will not hold BTC Monk accountable for any gains or losses that you incur as a result.</li>
+                            <li>In no circumstance shall BTC Monk be responsible for any loss that you incur.</li>
+                            <li>BTC Monk does not allow users to perform payments to any third party accounts.</li>
+                            <li>BTC Monk may cancel potentially high-risk top ups or withdrawals, including top-ups made using reversible payment methods.</li>
+                            <li>BTC Monk reserves the right to change top up and withdrawal limits on your account as we deem necessary.</li>
+                            <li>BTC Monk does not provide, offer or exchange securities, investment contracts or any other form of financial instrument that may be considered by law to be a "security".</li>
+                            <li>BTC Monk offers a marketplace for the buying and selling of Cryptocurrency. While we strive to ensure that marketplace is both fair and free, we cannot be held accountable for any form of "market manipulation" that may occur, whether it be within the BTC Monk marketplace, or in the cryptocurrency marketplace as a whole.
+                                <ol>
+                                    <li>Users agree that cryptocurrency prices are often unpredictable and experience swings due to a variety of reasons, including government interference, market conditions and speculation.</li>
+                                    <li>BTC Monk does not set the current market price. The price of cryptocurrency units traded on the BTC Monk platform result directly from buy and sell orders placed by users.</li>
+                                    <li>Any trading decision based on information provided by BTC Monk shall be the responsibility of the user alone. BTC Monk assumes no responsibility for any action that is taken in the course of using the BTC Monk website or API.</li>
+                                    <li>Market information on BTC Monk is not delayed. However, in the event of a network outage or similar situation, users acknowledge that BTC Monk bears no responsibility for any delays.</li>
+                                </ol>
+                            </li>
+                            <li>As a user of BTC Monk, you acknowledge that BTC Monk has no responsibility for any losses that you incur as a direct or indirect result of the website or any of our services.</li>
+                            <li>BTC Monk is not a bank, and therefore is not protected by CDIC. Fundings, whether they be in a national currency or digital cryptocurrency are not protected by any government insurance policy.
+                                <ol>
+                                    <li>BTC Monk does not store customer’s funds. You may have to manually initiate the withdrawal of the proceeds to your own account outside of BTC Monk. BTC Monk accounts are established for storing your transactions information only.</li>
+                                    <li>All account fundings are considered to be purchases of “BTC Monk dollars”. These are units that are used for the purposes of purchasing Bitcoin or other cryptocurrencies. BTC Monk dollars are NOT Canadian or US dollars. Any notation of $ or CAD refers to an equivalent unit in BTC Monk dollars, which exist for the sole purpose of buying and selling Bitcoin and other cryptocurrencies.</li>
+                                    <li>BTC Monk is NOT a financial institution, bank, credit union, trust, or deposit business. We DO NOT take Deposits. We exist solely for the purposes of buying and selling cryptocurrencies.</li>
+                                </ol>
+                            </li>
+                            <li>It is the user's responsibility to secure his or her BTC Monk account. Any loss that occurs as a result of negligent security practices, whether it be on the part of the user, or BTC Monk, will not be the responsibility of BTC Monk, its directors, associates or employees.
+                                <ol>
+                                    <li>It is your responsibility to guard your password. Sharing your password with a third party constitutes a breach of this contract.</li>
+                                </ol>
+                            </li>
+                            <li>The BTC Monk website and any related service is provided "as is". We make no warranties, expressed or implied.</li>
+                            <li>The content and services provided by BTC Monk are for informational purposes only and are not intended to provide legal, financial, tax, accounting or investment advice. We assume no liability for any information provided by our employees, directors, or affiliates, regardless of its accuracy. Any action taken by a user is their decision, and users absolve BTC Monk of any liability for any outcome that may occur.</li>
+                            <li>BTC Monk is based in Vancouver, BC, Canada. We comply with all local laws. It is the responsibility of the user to ensure that they are in compliance with their local laws.
+                                <ol>
+                                    <li>Any user that breaks any law in their jurisdiction of residence or nationality by using any service provided by BTC Monk shall be liable for any damages incurred by BTC Monk as a result.</li>
+                                    <li>Any user that breaks any law in their jurisdiction of residence or nationality by using any service provided by BTC Monk agrees to forfeit any assets within their BTC Monk account, at the discretion of BTC Monk or its employees.</li>
+                                    <li>If buying and selling Cryptocurrency is not legal in your country, do not use BTC Monk. Failure to comply with local laws may result in the loss of your account and any assets contained within.</li>
+                                    <li>In the event that BTC Monk or its directors face legal action as a result of your actions, you agree cover any damages, including legal fees, that BTC Monk incurs as a result.</li>
+                                    <li>To the full extent permitted by applicable law, You hereby agree to indemnify BTC Monk, and its partners against any action, liability, cost, claim, loss, damage, proceeding or expense suffered or incurred if direct or not directly arising from your use of BTC Monk or its services, or from your violation of these Terms of Use.</li>
+                                </ol>
+                            </li>
+                            <li>You agree not to copy any information from the BTC Monk website, without our permission, with the exception of the publicly available figures as found in our order book.</li>
+                            <li>In no event shall BTC Monk or its associates, affiliates, or subsidiaries be liable for any damages, including damage for loss of data or profit, arising out of the use of the services of materials provided by BTC Monk, even if BTC Monk is negligent in any way.</li>
+                            <li>You attest that you are not a criminal, are not associated with any criminal activity, and that all funds that are sent to BTC Monk are free from any criminal association, are not the proceeds of crime, and are not derived from any criminal activity.</li>
+                            <li>BTC Monk reserves the right to modify, add or remove any article from these terms, at any time, and at our sole discretion.</li>
+                        </ol>
+
+                        <h2>Refund Policy</h2>
+                        <p>Due to the nature of the Bitcoin and Cryptocurrency markets, all trades conducted on BTC Monk are final. Please review our official refund policy below.</p>
+                        <ol>
+                            <li>All fundings made to BTC Monk members' accounts can be refunded, at the request of the user, to the original funding method, provided that the funds remain in the original fiat balance of that user. If only a portion of the funds remain in the user account, a partial refund may be completed at the request of the user.</li>
+                            <li>Funds which have been traded for Bitcoin or any other Cryptocurrency through the BTC Monk system are not eligible for a refund.</li>
+                            <li>Funds which have been withdrawn from the BTC Monk website, using any available method, are not eligible for a refund.</li>
+                            <li>Funds which have been withdrawn from the BTC Monk website, using any available method, are not eligible for a refund.</li>
+                            <li>All refund requests will be processed using the same payment method as the original funding.</li>
+                            <li>If you have additional questions regarding our Refund Policy, please contact the administration of BTC Monk at support@taurusexchange.com.</li>
+                        </ol>
+                    </div>
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+    </md-expansion-panel-group>
+
+</div>

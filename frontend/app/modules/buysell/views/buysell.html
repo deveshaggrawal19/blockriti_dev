@@ -1,0 +1,265 @@
+<logged-in-nav></logged-in-nav>
+<style>
+    .gridListdemoBasicUsage md-grid-list {
+        margin: 8px;
+    }
+    
+    .gray {
+        background: #f5f5f5;
+    }
+    
+    .green {
+        background: #b9f6ca;
+    }
+    
+    .yellow {
+        background: #ffff8d;
+    }
+    
+    .blue {
+        background: #84ffff;
+    }
+    
+    .purple {
+        background: #b388ff;
+    }
+    
+    .red {
+        background: #ff8a80;
+    }
+    
+    md-grid-tile {
+        transition: all 400ms ease-out 50ms;
+    }
+
+</style>
+
+<div class="page-content-margin nav-modi-temp buysell" >
+
+    <md-grid-list flex md-cols-xs="1" md-cols-sm="2" md-cols-md="12" md-cols="12" md-row-height-gt-sm="1:1" md-row-height="fit" md-gutter="27px" md-gutter-md="16px" md-gutter-sm="8px" md-gutter-xs="8px">
+
+	
+		
+        <!--  -->
+        <md-grid-tile id="" md-rowspan="5" md-colspan="6" md-colspan-md="6" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card layout-fill class="" style="background: #f1f1f1;">
+				<md-card-title style="background: #e1e1e1;">
+				  <md-card-title-text>
+					<span class="md-headline">BUY</span>
+					
+				  </md-card-title-text>
+				</md-card-title>
+				<div>
+				  <form ng-submit="submit()" ng-cloak>
+					<p style="margin-left: 20px;">Buy According to: <span class="radioValue">{{ data.group1 }}</span> </p>
+
+					<md-radio-group ng-model="data.group1">
+					  <md-radio-button value="INR" style="margin-left: 20px; margin-right: 50px;" class="md-primary">INR</md-radio-button>
+					  <md-radio-button value="BTC"> BTC</md-radio-button>
+					</md-radio-group>
+
+					<hr />
+					<md-input-container class="md-icon-float md-icon-right md-block">
+					  <label>BTC Amount</label>
+					  <i class="fa " style="margin-left:-20px; color:#242424;" aria-hidden="true">&#579;</i>	
+					  <input ng-model="user.choice" type="number" step="0.01">				  
+					</md-input-container>
+					
+					<md-input-container class="md-icon-float md-icon-right md-block">
+					  <label>INR Amount</label>
+					  <i class="fa fa-inr" style="margin-left:-20px; color:#242424;" aria-hidden="true"></i>
+					  <input ng-model="user.choice" type="number" step="0.01">					  
+					</md-input-container>
+
+					<div style="float:right; margin-right: 20px;"><p>Total: {{'amount+'+'rate'}}</p></div>
+					
+						<md-button md-no-ink class="md-primary" style="background: rgb(255, 87, 34) !important; color: #fff;" >complete</md-button>
+					
+				  </form>
+				</div>	
+			
+            </md-card>
+        </md-grid-tile>
+		
+        <!--  -->
+        <md-grid-tile id="" md-rowspan="5" md-colspan="6" md-colspan-md="6" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card layout-fill class="" style="background: #f1f1f1;">
+				<md-card-title style="background: #e1e1e1;">
+				  <md-card-title-text>
+					<span class="md-headline">SELL</span>
+					
+				  </md-card-title-text>
+				</md-card-title>
+				<div>
+				  <form ng-submit="submit()" ng-cloak>
+					<p style="margin-left: 20px;">Sell According to: <span class="radioValue">{{ data.group2 }}</span> </p>
+
+					<md-radio-group ng-model="data.group2">
+					  <md-radio-button value="INR" class="md-primary" style="margin-left: 20px; margin-right: 50px;">INR</md-radio-button>
+					  <md-radio-button value="BTC" flex="50"> BTC</md-radio-button>
+					</md-radio-group>
+
+					<hr />	
+
+					<md-input-container class="md-icon-float md-icon-right md-block">
+					  <label>BTC Amount</label>
+					  <i class="fa " style="margin-left:-20px; color:#242424;" aria-hidden="true">&#579;</i>	
+					  <input ng-model="user.choice" type="number" step="0.01">				  
+					</md-input-container>
+								
+					<md-input-container class="md-icon-float md-icon-right md-block">
+					  <label>INR Amount</label>
+					  <i class="fa fa-inr" style="margin-left:-20px; color:#242424;" aria-hidden="true"></i>
+					  <input ng-model="user.choice" type="number" step="0.01">					  
+					</md-input-container>
+
+					<div style="float:right; margin-right: 20px;"><p>Total: {{'amount+'+'rate'}}</p></div>
+
+					<md-button md-no-ink class="md-primary" style="background: rgb(255, 87, 34) !important; color: #fff;" >complete</md-button>
+				  </form>
+				</div>	
+			
+            </md-card>
+        </md-grid-tile>		
+        </md-grid-tile>		
+		
+    </md-grid-list>
+
+
+    <!-- <div ng-cloak="" class="tabsdemoDynamicHeight">
+        <md-content>
+            <md-tabs md-dynamic-height="" md-border-bottom="">
+                <md-tab label="Buy">
+                    <md-content class="md-padding">
+                        <md-progress-linear class="md-accent" md-mode="indeterminate" ng-disabled="vm.hideProgressBar"></md-progress-linear> -->
+                        <!-- AMOUNT -->
+                      <!--   <div> -->
+                            <!-- AMOUNT INSTANT -->
+                           <!--  <div class="instant-limit-container height-100-percent">
+                                <form class="height-100-percent" name="vm.buyBrokerageForm" layout="column" autocomplete="off" ng-submit="vm.buyBrokerage.amount && vm.buyBrokerageForm.$valid && vm.submitBrokerageOrder('BUY')">
+
+                                    <div flex></div>
+
+                                    <md-input-container class="instant-limit-order-amount">
+                                        <label style="color: #242424;">Amount</label>
+                                        <md-icon>
+                                            <i class="fa fa-inr" style="margin-left:-20px; color:#242424;" aria-hidden="true"></i>
+                                        </md-icon>
+                                        <input style="color:#242424;" name="amount" ng-model="vm.buyBrokerage.amount" ng-model-options="{debounce: 200}" ng-change="vm.getInstantOrderApproximation(vm.buyBrokerage.amount, 'BUY')" type="text" ng-min="vm.brokerageMinBuyAmount" ng-max="vm.brokerageMaxBuyAmount" md-no-asterisk>
+                                        <div style="color:#242424;" ng-messages="vm.brokerageForm.amount.$error">
+                                            <div ng-message="min">Minimum
+                                                <span ng-if="vm.sellBitcoin">&#579;</span>
+                                                <span ng-if="!vm.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                                                <span>{{ vm.brokerageMinAmount }}.</span>
+                                            </div>
+                                            <div ng-message="max">Maximum amount is
+                                                <span ng-if="vm.sellBitcoin">&#579;</span>
+                                                <span ng-if="!vm.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                                                <span>{{ vm.brokerageMaxAmount }}.</span>
+                                            </div> -->
+                                            <!-- <div ng-message="required">Required field.</div> -->
+                                       <!--  </div>
+                                    </md-input-container>
+
+                                    <div flex></div>
+
+                                    <div layout="row">
+
+                                        <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                                            <span>Subtotal:</span>
+                                            <span>Fee:</span>
+                                            <span>Approx.BTC:</span>
+                                        </div>
+                                        <div flex></div>
+
+                                        <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                                            <div>
+                                                <span>{{vm.instantOrderData.approx  | currency : "&#579;" : 8}}</span><br>
+                                                <span>{{vm.instantOrderData.fee | currency : "&#579;" : 8}}</span><br>
+                                                <span>{{vm.instantOrderData.net | currency : "&#579;" : 8}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div flex></div>
+
+                                    <md-button type="submit" class="md-primary md-raised" ng-disabled="vm.disableOrderButton">
+                                        BUY
+                                    </md-button>
+
+                                    <div flex></div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Sell">
+                    <md-content class="md-padding">
+                        <md-progress-linear class="md-accent" md-mode="indeterminate" ng-disabled="vm.hideProgressBar"></md-progress-linear>
+                        <div class="instant-limit-container height-100-percent">
+
+                            <form class="height-100-percent" name="vm.sellBrokerageForm" layout="column" autocomplete="off" ng-submit="vm.sellBrokerage.amount && vm.sellBrokerageForm.$valid && vm.submitBrokerageOrder('SELL')">
+
+                                <md-input-container class="instant-limit-order-amount">
+                                    <label style="color: #242424;">Amount</label>
+                                    <md-icon style="margin-top:-5px;margin-left:-20px; color: #242424;">&#579;</md-icon>
+                                    <input style="color:#242424;" name="amount" ng-model="vm.sellBrokerage.amount" ng-model-options="{debounce: 200}" ng-change="vm.getInstantOrderApproximation(vm.sellBrokerage.amount, 'SELL')" type="text" ng-init="vm.disableScrollOnNumberInput()" step="1" ng-min="vm.brokerageMinSellAmount" ng-max="vm.brokerageMaxSellAmount" md-no-asterisk>
+                                    <div style="color:#242424;" ng-messages="vm.sellBrokerageForm.amount.$error">
+                                        <div ng-message="min">Minimum
+                                            <span ng-if="vm.sellBitcoin">&#579;</span>
+                                            <span ng-if="!vm.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                                            <span>{{ vm.brokerageMinSellAmount }}.</span>
+                                        </div>
+                                        <div ng-message="max">Maximum amount is
+                                            <span ng-if="vm.sellBitcoin">&#579;</span>
+                                            <span ng-if="!vm.sellBitcoin">
+                             <i class="fa fa-inr" style="margin-left:-20px;" aria-hidden="true"></i>
+                        </span>
+                                            <span>{{ vm.brokerageMaxSellAmount }}.</span>
+                                        </div> -->
+                                        <!-- <div ng-message="required">Required field.</div> -->
+                                   <!--  </div>
+                                </md-input-container>
+
+                                <div layout="row">
+
+                                    <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                                        <span>Subtotal:</span>
+                                        <span>Fee:</span>
+                                        <span>Approx.INR:</span>
+                                    </div>
+                                    <div flex></div>
+
+                                    <div layout="column" style="color:#242424;" class="instant-limit-text-right">
+                                        <div>
+                                            <span><i class="fa fa-inr" aria-hidden="true"></i>{{ vm.instantOrderData.approx}}</span><br>
+                                            <span><i class="fa fa-inr" aria-hidden="true"></i>{{ vm.instantOrderData.fee}}</span><br>
+                                            <span><i class="fa fa-inr" aria-hidden="true"></i>{{ vm.instantOrderData.net }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <md-button type="submit" class="md-primary md-raised" ng-disabled="vm.disableOrderButton">
+                                    SELL
+                                </md-button>
+
+                                <div flex></div>
+
+                            </form>
+
+                        </div>
+
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div> -->

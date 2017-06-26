@@ -1,0 +1,41 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-static-top masthead navbar-top " role="navigation" id="#wrap">
+    <div class="container">
+        <div class="navbar-header padding-t-15">
+          <div class="parilapLogo"></div>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse header" id="top-nav">
+            <ul class="nav navbar-nav navbar-right mainMenu" id="logOut" ng-hide="isLoggedIn">
+
+                <li>
+                    <md-button class="md-raised logInBtn" ng-click="goToLogInPage()">{{'LOGIN' }}</md-button>
+                </li>
+                <li class="dropdown headerMenuDropdown">
+
+                    <md-button class="md-raised md-warn joinUs" data-toggle="dropdown">{{'JOIN_US' }}<i class="fa fa-angle-down"></i></md-button>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="individualUserSignUp"><i class="fa fa-user"></i>{{'JOIN_AS_A_USER' }}</a></li>
+                        <li><a href="#"><i class="fa fa-hospital-o"></i>{{'JOIN_AS_AN_ORGANIZATION' }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right mainMenu" id="logIn" ng-hide="!isLoggedIn">
+                <li><a href="#"><i class="fa fa-search"></i> </a></li>
+                <li style="display:none;"><a href="#"><i class="fa fa-bell-o"></i></a>
+                    <span class="notifaction">1</span>
+                </li>
+                <li class="dropdown headerMenuDropdown">
+                    <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                        <img src="app/images/user.jpg" class="img-circle special-img profileImg">
+                        <div class="profileName">{{loggedInUserDetails.firstName}} {{loggedInUserDetails.lastName}}
+                            <br><span>{{loggedInUserDetails.email1}}, {{'ID_TEXT' }} : {{loggedInUserDetails.userCode}}</span></div>
+                        <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li> <!-- ng-controller="ManageUserProfileCtrl" --><a href="#" ng-click="myProfile()"><i class="fa fa-user" ></i> {{'MY_PROFILE' }}</a></li>
+                       <li ng-controller="AuthenticationCtrl"><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> {{'SIGN_OUT' }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

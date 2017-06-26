@@ -1,0 +1,76 @@
+<md-fab-speed-dial id="deposit-withdraw-fab" class="md-scale" md-direction="up" md-open="dWCtrl.isOpen">
+
+    <md-fab-trigger>
+        <md-button class="md-fab" aria-label="menu">
+            <i id="deposit-withdraw-fab-icon" class="mdi mdi-plus"></i>
+        </md-button>
+    </md-fab-trigger>
+
+    <!-- IF SCREEN SMALL -->
+    <md-fab-actions ng-if="$mdMedia('(max-width: 959px)') && vm.tradePageFab">
+
+        <div class="md-fab-action-item" layout="column">
+
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="withdraw" ng-click="dWCtrl.showTabDialog($event, 'help');">
+                <md-tooltip md-direction="left">Support</md-tooltip>
+                <i class="mdi mdi-help"></i>
+            </md-button>
+
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="withdraw" ng-click="dWCtrl.showTabDialog($event, 'withdraw');">
+                <md-tooltip md-direction="left">Withdraw</md-tooltip>
+                <i class="mdi mdi-briefcase-download"></i>
+                <!-- <md-icon md-svg-icon="images/noeffect/withdrawal.svg"></md-icon> -->
+            </md-button>
+            
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="deposit" ng-click="dWCtrl.showTabDialog($event, 'deposit');">
+                <md-tooltip md-direction="left">Deposit</md-tooltip>
+                <i class="mdi mdi-briefcase-upload fab-items"></i>
+                <!-- <md-icon md-svg-icon="images/noeffect/deposit3.svg"></md-icon> -->
+            </md-button>
+
+            <md-button class="md-fab md-raised md-mini" aria-label="Graph" ng-click="vm.changeTile('Graph');">
+                <md-tooltip md-direction="left">Graph</md-tooltip>
+                <!-- <i class="mdi" ng-class="changeType.icon"></i> -->
+                <i class="mdi mdi-chart-line"></i>
+            </md-button>
+
+            <md-button ng-repeat="changeType in vm.changeTypes" class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="changeType.name" ng-click="vm.changeTile(changeType.name);">
+                <md-tooltip md-direction="left">{{ changeType.name }}</md-tooltip>
+                <!-- <i class="mdi" ng-class="changeType.icon"></i> -->
+                <md-icon md-svg-icon="{{ changeType.icon }}"></md-icon>
+            </md-button>
+        </div>
+
+    </md-fab-actions>
+
+
+    <!-- LARGE SCREEN -->
+    <md-fab-actions ng-if="!vm.tradePageFab || !$mdMedia('(max-width: 959px)')">
+
+        <div class="md-fab-action-item" layout="column">
+
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="withdraw" ng-click="dWCtrl.showTabDialog($event, 'help');">
+                <md-tooltip md-direction="left">Support</md-tooltip>
+                <i class="mdi mdi-help"></i>
+            </md-button>
+            
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="withdraw" ng-click="dWCtrl.showTabDialog($event, 'withdraw');">
+                <md-tooltip md-direction="left">Withdraw</md-tooltip>
+                <i class="mdi mdi-briefcase-download"></i>
+                <!-- <md-icon md-svg-icon="images/withdrawal.svg"></md-icon> -->
+            </md-button>
+
+            <md-button class="md-fab md-raised md-mini deposit-withdraw-button-svg" aria-label="deposit" ng-click="dWCtrl.showTabDialog($event, 'deposit');">
+                <md-tooltip md-direction="left">Deposit</md-tooltip>
+                <i class="mdi mdi-briefcase-upload fab-items"></i>
+                <!-- <md-icon md-svg-icon="images/deposit3.svg"></md-icon> -->
+            </md-button>
+
+        </div>
+
+    </md-fab-actions>
+
+
+
+
+</md-fab-speed-dial>

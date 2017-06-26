@@ -1,0 +1,253 @@
+<md-sidenav style="background: #03A9F4;" class="md-sidenav-left md-whiteframe-z2 sidenav-modi-temp fixed-scroll" md-component-id="logged-in-nav-sidebar"  md-is-open="sidenavOpen" md-is-locked-open="$mdMedia('gt-md')" >
+
+<!--     <div id="home-sidenav-menu-title">
+        <span><md-icon md-svg-icon="images/tauruslogo1.svg"></md-icon></span>
+    </div> -->
+    <md-content layout-padding style="overflow:hidden; padding-top: 0px !important; height: 56px; background: #FFF;">
+        <md-list>
+			<md-list-item class="md-2-line home-menu-sidenav-list-items trade-menu-top">
+				<md-button class="md-icon-button logo-sidenav" aria-label="Trade" ng-click="loggedInNav.navigationBar('trade');">
+					<div id="home-sidenav-menu-title">
+						<span><md-icon md-svg-icon="images/tauruslogo1.svg"></md-icon></span>
+					</div>
+				</md-button>
+
+<!-- 				<md-button class="md-icon-button user-nav-button new-user-cust" aria-label="Wallet" ng-click="loggedInNav.navigationBar('wallet');">
+					<md-tooltip md-direction="down">Wallet</md-tooltip>
+					<i class="mdi mdi-wallet nav-button-icons"></i>
+				</md-button>
+
+				<md-button class="md-icon-button user-nav-button new-user-cust" aria-label="Settings" ng-click="loggedInNav.navigationBar('settings');">
+					<md-tooltip md-direction="down">Settings</md-tooltip>
+					<i class="mdi mdi-more nav-button-icons"></i>
+				</md-button>
+
+				<md-button class="md-icon-button user-nav-button new-user-cust" aria-label="Logout" ng-click="loggedInNav.logout();">
+					<md-tooltip md-direction="down">Logout</md-tooltip>
+					<i class="mdi mdi-account-off nav-button-icons"></i>
+				</md-button> -->
+            </md-list-item>		
+        </md-list>
+
+    </md-content>
+    <md-content layout-padding style="padding-top: 0px !important; background: #03A9F4; color: white;">
+        <md-list class="fixed-nav-height">
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Dashboard" ng-click="sidenavOpen = false; loggedInNav.navigationBar('dashboard');">					  
+				  <i class="mdi  mdi-view-dashboard"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Dashboard</h3>
+                  </div>					
+			</md-list-item>	
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Deposit" ng-click="dWCtrl.showTabDialog($event, 'deposit');">					  
+				  <i class="mdi  mdi-briefcase-download"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Deposit</h3>
+                  </div>					
+			</md-list-item>	
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Withdraw" ng-click="dWCtrl.showTabDialog($event, 'withdraw');">					  
+				  <i class="mdi mdi-briefcase-upload"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Withdraw</h3>
+                  </div>					
+			</md-list-item>		
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Trade" ng-click="sidenavOpen = false; loggedInNav.navigationBar('trade');">					  
+				  <i class="mdi mdi-chart-line "></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Trade</h3>
+                  </div>					
+			</md-list-item>		
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Trade" ng-click="sidenavOpen = false; loggedInNav.navigationBar('buysell');">					  
+				  <i class="mdi mdi-cart"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Brokerage</h3>
+                  </div>					
+			</md-list-item>		
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Trade" ng-click="sidenavOpen = false; loggedInNav.navigationBar('merchant');">					  
+				  <i class="mdi mdi-scale"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Merchant</h3>
+                  </div>					
+			</md-list-item>	
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Trade" ng-click="sidenavOpen = false; loggedInNav.navigationBar('escrow');">					  
+				  <i class="mdi mdi-nature-people"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Escrow</h3>
+                  </div>					
+			</md-list-item>	
+			
+<!--             <md-list-item class="md-2-line home-menu-sidenav-list-items" ng-repeat="item in loggedInNav.menuItems"  ng-click="sidenavOpen = false; loggedInNav.showHomeDialog($event, item.url);">
+                <i class="{{ item.icon }}"></i>
+                <div class="md-list-item-text md-offset">
+                    <h3>{{item.name}}</h3>
+                </div>
+            </md-list-item> -->
+        
+			
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Wallet"  ng-click="sidenavOpen = false; loggedInNav.navigationBar('wallet');">
+				  <i class="mdi mdi-wallet"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Wallet</h3>
+                  </div>					
+			</md-list-item>
+			
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Settings"  ng-click="sidenavOpen = false; loggedInNav.navigationBar('settings');">
+				  <i class="mdi mdi-more"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Settings</h3>
+                  </div>						
+			</md-list-item>	
+			
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Settings"  ng-click="sidenavOpen = false; loggedInNav.navigationBar('verification');">
+				  <i class="mdi mdi-clipboard-check"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Verification</h3>
+                  </div>						
+			</md-list-item>	
+			
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" ng-repeat="item in loggedInNav.menuItems"  ng-click="sidenavOpen = false; loggedInNav.showHomeDialog($event, item.url);">
+                <i class="{{ item.icon }}"></i>
+                <div class="md-list-item-text md-offset">
+                    <h3>{{item.name}}</h3>
+                </div>
+            </md-list-item>			
+			<md-list-item class="md-2-line home-menu-sidenav-list-items" aria-label="Logout" ng-click="sidenavOpen = false; loggedInNav.logout();">
+				  <i class="mdi mdi-account-off"></i>
+				  <div class="md-list-item-text md-offset">
+                    <h3>Logout</h3>
+                  </div>
+            </md-list-item>	
+		</md-list>
+
+    </md-content>
+</md-sidenav>
+
+<md-toolbar id="main-nav-bar">
+
+    <div class="md-toolbar-tools" style="padding: 0 0%">
+	
+        <div id='nav-buttons-md-lg' layout="row">
+            <md-button id="logged-in-nav-sidebar-menu-button" class="md-icon-button nav-button" ng-click="loggedInNav.openSideNavBar();">
+                <md-tooltip md-direction="down">Menu</md-tooltip>
+                <i class="mdi mdi-menu nav-button-icons"></i>
+            </md-button>
+        </div>	
+		
+        <div class="nav-title">
+            <span>
+              <md-icon class="taurus-logo-nav" md-svg-icon="images/tauruslogo1.svg"></md-icon>
+<!--               <span id="nav-display-taurus">BTC</span>
+              <span id="nav-display-exchange">Monk</span> -->
+            </span>
+        </div>
+
+        <div flex></div>
+        <div flex></div>
+   <!--States data topbar-->
+        <!-- <md-card id="topbar-stats-price" class='stats-card' layout="column">
+            <span class="balance-label">Bitcoin Price</span>
+            <span class="balance-value">$886.10</span>
+        </md-card>
+
+        <md-card id="topbar-stats-volume" class='stats-card' layout="column">
+            <span class="balance-label">Bitcoin Volume</span>
+            <span class="balance-value">546.11216500</span>
+        </md-card> -->
+
+        <md-card id="topbar-stats-balance" class='stats-card new-card-style' layout="column">            
+            <span class="balance-value">{{ loggedInNav.balance.btc_available | nineDigitsBitcoin }}</span> |
+            <span class="balance-value rupee-value"><i class="fa fa-inr" aria-hidden="true"></i>  {{ loggedInNav.balance.cad_available }}</span><br/>
+			<span class="balance-label">Available</span>
+        </md-card>
+
+        <!-- <div hide-xs flex></div> -->
+
+        <md-card id="topbar-stats-locked" class='stats-card new-card-style' layout="column">            
+            <span class="balance-value bitcoin-value">{{ loggedInNav.balance.btc_locked | nineDigitsBitcoin }}</span> |
+            <span class="balance-value "><i class="fa fa-inr" aria-hidden="true"></i> {{ loggedInNav.balance.cad_locked }}</span><br/>
+			<span class="balance-label">Locked</span>
+        </md-card>
+
+<!--         <div hide-gt-sm flex></div>
+        <div flex></div> -->
+
+        <div hide-gt-sm style="width: 56px;"></div>
+		
+		<div style="width: 56px;"></div>
+<!--         <div id='nav-buttons-md-lg' layout="row">
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Trade" ng-click="loggedInNav.navigationBar('trade');">
+              <md-tooltip md-direction="down">Trade</md-tooltip>
+              <i class="mdi mdi-chart-line nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Wallet" ng-click="loggedInNav.navigationBar('wallet');">
+                <md-tooltip md-direction="down">Wallet</md-tooltip>
+                <i class="mdi mdi-wallet nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Settings" ng-click="loggedInNav.navigationBar('settings');">
+                <md-tooltip md-direction="down">Settings</md-tooltip>
+                <i class="mdi mdi-more nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Logout" ng-click="loggedInNav.logout();">
+                <md-tooltip md-direction="down">Logout</md-tooltip>
+                <i class="mdi mdi-account-off nav-button-icons"></i>
+            </md-button>
+
+            <md-button id="logged-in-nav-sidebar-menu-button" class="md-icon-button nav-button" ng-click="loggedInNav.openSideNavBar();">
+                <md-tooltip md-direction="down">Menu</md-tooltip>
+                <i class="mdi mdi-menu nav-button-icons"></i>
+            </md-button>
+        </div> -->
+		
+<!--         <div id='nav-buttons-md-lg' layout="row">
+            <md-button id="logged-in-nav-sidebar-menu-button" class="md-icon-button nav-button" ng-click="loggedInNav.openSideNavBar();">
+                <md-tooltip md-direction="down">Menu</md-tooltip>
+                <i class="mdi mdi-menu nav-button-icons"></i>
+            </md-button>
+        </div>	 -->	
+
+<!--         <md-fab-toolbar class="md-buttons-sm" md-direction="left">
+
+            <md-fab-trigger class="align-with-text">
+                <md-button id="nav-sm-fab-button" aria-label="menu" class="user-nav-button" md-no-ink>
+                    <md-icon class="mdi mdi-menu nav-button-icons"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+            <md-toolbar>
+
+                <md-fab-actions class="md-toolbar-tools">
+                    <md-button class="md-icon-button nav-button" aria-label="Menu" ng-click="loggedInNav.openSideNavBar();">
+                        <md-icon class="mdi mdi-menu nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button" aria-label="Logout" ng-click="loggedInNav.logout();">
+                      <md-icon class="mdi mdi-account-off nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button nav-fab-sub-button" aria-label="Settings" ng-click="loggedInNav.navigationBar('settings');">
+                      <md-icon class="mdi mdi-more nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button nav-fab-sub-button" aria-label="Wallet" ng-click="loggedInNav.navigationBar('wallet');">
+                        <md-icon class="mdi mdi-wallet nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button" aria-label="Trade" ng-click="loggedInNav.navigationBar('trade');">
+                        <md-icon class="mdi mdi-chart-line nav-button-icons"></md-icon>
+                    </md-button>
+
+
+                </md-fab-actions>
+
+            </md-toolbar>
+        </md-fab-toolbar> -->
+
+    </div>
+
+</md-toolbar>
+
+<div id="material-style-header">
+</div>

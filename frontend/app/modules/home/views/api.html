@@ -1,0 +1,401 @@
+<md-dialog class="dialog-flex">
+
+<!--     <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>API</h2>
+        </div>
+    </md-toolbar> -->
+
+    <md-dialog-content class="dialog-content-flex">
+        <div class="md-dialog-content">
+            <h2>API</h2>
+
+            <h2>Overview</h3>
+            <p>The BTC Monk API allows you to integrate the BTC Monk trading platform with third party applications, such as trading applications, charting programs, point of sale systems, and much more. Below you will find details on how the system functions, along with examples in common programming languages.</p>
+            <p>The BTC Monk API is fully compatible with the Bitstamp Exchange API.</p>
+
+            <h3>BTC Monk notations</h3>
+            <ul>
+                <li>Major denotes any of the Cryptocurrencies such as Bitcoin (BTC) or any other cryptocurrency which is added to the BTC Monk trading platform in the future.</li>
+                <li>Minor denotes fiat currencies such as Canadian Dollar (CAD), etc.</li>
+                <li>An order book is always referred to in the API as "Major_Minor". For example: "btc_cad".</li>
+            </ul>
+
+
+            <h2>Public Functions</h2>
+
+            <h3>Current Trading Information</h3>
+            <code>GET https://api.taurusexchange.com/ticker</code>
+            <p>The above url will return trading information from the specified book. Currently, the book will default to the only one available: btc_cad</p>
+            <h4>Result</h4>
+            <p>Returns JSON dictionary:</p>
+            <ul>
+                <li>last - last BTC price</li>
+                <li>high - last 24 hours price high</li>
+                <li>low - last 24 hours price low</li>
+                <li>vwap - last 24 hours volume weighted average price: vwap</li>
+                <li>volume - last 24 hours volume</li>
+                <li>bid - highest buy order</li>
+                <li>ask - lowest sell order</li>
+            </ul>
+
+            <h3>Order Book</h3>
+            <code>GET https://api.taurusexchange.com/order_book</code>
+            <p>List of all open orders.</p>
+            <p>Params:</p>
+            <ul>
+                <li>book - optional book to return orders for. Default btc_cad.</li>
+                <li>group - optional group orders with the same price (0 - false; 1 - true). Default: 1.</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns JSON dictionary with "bids" and "asks". Each is a list of open orders and each order is represented as a list of price and amount.</p>
+
+
+            <h3>Transactions</h3>
+            <code>GET https://api.taurusexchange.com/transactions</code>
+            <p>List of recent trades</p>
+            <p>Params:</p>
+            <ul>
+                <li>book - book to return orders for (optional, default btc_cad)</li>
+                <li>time - time frame for transaction export ("minute" - 1 minute, "hour" - 1 hour). Default: hour.</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns descending JSON list of transactions. Every transaction (dictionary) contains:</p>
+            <ul>
+                <li>date - unix timestamp date and time</li>
+                <li>tid - transaction id</li>
+                <li>price - BTC price</li>
+                <li>amount - BTC amount</li>
+            </ul>
+
+            <h2>API Authentication</h2>
+
+            <h3>Setup</h3>
+
+            <p>To setup an API within your account, go to Settings and scroll down to "API".</p>
+            <p>When setting up a new API, you will need to choose an API Name to identify your API. This name will never be shown anywhere apart from on your API Index page within your account. In addition to the name, an API Secret must be chosen. The field is pre-populated with a random number of characters, but can be changed at your discretion. Finally, you have the option of adding a Withdrawal Bitcoin Address, which can be used to lock the API Withdrawal function to a specific Bitcoin address of your choosing. This field is optional.</p>
+            <p>Example:</p>
+            <ul>
+              <li>API Name: My API</li>
+              <li>API Secret: jolfY)AnCwR6br!oWo+SapEaz}_(fquyOQNxH9v5</li>
+              <li>Withdrawal Bitcoin Address: 1HZwkjkeaoZfTSajxDw6aKkxp45agDiEzN</li>
+            </ul>
+            <p>Make a note of these 2 fields as they are needed to authenticate you on the server when making requests to the private APIs. To generate a new API Secret, click on the icon next to the current secret. Note that this will instantly change the key, and cannot be undone.</p>
+
+            <h3>Authentication</h3>
+            <p>You need to POST 3 fields as a JSON payload to the API in order to perform authentication.</p>
+            <ul>
+                <li>key – The API Key as shown above</li>
+                <li>nonce – an integer that must be unique for each API call (we recommend using a UNIX timestamp)</li>
+                <li>signature – HMAC_SHA256 encrypted string</li>
+            </ul>
+            <h4>Signature</h4>
+            <p>The signature has to be created using a concatenation of the nonce, the API key, your client id and using the API Secret as key. The pseudo-algorithm is shown below and you will find code examples in the Appendix.</p>
+            <code>HMAC_SHA256 ( nonce + key + client , secret )</code>
+            <p>Using the example API, the JSON payload will be:</p>
+            <pre>
+{
+    key: "JJHlXeDcFM",
+    nonce: 1391683499,
+    signature: "cdbf5cc64c70e1485fcf976cdf367960c2b28cfc28080973ce677cebb6db9681"
+}
+            </pre>
+            <p>The signature being calculated using:</p>
+            <code>HMAC_SHA256 ( 1391683499 + 3 + JJHlXeDcFM , 230664ae53cbe5a07c6c389910540729)</code>
+            <br>
+            <code>HMAC_SHA256 ( 13916834993JJHlXeDcFM , 230664ae53cbe5a07c6c389910540729 )</code>
+            <br>
+            <code>= cdbf5cc64c70e1485fcf976cdf367960c2b28cfc28080973ce677cebb6db9681</code>
+
+            <h2>Private Functions</h2>
+
+            <h3>Account Balance</h3>
+            <code>POST https://api.taurusexchange.com/balance</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns JSON dictionary of all balances, e.g.:</p>
+            <ul>
+                <li>cad_balance - cad balance</li>
+                <li>btc_balance - BTC balance</li>
+                <li>cad_reserved - cad reserved in open orders</li>
+                <li>btc_reserved - BTC reserved in open orders</li>
+                <li>cad_available - cad available for trading</li>
+                <li>btc_available - BTC available for trading</li>
+                <li>fee - customer trading fee</li>
+            </ul>
+
+            <h3>User Transactions</h3>
+            <code>POST https://api.taurusexchange.com/user_transactions</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>offset - skip that many transactions before beginning to return results. Default: 0.</li>
+                <li>limit - limit result to that many transactions. Default: 100.</li>
+                <li>sort - sorting by date and time (asc - ascending; desc - descending). Default: desc.</li>
+                <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns descending JSON list of transactions. Every transaction (dictionary) contains:</p>
+            <ul>
+                <li>datetime - date and time</li>
+                <li>id - transaction id</li>
+                <li>type - transaction type (0 - deposit; 1 - withdrawal; 2 - market trade)</li>
+                <li>(minor currency code) – the minor currency amount</li>
+                <li>(minor currency code) – the major currency amount</li>
+                <li>fee – transaction fee</li>
+                <li>order_id - a 64 character long hexadecimal string representing the order that was fully or partially filled</li>
+            </ul>
+
+            <h3>Open Orders</h3>
+            <code>POST https://api.taurusexchange.com/open_orders</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns JSON list of open orders. Each order is represented as dictionary:</p>
+            <ul>
+                <li>id - order id</li>
+                <li>datetime - date and time</li>
+                <li>type - buy or sell (0 - buy; 1 - sell)</li>
+                <li>price - price</li>
+                <li>amount - amount</li>
+            </ul>
+
+            <h3>Lookup Order</h3>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>id – a single or array of 64 characters long hexadecimal string taken from the list of orders</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns JSON list of details about 1 or more orders. Each order is represented as dictionary:</p>
+            <ul>
+                <li>id - the order id passed to that function</li>
+                <li>book - which orderbook it belongs to</li>
+                <li>price - price of the order</li>
+                <li>amount - amount of the order</li>
+                <li>type - buy or sell (0 - buy; 1 - sell)</li>
+                <li>status - status of the order (-1 - cancelled; 0 - active; 1 - partially filled; 2 - complete)created - date the order was created</li>
+                <li>created - date the order was created</li>
+                <li>updated - date the order was last updated (not shown when status = 0)</li>
+            </ul>
+
+            <h3>Cancel Order</h3>
+            <code>POST https://api.taurusexchange.com/cancel_order</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>id – a 64 characters long hexadecimal string taken from the list of orders</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns 'true' if order has been found and canceled.</p>
+
+            <h3>Buy Order - Limit Order</h3>
+            <code>POST https://api.taurusexchange.com/buy</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>amount - amount of major currency</li>
+                <li>price - price to buy at</li>
+                <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result / Limit Order</h4>
+            <p>Returns JSON dictionary representing order:</p>
+            <ul>
+                <li>id - order id</li>
+                <li>datetime - date and time</li>
+                <li>type - buy or sell (0 - buy; 1 - sell)</li>
+                <li>price - price</li>
+                <li>amount - amount</li>
+            </ul>
+
+            <h3>Buy Order - Market Order</h3>
+            <code>POST https://api.taurusexchange.com/buy</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>amount - amount of minor currency to spend</li>
+                <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result / Market Order</h4>
+            <p>Returns JSON dictionary representing market order:</p>
+            <ul>
+                <li>amount - the total amount of the major currency purchased</li>
+                <li>orders_matched - a set of amount/price pairs, one for each order that was matched in the trade</li>
+            </ul>
+
+            <h3>Sell Order - Limit Order</h3>
+            <code>POST https://api.taurusexchange.com/sell</code>
+            <h4>Params</h4>
+            <ul>
+              <li>key - API key</li>
+              <li>signature - signature</li>
+              <li>nonce - nonce</li>
+              <li>amount - amount of major currency</li>
+              <li>price - price to sell at</li>
+              <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result / Limit Order</h4>
+            <p>Returns JSON dictionary representing order:</p>
+            <ul>
+              <li>id - order id</li>
+              <li>datetime - date and time</li>
+              <li>type - buy or sell (0 - buy; 1 - sell)</li>
+              <li>price - price</li>
+              <li>amount - amount</li>
+            </ul>
+
+            <h3>Sell Order - Market Order</h3>
+            <code>POST https://api.taurusexchange.com/sell</code>
+            <h4>Params</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>amount - amount of minor currency to sell</li>
+                <li>book - optional, if not specified, will default to btc_cad</li>
+            </ul>
+            <h4>Result / Market Order</h4>
+            <p>Returns JSON dictionary representing market order:</p>
+            <ul>
+                <li>amount - the total amount of the major currency purchased</li>
+                <li>orders_matched - a set of amount/price pairs, one for each order that was matched in the trade</li>
+            </ul>
+
+            <h3>Bitcoin Deposit</h3>
+            <code>POST https://api.taurusexchange.com/bitcoin_deposit_address</code>
+            <h4>Payload</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+            </ul>
+            <h4>Result</h4>
+            <p>Returns a bitcoin deposit address for funding your account.</p>
+
+            <h3>Bitcoin Withdraw</h3>
+            <code>POST https://api.taurusexchange.com/bitcoin_withdrawal</code>
+            <h4>Payload</h4>
+            <ul>
+                <li>key - API key</li>
+                <li>signature - signature</li>
+                <li>nonce - nonce</li>
+                <li>amount – The amount to withdraw</li>
+                <li>address – The bitcoin address we will send the amount to</li>
+            </ul>
+            <h4>Result</h4>
+            <p>OK or error</p>
+
+            <h2>Appendix</h2>
+
+            <h3>Ruby Examples</h3>
+            <p><a href="https://github.com/yerofeyev/taurusruby">Ruby wrapper for BTC Monk.</a></p>
+
+            <h3>Java Examples</h3>
+            <p><a href="https://github.com/timmolter/XChange">Java integration for BTC Monk (xChange).</a></p>
+
+            <h3>PHP Examples</h3>
+            <p><a href="https://php.net">You must be familiar with PHP</a><a href="https://php.net/curl"> and the CURL extension.</a></p>
+
+            <h4>Rates</h4>
+            <pre>
+$ch = curl_init('http://api.taurusexchange.com/ticker');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            $result = curl_exec($ch);
+            </pre>
+
+            <h4>Result</h4>
+            <pre>
+{
+  "high":"8650.00",
+  "last":"8500.00",
+  "timestamp":"1410341807",
+  "bid":"8310.00",
+  "vwap":"8414.15",
+  "volume":"107.05882350",
+  "low":"8480.00",
+  "ask":"8500.00"
+}
+            </pre>
+
+            <h4>My Orders</h4>
+            <pre>
+$nonce     =  time(); // Unix timestamp
+              $key       = 'JJHlXeDcFM'; // My API Key
+              $client    = 3; // My Client ID
+              $secret    = '230664ae53cbe5a07c6c389910540729'; // my secret
+              $signature = hash_hmac('sha256', $nonce . $key . $client, $secret); // Hashing it
+              $data = array(
+                  'key'       => $key,
+                  'nonce'     => $nonce,
+                  'signature' => $signature
+              );
+              $data_string = json_encode($data);
+              $ch = curl_init('https://api.taurusexchange.com/open_orders');
+              curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/json; charset=utf-8',
+                  'Content-Length: ' . strlen($data_string))
+              );
+              $result = curl_exec($ch);
+            </pre>
+
+            <h4>Add a New Buy Order</h4>
+            <pre>
+$nonce     =  time(); // Unix timestamp
+              $key       = 'JJHlXeDcFM'; // My API Key
+              $client    = 3; // My Client ID
+              $secret    = '230664ae53cbe5a07c6c389910540729'; // my secret
+              $signature = hash_hmac('sha256', $nonce . $key . $client, $secret); // Hashing it
+              $data = array(
+                  'key'       => $key,
+                  'nonce'     => $nonce,
+                  'signature' => $signature,
+                  'amount'    => 2.34,
+                  'price'     => 8469
+              );
+              $data_string = json_encode($data);
+              $ch = curl_init('https://api.taurusexchange.com/buy');
+              curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/json; charset=utf-8',
+                  'Content-Length: ' . strlen($data_string))
+              );
+              $result = curl_exec($ch);
+            </pre>
+
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

@@ -1,0 +1,108 @@
+{
+  "name": "blockriti",
+  "description": "blockriti",
+  "main": "",
+  "authors": [
+    "taurus"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "install": {
+    "path": "app/libs",
+    "sources": {
+      "angular": "bower_components/angular/angular.min.js",
+      "angular-ui-router": "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+      "satellizer": "bower_components/satellizer/satellizer.min.js",
+      "angular-sanitize": "bower_components/angular-sanitize/angular-sanitize.min.js",
+      "animate.css": "bower_components/animate.css/animate.min.css",
+      "ngMask": "bower_components/ngMask/dist/ngMask.min.js",
+      "ng-file-upload": "bower_components/ng-file-upload/ng-file-upload.min.js",
+      "angular-messages": "bower_components/angular-messages/angular-messages.min.js",
+      "angular-aria": "bower_components/angular-aria/angular-aria.min.js",
+      "angular-animate": "bower_components/angular-animate/angular-animate.min.js",
+      "angular-cookies": "bower_components/angular-cookies/angular-cookies.min.js",
+      "angular-material": [
+        "bower_components/angular-material/angular-material.min.css",
+        "bower_components/angular-material/angular-material.min.js"
+      ],
+      "angularjs-slider": [
+        "bower_components/angularjs-slider/dist/rzslider.min.js",
+        "bower_components/angularjs-slider/dist/rzslider.css"
+      ],
+      "angularjs-crypto": [
+        "bower_components/angularjs-crypto/public/js/lib/plugins/CryptoJSCipher.js",
+        "bower_components/angularjs-crypto/public/js/lib/angularjs-crypto.js"
+      ],
+      "d3": "bower_components/d3/d3.min.js",
+      "techan": "bower_components/techan/dist/techan.js",
+      "angular-material-expansion-panel": [
+        "bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css",
+        "bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js"
+      ],
+      "mdi": [
+        "bower_components/mdi/css/materialdesignicons.min.css"
+      ],
+      "angular-material-data-table": [
+        "bower_components/angular-material-data-table/dist/md-data-table.min.css",
+        "bower_components/angular-material-data-table/dist/md-data-table.min.js"
+      ],
+      "angular-breadcrumb": [
+        "bower_components/angular-breadcrumb/release/angular-breadcrumb.min.js"
+      ],
+      "jsencrypt": [
+        "bower_components/jsencrypt/bin/jsencrypt.min.js"
+      ],
+      "angular-base64": [
+        "bower_components/angular-base64/angular-base64.js"
+      ],
+      "angular-socket-io": [
+        "bower_components/angular-socket-io/socket.min.js"
+      ],
+      "angular-material-keyboard": [
+        "bower_components/angular-material-keyboard/dist/mdKeyboard.min.css",
+        "bower_components/angular-material-keyboard/dist/mdKeyboard.min.js"
+      ],
+      "angular-toArrayFilter": "bower_components/angular-toArrayFilter/toArrayFilter.js",
+      "angular-clipboard": "bower_components/angular-clipboard/angular-clipboard.js"
+    }
+  },
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-ui-router": "~0.2.16",
+    "satellizer": "~0.13.4",
+    "angular-sanitize": "1.5.8",
+    "ngMask": "angular-mask#^3.0.16",
+    "ng-file-upload": "^12.0.4",
+    "angular-messages": "1.5.8",
+    "angular-aria": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-cookies": "1.5.8",
+    "angularjs-slider": "^2.14.0",
+    "angularjs-crypto": "^1.4.0",
+    "d3": "3.5.17",
+    "techan": "0.6.0",
+    "angular-material-expansion-panel": "^0.5.0",
+    "mdi": "1.6.50",
+    "angular-material-data-table": "^0.10.9",
+    "angular-breadcrumb": "^0.4.1",
+    "jsencrypt": "^2.3.0",
+    "angular-base64": "^2.0.5",
+    "angular-socket-io": "^0.7.0",
+    "angular-material": "1.1.0",
+    "angular-firebase": "0.0.2",
+    "angular-material-keyboard": "https://github.com/davidenke/angular-material-keyboard.git#^0.0.9",
+    "angular-toArrayFilter": "^1.0.1",
+    "angular-clipboard": "^1.5.0"
+  }
+}

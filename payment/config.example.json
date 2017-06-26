@@ -1,0 +1,23 @@
+{
+    "port": 9909,
+    "merchantFields": [
+        "address",
+        "licenseNumber",
+        "businessName"
+    ],
+    "localRedisHost":  "127.0.0.1",
+    "localRedisPort": "6379",
+    "localRedisDB": 0,
+    "localRedisAuth": "password",
+    "remoteRedisHost": "example.com",
+    "remoteRedisPort": "6379",
+    "remoteRedisDB": 0,
+    "remoteRedisAuth": "password",
+    "createAddressHost": "127.0.0.1",
+    "pinVerificationHost": "127.0.0.1",
+    "brokerageHost": "127.0.0.1",
+    "pollLimit": 150,
+    "pollFrequency": 5000,
+    "firebaseKeyPath": "/home/markasoftware/firebase.json",
+    "firebaseDatabaseURL": "boop.firebaseio.com"
+}

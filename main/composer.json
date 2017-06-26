@@ -1,0 +1,7 @@
+{
+  "require": {
+    "predis/predis": "1.1.*@dev",
+    "ktamas77/firebase-php": "dev-master",
+    "firebase/token-generator": "dev-master"
+  }
+}

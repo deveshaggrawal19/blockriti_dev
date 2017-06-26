@@ -1,0 +1,198 @@
+<md-dialog ng-controller="RegisterCtrl as registerCtrl" class="dialog-flex" style="margin-top:-70px;min-width: 648px !important;">
+
+    <md-dialog-content class="dialog-content-flex">
+
+        <md-progress-linear md-mode="indeterminate" ng-disabled="registerCtrl.showProgressBar" class="position-absolute"></md-progress-linear>
+
+        <div ng-if="!registerCtrl.showTermsOfService" id="register-basic-info" class="md-dialog-content dialog-content-min-height">
+        
+            <form class="login-form-dialog " name="registerCtrl.registerForm" layout="column" ng-submit="registerCtrl.goToTermsOfService()" autocomplete="off">
+
+                <div flex></div>
+
+                <h2>Register</h2>
+
+                <div flex></div>
+
+                <md-input-container class="md-block">
+                    <label>Email Address</label>
+                    <input ng-model="registerCtrl.register.email" name="email" required maxlength="120" type="email" md-no-asterisk md-autofocus>
+                    <div ng-messages="registerCtrl.registerForm.email.$error">
+                        <div ng-message="maxlength">Max 120 characters.</div>
+                        <div ng-message="required">Required field.</div>
+                        <div ng-message="email">Valid email address required.</div>
+                    </div>
+                </md-input-container>
+
+				<md-input-container class="md-block">
+                    <label>First Name</label>
+                    <input ng-model="registerCtrl.register.firstName" name="fname" required maxlength="120" type="text" md-no-asterisk>
+                    <div ng-messages="registerCtrl.registerForm.fname.$error">
+                        <div ng-message="maxlength">Max 120 characters.</div>
+                        <div ng-message="required">Required field.</div>
+                    </div>
+                </md-input-container>
+
+				<md-input-container class="md-block">
+                    <label>Last Name</label>
+                    <input ng-model="registerCtrl.register.lastName" name="lname" required maxlength="120" type="text" md-no-asterisk>
+                    <div ng-messages="registerCtrl.registerForm.lname.$error">
+                        <div ng-message="maxlength">Max 120 characters.</div>
+                        <div ng-message="required">Required field.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Mobile</label>
+                    <input ng-model="registerCtrl.register.phone" name="phone" required maxlength="120" type="number" md-no-asterisk>
+                    <div ng-messages="registerCtrl.registerForm.phone.$error">
+                        <div ng-message="maxlength">Invalid mobile number.</div>
+                        <div ng-message="required">Required field.</div>
+                    </div>
+                </md-input-container>
+
+                <div flex></div>
+
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input ng-model="registerCtrl.register.password" name="password" minlength="8" maxlength="32" required type="password" md-no-asterisk complex-password>
+                    <div ng-messages="registerCtrl.registerForm.password.$error">
+                        <div ng-message="minlength">Min 8 characters.</div>
+                        <div ng-message="complexPassword">Need 3 of 4:<br> 1 uppercase letter<br> 1 lowercase letter<br> 1 digit<br> 1 special character</div>
+                        <div ng-message="maxlength">Max 32 characters.</div>
+                        <div ng-message="required">Required field.</div>
+                    </div>
+                </md-input-container>
+
+                <div flex></div>
+
+                <md-input-container class="md-block">
+                    <label>Retype Password</label>
+                    <input ng-model="registerCtrl.register.passwordConfirm" name="retypePassword" required type="password" md-no-asterisk compare-to="registerCtrl.register.password">
+                    <div ng-messages="registerCtrl.registerForm.retypePassword.$error">
+                        <div ng-message="required">Required field.</div>
+                        <div ng-message="compareTo">Passwords must match.</div>
+                    </div>
+                </md-input-container>
+
+                <div flex></div>
+
+                <md-button type="submit" class="md-primary md-raised button-width-full">Next</md-button>
+
+                </form>
+
+                <div flex></div>
+
+            </div>
+            
+            <div ng-if="registerCtrl.showTermsOfService" class="md-dialog-content dialog-content-min-height" layout="column" ng-style="{'width': registerCtrl.registerBasicInfoWidth}">
+
+                <h2>Terms of Service</h2>
+                <p>By using BTC Monk, accessing the website, or using any service provided by BTC Monk, you agree to the following terms of service. Continued use of the BTC Monk website demonstrates that you agree with our terms of service.</p>
+                <p>Throughout the following terms of service, BTC Monk Bitcoin Exchange may be referred to as "us", "our", "we", "the website", and "BTC Monk". Users of BTC Monk include but are not limited to registered members, as well as any visitor who uses the website in any way, shape or form. The term cryptocurrency may be used to describe any form of digital currency, including but not limited to Bitcoin.</p>
+                <p>By opening an account or accessing the BTC Monk Website, you agree to the following terms:</p>
+                <ol>
+                    <li>You accept both the Terms of Service and the Privacy Policy
+                        <ol>
+                            <li>These policies may be changed at any time, with or without notice. It is your responsibility to regularly review the policies of BTC Monk.</li>
+                        </ol>
+                    </li>
+                    <li>You are at least 18 years of age, or the age of majority in your country.</li>
+                    <li>You must not be a resident or citizen of the United States of America or any territories of the United States of America.</li>
+                    <li>You accept that the purchase and sale of cryptocurrency (Bitcoin) involves risk. Due to the constant price fluctuations, you may increase or lose value in your assets at any time.</li>
+                    <li>You acknowledge that purchasing Bitcoin (or any other digital currency offered by BTC Monk) involves risk and you will not hold BTC Monk accountable for any gains or losses that you incur as a result.</li>
+                    <li>In no circumstance shall BTC Monk be responsible for any loss that you incur.</li>
+                    <li>BTC Monk does not allow users to perform payments to any third party accounts.</li>
+                    <li>BTC Monk may cancel potentially high-risk top ups or withdrawals, including top-ups made using reversible payment methods.</li>
+                    <li>BTC Monk reserves the right to change top up and withdrawal limits on your account as we deem necessary.</li>
+                    <li>BTC Monk does not provide, offer or exchange securities, investment contracts or any other form of financial instrument that may be considered by law to be a "security".</li>
+                    <li>BTC Monk offers a marketplace for the buying and selling of Cryptocurrency. While we strive to ensure that marketplace is both fair and free, we cannot be held accountable for any form of "market manipulation" that may occur, whether it be within the BTC Monk marketplace, or in the cryptocurrency marketplace as a whole.
+                        <ol>
+                            <li>Users agree that cryptocurrency prices are often unpredictable and experience swings due to a variety of reasons, including government interference, market conditions and speculation.</li>
+                            <li>BTC Monk does not set the current market price. The price of cryptocurrency units traded on the BTC Monk platform result directly from buy and sell orders placed by users.</li>
+                            <li>Any trading decision based on information provided by BTC Monk shall be the responsibility of the user alone. BTC Monk assumes no responsibility for any action that is taken in the course of using the BTC Monk website or API.</li>
+                            <li>Market information on BTC Monk is not delayed. However, in the event of a network outage or similar situation, users acknowledge that BTC Monk bears no responsibility for any delays.</li>
+                        </ol>
+                    </li>
+                    <li>As a user of BTC Monk, you acknowledge that BTC Monk has no responsibility for any losses that you incur as a direct or indirect result of the website or any of our services.</li>
+                    <li>BTC Monk is not a bank, and therefore is not protected by CDIC. Fundings, whether they be in a national currency or digital cryptocurrency are not protected by any government insurance policy.
+                        <ol>
+                            <li>BTC Monk does not store customer’s funds. You may have to manually initiate the withdrawal of the proceeds to your own account outside of BTC Monk. BTC Monk accounts are established for storing your transactions information only.</li>
+                            <li>All account fundings are considered to be purchases of “BTC Monk dollars”. These are units that are used for the purposes of purchasing Bitcoin or other cryptocurrencies. BTC Monk dollars are NOT Canadian or US dollars. Any notation of $ or CAD refers to an equivalent unit in BTC Monk dollars, which exist for the sole purpose of buying and selling Bitcoin and other cryptocurrencies.</li>
+                            <li>BTC Monk is NOT a financial institution, bank, credit union, trust, or deposit business. We DO NOT take Deposits. We exist solely for the purposes of buying and selling cryptocurrencies.</li>
+                        </ol>
+                    </li>
+                    <li>It is the user's responsibility to secure his or her BTC Monk account. Any loss that occurs as a result of negligent security practices, whether it be on the part of the user, or BTC Monk, will not be the responsibility of BTC Monk, its directors, associates or employees.
+                        <ol>
+                            <li>It is your responsibility to guard your password. Sharing your password with a third party constitutes a breach of this contract.</li>
+                        </ol>
+                    </li>
+                    <li>The BTC Monk website and any related service is provided "as is". We make no warranties, expressed or implied.</li>
+                    <li>The content and services provided by BTC Monk are for informational purposes only and are not intended to provide legal, financial, tax, accounting or investment advice. We assume no liability for any information provided by our employees, directors, or affiliates, regardless of its accuracy. Any action taken by a user is their decision, and users absolve BTC Monk of any liability for any outcome that may occur.</li>
+                    <li>BTC Monk is based in Vancouver, BC, Canada. We comply with all local laws. It is the responsibility of the user to ensure that they are in compliance with their local laws.
+                        <ol>
+                            <li>Any user that breaks any law in their jurisdiction of residence or nationality by using any service provided by BTC Monk shall be liable for any damages incurred by BTC Monk as a result.</li>
+                            <li>Any user that breaks any law in their jurisdiction of residence or nationality by using any service provided by BTC Monk agrees to forfeit any assets within their BTC Monk account, at the discretion of BTC Monk or its employees.</li>
+                            <li>If buying and selling Cryptocurrency is not legal in your country, do not use BTC Monk. Failure to comply with local laws may result in the loss of your account and any assets contained within.</li>
+                            <li>In the event that BTC Monk or its directors face legal action as a result of your actions, you agree cover any damages, including legal fees, that BTC Monk incurs as a result.</li>
+                            <li>To the full extent permitted by applicable law, You hereby agree to indemnify BTC Monk, and its partners against any action, liability, cost, claim, loss, damage, proceeding or expense suffered or incurred if direct or not directly arising from your use of BTC Monk or its services, or from your violation of these Terms of Use.</li>
+                        </ol>
+                    </li>
+                    <li>You agree not to copy any information from the BTC Monk website, without our permission, with the exception of the publicly available figures as found in our order book.</li>
+                    <li>In no event shall BTC Monk or its associates, affiliates, or subsidiaries be liable for any damages, including damage for loss of data or profit, arising out of the use of the services of materials provided by BTC Monk, even if BTC Monk is negligent in any way.</li>
+                    <li>You attest that you are not a criminal, are not associated with any criminal activity, and that all funds that are sent to BTC Monk are free from any criminal association, are not the proceeds of crime, and are not derived from any criminal activity.</li>
+                    <li>BTC Monk reserves the right to modify, add or remove any article from these terms, at any time, and at our sole discretion.</li>
+                </ol>
+
+                <h2>Refund Policy</h2>
+                <p>Due to the nature of the Bitcoin and Cryptocurrency markets, all trades conducted on BTC Monk are final. Please review our official refund policy below.</p>
+                <ol>
+                    <li>All fundings made to BTC Monk members' accounts can be refunded, at the request of the user, to the original funding method, provided that the funds remain in the original fiat balance of that user. If only a portion of the funds remain in the user account, a partial refund may be completed at the request of the user.</li>
+                    <li>Funds which have been traded for Bitcoin or any other Cryptocurrency through the BTC Monk system are not eligible for a refund.</li>
+                    <li>Funds which have been withdrawn from the BTC Monk website, using any available method, are not eligible for a refund.</li>
+                    <li>Funds which have been withdrawn from the BTC Monk website, using any available method, are not eligible for a refund.</li>
+                    <li>All refund requests will be processed using the same payment method as the original funding.</li>
+                    <li>If you have additional questions regarding our Refund Policy, please contact the administration of BTC Monk at shrikant@alulimtech.com.</li>
+                </ol>
+
+                <form name="registerCtrl.registerTosForm" ng-submit="registerCtrl.registerSubmit()" layout="column" layout-align="start center">
+
+                    <md-input-container style="text-align: center">
+                        <md-checkbox ng-model="registerCtrl.register.tos" name="tos" ng-required="true" ng-true-value="true" ng-false-value="false" aria-label="Agree to Terms of Service">
+                            I agree to BTCMonk's Terms of Service
+                        </md-checkbox>
+                        <div class="validation-messages" ng-show="registerCtrl.register.tos !== true && registerCtrl.registerTosForm.tos.$touched">
+                        <!-- <div class="validation-messages" ng-show="registerCtrl.registerTosForm.tos.$touched || registerCtrl.submitAttempt" ng-messages="registerCtrl.registerTosForm.tos.$error"> -->
+                            <div>You must agree to the Terms of Service.</div>
+                        </div>
+
+                    </md-input-container>
+
+                    <div layout="row" layout-align="center">
+                        <div id="registration-google-recaptcha"></div>
+                    </div>
+                    <br>
+
+                    <div flex></div>
+
+                    <md-button type="submit" class="md-primary md-raised button-width-full">
+                        Create Account
+                    </md-button>
+
+                </form>
+
+
+                <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

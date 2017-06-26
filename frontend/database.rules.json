@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "users": {
+      "$user": {
+        ".read": "auth.uid === $user",
+        ".write": "auth.uid === $user"
+      }
+    },
+    "keystore": {
+      "$merchant_name": {
+        ".read": "auth.uid === $merchant_name",
+        ".write": "auth.uid === $merchant_name"
+      }
+    },
+      "profileData": {
+      "$user": {
+        ".read": "auth.uid === $user",
+        ".write": false
+      }
+    },
+      "getCurrentSell": {      
+        ".read": true,
+        ".write": false      
+    },
+      "getMarketOverview": {      
+        ".read": true,
+        ".write": false      
+    },
+      "getCurrentBuy": {      
+        ".read": true,
+        ".write": false      
+    },
+      "getMostRecentTrades": {      
+        ".read": true,
+        ".write": false      
+    }, 
+    "1HrGraphData": {      
+        ".read": true,
+        ".write": true
+    },
+	"1DayGraphData" : {
+		".read": true,
+        ".write": true
+	}
+  }
+}

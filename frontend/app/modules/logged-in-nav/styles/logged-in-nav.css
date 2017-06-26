@@ -1,0 +1,157 @@
+/*stats price card topbar*/
+
+
+.stats-card {
+  font-weight: 300px;
+  padding: 5px 0 5px 0px;
+  height: auto;
+  width: 145px;
+  /* width: 120px; */
+  min-width: 100px;
+	margin-top: 15px;
+  margin-left: 10px;
+	background-color: transparent;
+	color: rgba(255,255,255,0.9);
+	text-align: left;
+	box-shadow: none;
+  margin-bottom: 0;
+  min-width: 0;
+  display: none;
+}
+.stats-card span {
+	margin-top: 0px;
+	margin-bottom: 0px;
+  /*text-shadow: 0 2px 4px rgba(0,0,0,0.2);*/
+}
+.balance-label {
+  font-size: 12px;
+}
+.balance-value {
+  font-weight: 500;
+  font-size: 16px;
+}
+.rupee-value {color: rgb(255, 87, 34) !important;}
+.bitcoin-value {color: lightgreen;}
+#main-nav-bar {
+  background-color: #ffffff !important;
+  height: 64px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.46);
+}
+#material-style-header {
+  width: 100%;
+  position: fixed;
+ /*  height: 128px; */
+  z-index: -1;
+  top: 0;
+  /* background-color: #37474F; */
+}
+#nav-buttons-md-lg {display: none;}
+.sidenav-modi-temp {left: 0 !important; /* right:0; */ top: 0px !important; position: absolute !important; width: 16%; z-index: 0; min-width: 300px; /* height: calc(100vw - 17em); */}
+md-list md-list-item.md-2-line .md-list-item-text h3 {color: #fff;}
+
+.fixed-scroll {position: fixed !important;}
+.logo-sidenav {padding: 0px !important; width: 246px !important; border-radius: 0 !important; margin: 0 !important; height: auto !important;}
+
+.fixed-nav-height md-list-item.md-2-line, .fixed-nav-height md-list-item.md-2-line>.md-no-style{height: 7vh; min-height: 56px;}
+
+md-backdrop.md-opaque {position: fixed;}
+
+
+@media (max-width: 1700px) and (min-width: 1281px) {
+.sidenav-modi-temp {min-width: initial;}
+}
+
+@media (max-width: 1455px) and (min-width: 1280px) {
+	
+.fixed-nav-height md-list-item.md-2-line .md-list-item-text.md-offset, 
+.fixed-nav-height md-list-item.md-2-line>.md-no-style .md-list-item-text.md-offset, 
+.fixed-nav-height md-list-item.md-3-line .md-list-item-text.md-offset, 
+.fixed-nav-height md-list-item.md-3-line>.md-no-style .md-list-item-text.md-offset {margin-left: 20%;}
+
+
+}
+
+@media (max-width: 1279px) {
+.sidenav-modi-temp {left: 0% !important; top: 0px !important; position: fixed !important; width: 30% !important; z-index: 59; }
+#main-nav-bar {z-index:60;}
+#nav-buttons-md-lg {display: flex;}
+}
+@media (max-width: 950px) {
+.sidenav-modi-temp {width: 70% !important; }
+#main-nav-bar {z-index:60;}
+}
+
+@media (max-width: 1200px) {
+  /* hides 'EXCHANGE' from 'TAURUS EXCHANGE' just before it will be bumped down to next line */
+  #nav-display-exchange {
+    display: none;
+  }
+#main-nav-bar {z-index:60;}  
+}
+@media (max-width: 959px) {
+  /* hides 'TAURUS' from 'TAURUS EXCHANGE' just before it will be bumped down to next line */
+  #nav-display-taurus {
+    display: none;
+  }
+#main-nav-bar {z-index:60;}
+}
+@media (max-width: 959px) {
+    /* switching point from indiv buttons to FAB-toolbar */
+/*   #nav-buttons-md-lg {
+    display: none;
+  } */
+}
+@media (min-width: 960px) {
+  .md-buttons-sm {
+      display: none;
+  }
+}
+@media (max-width: 600px) {
+  #topbar-stats-locked {
+    display: none;
+  }
+#main-nav-bar {z-index:60;}  
+}
+.md-buttons-sm {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 68px !important;
+}
+#nav-sm-fab-button {
+  background-color: #607D8B;
+  margin-top: 6px !important;
+  margin-right: -3px !important;
+  height: 60px !important;
+  /*padding-bottom: 18px;*/
+  min-width: 0;
+  padding-right: 50px !important;
+  width: 30px !important;
+}
+#nav-sm-fab-button>div {
+  width: 56px;
+}
+
+.nav-fab-sub-button {
+  padding-right: 12px !important;
+}
+#nav-buttons-md-lg {
+  margin-top: 12px;
+  margin-right: -42px !important;
+}
+.nav-div-flex {
+  height: 64px;
+}
+.md-buttons-sm {
+  width: 100%;
+  height: 64px;
+}
+.user-nav-button {
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: 12px !important;
+    margin-right: -9px !important;
+    padding-right: 0px !important;
+    margin-left: 30px !important;
+}
+.new-user-cust {margin-top: -12px !important; height: 70px !important;}

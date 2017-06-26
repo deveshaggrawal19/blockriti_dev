@@ -1,0 +1,45 @@
+/************ signin Page start here **********/
+.form-signin {
+  border: 1px solid #ccc;
+  margin: 5% auto;
+  max-width: 330px;
+  padding: 20px;
+}
+
+md-input-container {
+  display: inline-block;
+  margin: 5px 0;
+  padding: 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.forgotPass {
+  margin: 11px 0;
+}
+
+.signIn button {
+  margin: 5px 0px 0;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.signIn .md-raised {
+  box-shadow: none;
+  border: 1px solid #FF5722;
+  color: #FF5722;
+}
+
+.signIn .butHolder {
+  border-top: 1px dotted #ccc;
+  float: left;
+  margin: 30px 0 0;
+  padding: 20px 0;
+}
+
+.padding-b-20 {
+  padding-bottom: 20px;
+}
+
+/*# sourceMappingURL=login.css.map */

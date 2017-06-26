@@ -1,0 +1,144 @@
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="logged-in-nav-sidebar" md-is-open="sidenavOpen">
+
+    <div id="home-sidenav-menu-title">
+        <span><md-icon md-svg-icon="images/btcmonklogo.svg"></md-icon></span>
+    </div>
+
+    <md-content layout-padding>
+        <md-list>
+            <md-list-item class="md-2-line home-menu-sidenav-list-items" ng-repeat="item in vm.menuItems" ng-click="sidenavOpen = false; vm.showHomeDialog($event, item.url);">
+                <i class="{{ item.icon }}"></i>
+                <div class="md-list-item-text md-offset">
+                    <h3>{{item.name}}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
+<md-toolbar id="main-nav-bar">
+
+    <div class="md-toolbar-tools" style="padding: 0 2%">
+
+        <div class="nav-title">
+            <span>
+              <md-icon class="taurus-logo-nav" id="demo-taurus-logo" md-svg-icon="images/tauruslogo1.svg" ng-click="vm.goHome()">
+                  <md-tooltip md-direction="right">Home</md-tooltip>
+              </md-icon>
+       <!--        <span id="nav-display-taurus">BTC</span>
+              <span id="nav-display-exchange">Monk</span> -->
+            </span>
+        </div>
+
+        <div flex></div>
+
+        <md-card id="topbar-stats-balance" class='stats-card new-card-style' style="width:170px !important;" layout="column">
+
+            <span class="balance-value">
+                &#579;1 = <i class="fa fa-inr" aria-hidden="true"></i>
+                70000.00
+            </span><br/>
+            <span class="balance-label">Demo Price</span>
+            	
+        </md-card>
+
+        <md-card id="topbar-stats-balance" class='stats-card new-card-style' layout="column">
+            
+            <span class="balance-value">
+                {{ vm.balance.btc_available | nineDigitsBitcoin }}
+            </span>
+          |
+            <span class="balance-value rupee-value">
+                <i class="fa fa-inr" aria-hidden="true"></i>
+                {{ vm.balance.cad_available.toFixed(2) }}
+            </span><br/>
+			<span class="balance-label">Available</span>
+        </md-card>
+
+       <!--  <div hide-xs flex></div> -->
+
+        <md-card id="topbar-stats-locked" class='stats-card new-card-style' layout="column">
+            
+            <span class="balance-value bitcoin-value">
+                {{ vm.balance.btc_locked | currency : "&#579;" : 8}}
+            </span> |
+            <span class="balance-value">
+                <i class="fa fa-inr" aria-hidden="true"></i>
+                {{ vm.balance.cad_locked.toFixed(2) }}
+            </span><br/>
+			<span class="balance-label">Locked</span>
+        </md-card>
+
+        <div hide-gt-sm flex></div>
+        <div flex></div>
+
+        <div hide-gt-sm style="width: 56px;"></div>
+
+        <div id='nav-buttons-md-lg' layout="row">
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Trade" ng-click="vm.goRegister()">
+              <md-tooltip md-direction="down">Trade</md-tooltip>
+              <i class="mdi mdi-chart-line nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Wallet" ng-click="vm.goRegister()">
+                <md-tooltip md-direction="down">Wallet</md-tooltip>
+                <i class="mdi mdi-wallet nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Settings" ng-click="vm.goRegister()">
+                <md-tooltip md-direction="down">Settings</md-tooltip>
+                <i class="mdi mdi-more nav-button-icons"></i>
+            </md-button>
+
+            <md-button class="md-icon-button user-nav-button" aria-label="Logout" ng-click="vm.goRegister()">
+                <md-tooltip md-direction="down">Logout</md-tooltip>
+                <i class="mdi mdi-account-off nav-button-icons"></i>
+            </md-button>
+
+            <md-button id="logged-in-nav-sidebar-menu-button" class="md-icon-button nav-button" ng-click="vm.openSideNavBar();">
+                <md-tooltip md-direction="down">Menu</md-tooltip>
+                <i class="mdi mdi-menu nav-button-icons"></i>
+            </md-button>
+
+        </div>
+
+        <md-fab-toolbar class="md-buttons-sm" md-direction="left">
+
+            <md-fab-trigger class="align-with-text">
+                <md-button id="nav-sm-fab-button" aria-label="menu" class="user-nav-button" md-no-ink>
+                    <md-icon class="mdi mdi-menu nav-button-icons"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+            <md-toolbar>
+
+                <md-fab-actions class="md-toolbar-tools">
+
+                    <md-button class="md-icon-button user-nav-button" aria-label="Logout" ng-click="vm.goRegister();">
+                      <md-icon class="mdi mdi-account-off nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button nav-fab-sub-button" aria-label="Settings" ng-click="vm.goRegister();">
+                      <md-icon class="mdi mdi-more nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button nav-fab-sub-button" aria-label="Wallet" ng-click="vm.goRegister();">
+                        <md-icon class="mdi mdi-wallet nav-button-icons"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button user-nav-button" aria-label="Trade" ng-click="vm.goRegister();">
+                        <md-icon class="mdi mdi-chart-line nav-button-icons"></md-icon>
+                    </md-button>
+
+
+                </md-fab-actions>
+
+            </md-toolbar>
+        </md-fab-toolbar>
+
+    </div>
+
+</md-toolbar>
+
+<div id="material-style-header">
+</div>

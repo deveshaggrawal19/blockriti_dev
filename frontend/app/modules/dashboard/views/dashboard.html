@@ -1,0 +1,186 @@
+<!-- <div class="material_block">
+  <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+</div> -->
+<logged-in-nav></logged-in-nav>
+
+
+
+<div class="page-content-margin nav-modi-temp">
+
+	
+	
+<div ng-cloak>	
+  <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="12" md-cols-gt-md="12" md-row-height-gt-sm="90px" md-row-height="90px" md-gutter="22px" md-gutter-gt-sm="16px" >
+	
+	    <md-grid-tile   md-rowspan="1" md-colspan="6" md-colspan-md="6" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 12px 0 0 10px;">
+					<span>INR</span><span class="balance-value rupee-value"><i style="margin-left: 10px;" class="fa fa-inr" aria-hidden="true"></i>  {{ loggedInNav.balance.cad_available }}</span><br/>
+					<span>BTC</span><span style="margin-left: 10px;" class="balance-value">{{ loggedInNav.balance.btc_available | nineDigitsBitcoin }}</span> <br/>
+					<span class="balance-label">Available</span>
+                </div>
+				</md-content>
+            </md-card>
+        </md-grid-tile>		
+		
+		
+	    <md-grid-tile   md-rowspan="1" md-colspan="6" md-colspan-md="6" md-colspan-sm="3" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 12px 0 0 10px;">
+					<span>INR</span><span class="balance-value "><i style="margin-left: 10px;" class="fa fa-inr" aria-hidden="true"></i> {{ loggedInNav.balance.cad_locked }}</span><br/>
+					<span>BTC</span><span style="margin-left: 10px;" class="balance-value bitcoin-value">{{ loggedInNav.balance.btc_locked | nineDigitsBitcoin }}</span> <br/>					
+					<span class="balance-label">Locked</span>
+                </div>
+				</md-content>
+            </md-card>
+        </md-grid-tile>
+		
+  </md-grid-list>	
+</div>
+
+<div style="margin-top: 22px;" ng-cloak>	
+  <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="12" md-cols-gt-md="12"  md-row-height-gt-sm="100px" md-row-height="150px" md-gutter="22px" md-gutter-gt-sm="16px" >
+	
+	    <md-grid-tile   md-rowspan-sm="2" md-rowspan="4"  md-colspan="12" md-colspan-md="12" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 0px 0 0px 10px; ">
+				<h2>Verification Info</h2>
+				<span><b>{{ userinfo.verified }}</b></span>
+				
+                            <form name="" id="" layout-wrap flex="100" class="md-inline-form">
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>First Name</label>
+										<div style="margin-top: 23px;"ng-bind="vm.verificationOne.firstName"></div>
+
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Last Name</label>
+										<div style="margin-top: 23px;"ng-bind="vm.verificationOne.lastName""></div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Date of Birth</label>
+										<div style="margin-top: 23px;"ng-bind="vm.verificationOne.dob""></div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Address</label>
+									<div style="margin-top: 23px;"ng-bind="vm.verificationOne.address""></div>
+                                </md-input-container>
+
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Occupation</label>
+										<div style="margin-top: 23px;"ng-bind="vm.verificationOne.occupation""></div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Phone Number</label>
+										<div style="margin-top: 23px;"ng-bind="vm.verificationOne.phone""></div>
+                                    </md-input-container>
+
+                                </div>
+                            </form>
+					</div>
+                </md-content>
+            </md-card>
+        </md-grid-tile>		
+		
+		<md-grid-tile   md-rowspan="2" md-colspan="12" md-colspan-md="12" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 0px 0 0px 10px; ">
+				<h2>Merchant Wallet</h2>
+				<div><label>BTC :</label><span><md-icon style="color: #242424; margin-top: -4px; margin-left: 15px; margin-right: -12px; font-size: 18px;">&#579;</md-icon> 22250.0000</span></div>
+				<div><label>VOLUME :</label><span><md-icon style="color: #242424; margin-top: -4px; margin-left: 15px; margin-right: -12px; font-size: 18px;">&#579;</md-icon>6788900.23</span></div>
+				</div>
+                </md-content>
+            </md-card>
+        </md-grid-tile>		
+
+		<md-grid-tile   md-rowspan="4" md-colspan="6" md-colspan-md="6" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 0px 0 0px 10px; ">
+					<h2>Recent Transaction</h2>				
+				</div>
+                </md-content>
+            </md-card>
+        </md-grid-tile>			
+		<md-grid-tile   md-rowspan="4" md-colspan="6" md-colspan-md="6" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 0px 0 0px 10px; ">
+					<h2>Referral Program</h2>
+				</div>
+				<md-expansion-panel>
+
+            <md-expansion-panel-collapsed>
+                <div class="md-title">Referral Program</div>
+                <div class="md-summary">Referral link</div>
+            </md-expansion-panel-collapsed>
+
+            <md-expansion-panel-expanded>
+
+                <md-expansion-panel-header ng-click="$panel.collapse()">
+                    <div class="md-title">Referral Program</div>
+                    <div class="md-summary">Referral link</div>
+                </md-expansion-panel-header>
+
+                <md-expansion-panel-content>
+
+                    <div class="settings-panel-container" layout="column">
+
+                       
+                        <p>Share the following link to earn 10% of the Trading fees generated by your referrals</p>
+<a href="https://Blockriti.firebaseapp.com/#/home?ref=r6wgwinujkf7beaqfqjnxaxw" class="ng-binding">https://Blockriti.firebaseapp.com/#/home?ref=r6wgwinujkf7beaqfqjnxaxw</a>                      <!--  <a href="{{ DashboardCtrl.referralLink.referralLink }}">{{ DashboardCtrl.referralLink.referralLink }}</a>   -->
+                        <ul>
+                            <li>Only new sign-ups qualify</li>
+                            <li>You cannot refer yourself</li>
+                            <li>Blockriti reserves the right to change the fee at any time</li>
+                        </ul>
+
+                    </div>
+                </md-expansion-panel-content>
+
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+                </md-expansion-panel-footer>
+
+            </md-expansion-panel-expanded>
+
+        </md-expansion-panel>
+
+			</md-content>
+            </md-card>
+        </md-grid-tile>	
+		
+		<md-grid-tile   md-rowspan="4" md-colspan="12" md-colspan-md="12" md-colspan-sm="2" md-colspan-xs="1" md-whiteframe="2">
+            <md-card id="topbar-stats-balance" layout-fill  style="background: #f1f1f1;">
+                <md-content id="instant-limit-content">
+				<div style="padding: 0px 0 0px 10px; ">
+					<h2>Trade Over All</h2>				
+				</div>
+                </md-content>
+            </md-card>
+        </md-grid-tile>			
+		
+  </md-grid-list>	
+</div>
+
+</div>
+
+
+
+

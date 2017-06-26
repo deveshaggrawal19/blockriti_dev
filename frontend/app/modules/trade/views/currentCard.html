@@ -1,0 +1,32 @@
+<md-toolbar class="md-table-toolbar md-default" ng-if="cardTitle">
+    <div class="md-toolbar-tools">
+        <span>{{ cardTitle }} ORDERS</span>
+    </div>
+</md-toolbar>
+<md-list class="table-fixed-width">
+
+    <md-list layout="row">
+        <md-subheader flex="30" style="background: #f9f9f9;">{{cardTitle}}Price</md-subheader>
+        <md-subheader flex="40" style="background: #efefef;">Amount</md-subheader>
+        <md-subheader flex="30" style="background: #e8e8e8;">Value</md-subheader>
+    </md-list>
+
+    <!-- <md-divider></md-divider> -->
+
+    <md-virtual-repeat-container id="vertical-container">
+
+        <md-list-item md-virtual-repeat="order in orders" class="repeated-item" flex="" md-item-size="28">
+
+            <md-list ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+            <!-- <md-list class="repeated-item" flex layout="row" ng-class="{$index % 2 === 0 ? list-rotating-background ? '' }"> -->
+                <md-list-item flex="30"><i class="fa fa-inr" aria-hidden="true"></i> {{ order.rate }}</md-list-item>
+                <md-list-item flex="40">{{ order.amount | nineDigitsBitcoin }}</md-list-item>
+                <md-list-item flex="30"><i class="fa fa-inr" aria-hidden="true"></i>{{ order.value }}</md-list-item>
+            </md-list>
+
+            <!-- <md-divider></md-divider> -->
+
+        </md-list-item>
+
+    </md-virtual-repeat-container>
+</md-list>

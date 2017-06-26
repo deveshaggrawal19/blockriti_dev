@@ -1,0 +1,42 @@
+/* /SETTINGS page*/
+.settings-page-container {
+    margin: 1% 2% 1% 2%;
+    /*margin-top: calc(1% + 64px);*/
+    z-index: 99;
+}
+.set-modi-temp {width: 80%; float:right;}
+
+@media (max-width: 1279px) {
+.set-modi-temp {width: 96%;}
+}
+.settings-panel-container {
+    margin: 0 20% 0 20%;
+}
+@media (max-width: 660px) {
+    .settings-panel-container {
+        margin: 0 0 0 0;
+    }
+}
+.user-info-subheader {
+    text-align: left;
+    color: rgba(0, 0 , 0, 0.54);
+}
+@media (max-width: 418px) {
+    #verification-level-text {
+        margin-left: 18px;
+    }
+}
+.expansion-panel-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 48px;
+}
+.google-auth-emergency-code-container {
+    max-width: 610px;
+}
+.google-auth-emergency-code-container code {
+    font-size: 16px;
+}
+.overflow-scroll-class {
+    overflow: scroll;
+}

@@ -1,0 +1,492 @@
+/* sets background when not enough list-items to fill container */
+*.fa-inr{
+  margin-top: 2.3px;
+}
+
+#topbar-stats-balance,#topbar-stats-locked{
+  display: initial !important;
+}
+
+#graph-grid-title{
+  left:initial !important;
+  right: 0px !important;
+}
+.cust-btn {height: 21%; font-size:25px; top: 38px;}
+.new-card-style {    box-shadow: 0px 0px 3px rgba(0,0,0,0.3) !important;  line-height: 16px; padding: 0.5%!important; background: rgb(255, 255, 255) !important; color: #003144 !important; width:270px !important;}
+
+#order-grid-title{
+ /*  left: 0px !important;
+  right:initial !important; */
+}
+
+md-grid-tile md-virtual-repeat-container {
+  background-color: #f1f1f1;
+}
+
+md-grid-tile md-list-item, md-grid-tile md-list-item ._md-list-item-inner {
+  min-height: 24px;
+  max-height: 28px;
+}
+
+md-grid-tile md-list {
+  /*padding: 5px !important;*/
+}
+/* card title/header height*/
+.md-toolbar-tools {
+  height: 48px;
+}
+md-toolbar.md-table-toolbar.md-default._md {
+  min-height: 48px;
+}
+/* for md-steppers (instant/limit order) */
+md-card {
+  overflow: hidden;
+}
+.md-virtual-repeat-container {
+  /* height needs to be explicitly set on md-virtual-repeat-container */
+  height: 100%;
+}
+md-grid-tile md-list.table-fixed-width {
+  /* Would expect it to be:
+  * (card height) - (md-toolbar + subheader + list padding) = 100% - (48px + 24px + 8px)
+  * However, it is slightly cut off. At (100% - 75px) it is smooth.
+  * I'm not sure why.
+  * Required to fix scrolling with md-list
+  */
+  height: calc(100% - 75px);
+}
+current-card {
+  /*forces current-card directive to take full height of md-card*/
+  height: 100%;
+}
+/* md-list subheader row height (padding) */
+.md-subheader ._md-subheader-inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+md-list-item.repeated-item.md-no-proxy.ng-scope._md.flex {
+  padding: 0 !important;
+}
+.page-content-margin md-list.layout-row.flex {
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+}
+md-icon.mdi.mdi-close-circle.cancel-open-order.material-icons {
+  position: relative;
+  left: -10px;
+}
+
+
+
+/* container div for page content */
+.page-content-margin {
+  /* 100% - 16px (for page-content-margin's top margin) - 64px (title/toolbar height) - 2px (for spacing at bottom) */
+  height: 100%;
+ /*  height: calc(100% - 82px); */
+  /*Side margin on all cards. Top margin to push down from toolbar*/
+  margin: 1% 2% 0 2%;
+}
+.page-content-margin md-grid-list {
+  height: 100%;
+}
+md-grid-list md-content._md, md-tabs {
+    /*Forces md-tabs to take up full card height*/
+  height: 100%;
+}
+md-card md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
+    /* forces tab title/header to be even width */
+  width: 50%;
+}
+/*list element width*/
+md-grid-tile md-list-item.transaction-time._md-no-proxy.ng-binding._md.flex {
+  padding-left: 8px;
+}
+md-grid-tile md-list-item {
+  font-size: 0.9em;
+}
+
+/*forces tabs to take full card height*/
+md-tabs.stretch-height md-tab-content>div{
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+}
+
+/* MOST RECENT */
+#most-recent md-list-item._md-no-proxy, md-grid-tile md-list-item ._md-no-style {
+  /*padding-right: 8px;*/
+  /*padding-left: 8px;*/
+}
+md-grid-tile md-list-item.repeated-item._md-no-proxy.ng-scope._md.flex {
+  padding: 0 !important;
+}
+
+/* md-tabs inner container height, current buy/sell & open/closed orders */
+md-tab-content .md-virtual-repeat-container {
+  height: calc(100% + 48px);
+  /*height: calc(100% + 64px);*/
+}
+md-tab-content > div {
+  height: calc(100%);
+}
+md-tab-content {
+  overflow: hidden;
+}
+
+div.md-steppers-overlay {
+/* this overlay was being added in front of instant/limit steppers upon button press (with ng-model) and prevented further
+* advancement in steps */
+  display: none;
+}
+.instant-limit-order-amount {
+  margin-top: 20px !important;
+}
+
+/*neeraj*/
+.limit-only-show .buy-only{display: none;}
+.instant-only-show .sell-only{display: none;}
+
+
+
+/*line color in cards (row separation)*/
+md-divider {
+  border-top-color: white;
+}
+/*CARD COLORS*/
+md-card.dark-cards, md-card .md-toolbar-tools, md-card md-tab-item, md-grid-tile md-list, .md-subheader {
+  background-color: #e2e2e2;
+  /*background-color: rgba(55,71,79,0.9);*/
+  color: #242424;
+}
+
+
+/*
+* GRAPH - FROM TECHAN.JS CANDLE EXAMPLE
+*/
+#graph-card {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+path.candle {
+  stroke: white;
+}
+path.candle.body {
+  stroke-width: 0;
+}
+path.candle.up {
+  fill: #00AA00;
+  stroke: #00AA00;
+}
+path.candle.down {
+  fill: #FF0000;
+  stroke: #FF0000;
+}
+rect.pane {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+path.domain {
+  /* Graph axis line color*/
+  stroke: white;
+}
+line {
+  /* Graph axis 'tick' color*/
+  stroke: white !important;
+}
+
+.graph-menu {
+  /*position: absolute;*/
+  top: 0;
+  right: 0;
+  margin-top: 10px;
+  height: 20px;
+}
+.graph-menu span {
+  font-size: 16px;
+  margin-right: -17px;
+}
+.graph-menu md-menu {
+    padding: 0;
+
+}
+.graph-menu button {
+  padding: 0;
+}
+.graph-menu i {
+  font-size: 24px;
+}
+.graph-top-bar-container {
+  width: 100%;
+  height: 15px;
+  position: absolute;
+}
+.graph-stats-title {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+}
+#graph-bottom-section-info {
+  background-color: #FFF;
+  /*padding-top: 15px;*/
+}
+.graph-bottom-section-container {
+  margin-top: 25px;
+}
+.nav-modi-temp {width: 80%; float:right;}
+
+
+@media (max-width: 1279px) {
+.nav-modi-temp {width: 96%;}
+}
+
+@media (max-width: 600px) {
+  .graph-stats-title {
+      /*display: none;*/
+  }
+}
+.graph-stats-value {
+  font-size: 18px;
+  /*    line-height: 0; */
+  /*font-weight: 300;*/
+  color: rgba(55, 71, 79, 1);
+}
+
+
+/* instant/limit order */
+.instant-limit-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#instant-limit-tabs-container {
+  height: 48px;
+  width: 100%;
+}
+#instant-limit-amount {
+  height: calc(100% - 48px);
+}
+#instant-limit-amount md-input-container {
+  font-size: 15px;
+  margin-top: 5px !important;
+  margin-bottom: -20px !important;
+}
+.height-100-percent {
+  height: 100%;
+}
+.instant-limit-text-right {
+  text-align: right;
+}
+.instant-limit-text-left {
+  text-align: left;
+}
+.available-locked-balance span {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+
+md-grid-tile md-list {
+  /* Why 3px top instead of 4? Text looks more centered (vertically) at 3px. I'm not sure why */
+  padding-top: 3px !important;
+  padding-bottom: 4px !important;
+}
+.list-rotating-background {
+  background-color: #d4d4d4 !important;
+}
+
+.cancel-open-order-container {
+  min-height: 0 !important;
+  min-width: 0 !important;
+  max-height: 20px !important;
+  max-width: 20px !important;
+}
+.cancel-open-order-container div._md-subheader-inner {
+  padding-left: 8px;
+}
+
+.orders-type-title {
+  z-index: 3 !important;
+}
+
+
+.cancel-open-order {
+  width: 20px !important;
+  height: 24px !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  max-height: 20px !important;
+  max-width: 20px !important;
+  font-size: 16px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 4px;
+  line-height: 24px;
+  vertical-align: middle;
+  margin: 0;
+  color: white;
+  margin-top: 7px !important;
+}
+@-moz-document url-prefix() {
+  md-virtual-repeat-container .cancel-open-order {
+    margin-top: -18px !important;
+  }
+}
+#cancel-all-orders {
+  margin-top: -5px !important;
+  padding-top: 0 !important;
+}
+#cancel-all-orders-container {
+  width: 32px;
+  max-width: 32px;
+  min-width: 32px;
+}
+#cancel-single-order {
+  min-height: 0 !important;
+  min-width: 0 !important;
+  max-height: 20px !important;
+  max-width: 20px !important;
+  font-size: 12px
+}
+
+.cancel-open-order:focus {
+    outline: none;
+}
+.md-subheader ._md-subheader-content .cancel-open-order {
+    color: red;
+}
+
+.order-list-transaction {
+  max-width: 100%;
+}
+.order-transaction-information {
+  padding-right: 0 !important;
+}
+
+.page-content-margin md-grid-list md-list {
+  /*margin-left: -3px;*/
+}
+
+/****Loader**/
+
+.material_block {
+
+background: rgba(55, 71, 79, 0.94) no-repeat fixed center center / cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: rgba(55, 71, 79, 0.94) no-repeat fixed center center / cover;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+.spinner {
+  -webkit-animation: rotation 1.4s linear infinite;
+  animation: rotation 1.4s linear infinite;
+}
+
+@-webkit-keyframes rotation
+{
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotation
+{
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+
+.circle {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: turn 1.4s ease-in-out infinite;
+  animation: turn 1.4s ease-in-out infinite;
+}
+
+@-webkit-keyframes turn
+{
+  0% {
+    stroke-dashoffset: 187;
+  }
+
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes turn
+{
+  0% {
+    stroke-dashoffset: 187;
+  }
+
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+
+svg.spinner {
+	position: relative;
+	left: 50%;
+	top: 50%;
+	stroke: rgb(91, 139, 162);
+}
+
+#instant-limit-tabs-container md-tab-item {
+  text-overflow: clip;
+}
+
+#instant-limit-content {
+  overflow: hidden;
+}
+
+
+md-tabs.md-default-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs.md-default-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-default-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-default-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon, md-tabs.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {color: #242424;}
+md-tabs.md-default-theme.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]), md-tabs.md-primary > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {color: rgb(147, 158, 162);}
+graph-container svg{fill: white !important;}
+html.md-default-theme, html, body.md-default-theme, body {background: #CFD8DC;}
+

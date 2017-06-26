@@ -1,0 +1,462 @@
+<md-dialog ng-controller="DepositWithdrawCtrl as dWCtrl" aria-label="Withdraw" ng-cloak class="deposit-withdraw-dialog">
+
+    <md-dialog-content flex class="deposit-withdraw-dialog-content" layout="column">
+
+        <md-tabs flex class="deposit-withdraw-md-tabs">
+
+            <md-tab label="Bitcoin">
+
+                <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                    <md-toolbar class="deposit-withdraw-toolbar">
+                        <span class="deposit-withdraw-title-span">Withdraw</span>
+                        <h1 class="md-display-2 deposit-withdraw-h1">Bitcoin</h1>
+                    </md-toolbar>
+
+                    <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+
+                        <div class="dialog-margin">
+
+                            <div flex></div>
+
+                            <p>Bitcoin withdrawals are processed automatically.</p>
+                            <p>To withdraw from BTC Monk account with Bitcoin, enter your Bitcoin
+                                address below.</p>
+
+                            <div flex></div>
+
+                            <div class="dialog-center-input">
+
+                                <form name="bitcoinWithdrawForm"
+                                      ng-submit="dWCtrl.withdrawBitcoinSubmit(dWCtrl.withdrawBitcoin)" layout="column">
+
+                                    <md-input-container class="mdi-icon-float">
+                                        <label>Amount</label>
+                                        <md-icon>&#579;</md-icon>
+                                        <input ng-model="dWCtrl.withdrawBitcoin.amount" name="amount" type="number"
+                                               min="0" required md-no-asterisk md-autofocus>
+                                        <div ng-messages="bitcoinWithdrawForm.amount.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Your Bitcoin Address</label>
+                                        <input ng-model="dWCtrl.withdrawBitcoin.address" name="address" required
+                                               md-no-asterisk>
+                                        <div ng-messages="bitcoinWithdrawForm.address.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Security Pin</label>
+                                        <input ng-model="dWCtrl.withdrawBitcoin.code" name="code" type="password"
+                                               required md-no-asterisk>
+                                        <div ng-messages="bitcoinWithdrawForm.code.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-button class="md-primary md-raised" type="submit" aria-label="Withdraw Bitcoin">
+                                        Submit
+                                    </md-button>
+
+                                </form>
+
+                            </div>
+
+                            <div flex></div>
+
+                            <ul>
+                                <li>Fee: None</li>
+                                <li>Timeframe: up to 24 hours</li>
+                                <li>Limits: None</li>
+                            </ul>
+
+                            <div flex></div>
+
+                        </div>
+
+                    </md-content>
+
+                </md-tab-content>
+
+            </md-tab>
+
+
+            <md-tab label="Wire Transfer" ng-click="dWCtrl.getUserInfo()">
+                <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                    <md-toolbar class="deposit-withdraw-toolbar">
+                        <span class="deposit-withdraw-title-span">Withdraw</span>
+                        <h1 class="md-display-2 deposit-withdraw-h1">Wire Transfer</h1>
+                    </md-toolbar>
+
+                    <md-content flex class="md-padding deposit-withdraw-tab-scrolling">
+                        <div ng-if="(dWCtrl.verificationLevel == 0 || dWCtrl.verificationLevel == -1)">
+                            <div class="dialog-margin">
+
+                                <p>Please submit documents to verify your account for Level 1 at least in order to
+                                    use Canadian Dollars.</p>
+
+                            </div>
+                        </div>
+
+                        <div ng-if="(dWCtrl.verificationLevel == 2) || (dWCtrl.verificationLevel == 1)">
+
+                        <div class="dialog-margin">
+
+                            <p>Please fill out the form below. If you have a correspondent bank, include its information
+                                in the Comments section. Third-party withdrawals are not allowed.</p>
+
+                            <div class="dialog-center-input" layout="column">
+
+                                <form name="wireTransferWithdrawForm"
+                                      ng-submit="dWCtrl.withdrawWireTransferSubmit(dWCtrl.withdrawWireTransfer)"
+                                      layout="column">
+
+                                    <md-input-container class="mdi-icon-float">
+                                        <label>Amount</label>
+                                        <md-icon><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.amount" name="amount" type="number"
+                                               min="100" max="500000" required md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.amount.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <div layout="row">
+
+                                        <div flex></div>
+
+                                        <div layout="column" layout-align="start start">
+                                            <span>Fee:</span>
+                                            <br>
+                                            <span>Net Amount:</span>
+                                        </div>
+
+                                        <div flex></div>
+
+                                        <div layout="column" layout-align="start end">
+                                            <span><i class="fa fa-inr" aria-hidden="true"></i> {{ dWCtrl.withdrawWireTransferDisplayInfo.fee }}</span>
+                                            <br>
+                                            <span><i class="fa fa-inr" aria-hidden="true"></i> {{ (dWCtrl.withdrawWireTransferDisplayInfo.net || 0) }}</span>
+                                            <br>
+                                        </div>
+
+                                        <div flex></div>
+                                    </div>
+
+                                    <md-input-container>
+                                        <label>Beneficiary Name</label>
+                                        <input disabled="" value="{{dWCtrl.userinfo.user_name}}">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Beneficiary Address</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.address" name="address" required
+                                               md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.address.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Beneficiary Bank</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.bank_name" name="bankName" required
+                                               md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.bankName.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Beneficiary Bank Address</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.bank_address" name="bankAddress"
+                                               required md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.bankAddress.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>IBAN / Account Number</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.account" name="account" required
+                                               md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.account.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Beneficiary Bank SWIFT</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.swift" name="swift" required
+                                               md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.swift.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Comments</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.instructions">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Security Pin</label>
+                                        <input ng-model="dWCtrl.withdrawWireTransfer.code" name="code" type="password"
+                                               required md-no-asterisk>
+                                        <div ng-messages="wireTransferWithdrawForm.code.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-button type="submit" aria-label="Withdraw by Wire Transfer"
+                                               class="md-primary md-raised">
+                                        Submit
+                                    </md-button>
+
+                                </form>
+
+                            </div>
+
+                            <ul>
+                                <li>Fee: 1% on the amount (Min: 50 INR)</li>
+                                <li>Timeframe: 2 - 5 business days</li>
+                                <li>Limits: 100 - 500,000 INR</li>
+                            </ul>
+
+                        </div>
+                            </div>
+
+
+                    </md-content>
+                </md-tab-content>
+            </md-tab>
+
+
+            <md-tab label="Cheque" ng-click="dWCtrl.getUserInfo()">
+
+                <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                    <md-toolbar class="deposit-withdraw-toolbar">
+                        <span class="deposit-withdraw-title-span">Withdraw</span>
+                        <h1 class="md-display-2 deposit-withdraw-h1">Cheque</h1>
+                    </md-toolbar>
+
+                    <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+
+                        <div ng-if="(dWCtrl.verificationLevel != 1) && (dWCtrl.verificationLevel != 2)">
+                            <div class="dialog-margin">
+
+                                <p>Please submit documents to verify your account for Level 1 at least in order to
+                                    use Canadian Dollars.</p>
+
+                            </div>
+                        </div>
+
+                        <div ng-if="(dWCtrl.verificationLevel == 2) || (dWCtrl.verificationLevel == 1)">
+
+                            <div class="dialog-margin">
+
+                                <p>Please fill out the form below. Your cheque will be sent to the address
+                                    indicated.</p>
+
+                                <div class="dialog-center-input">
+
+                                    <form name="chequeWithdrawForm"
+                                          ng-submit="dWCtrl.withdrawChequeSubmit(dWCtrl.withdrawCheque)"
+                                          layout="column">
+
+                                        <md-input-container class="mdi-icon-float">
+                                            <label>Amount</label>
+                                            <md-icon><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                                            <input ng-model="dWCtrl.withdrawCheque.amount" name="amount" type="number"
+                                                   min="100" max="500000" required md-no-asterisk>
+                                            <div ng-messages="chequeWithdrawForm.amount.$error">
+                                                <div ng-message="required">Required field.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <div layout="row">
+
+                                            <div flex></div>
+
+                                            <div flex="none" layout="column" layout-align="start start">
+                                                <span>Fee:</span>
+                                                <br>
+                                                <span>Net Amount:</span>
+                                            </div>
+
+                                            <div flex></div>
+
+                                            <div flex="none" layout="column" layout-align="start end">
+                                                <span><i class="fa fa-inr" aria-hidden="true"></i> {{ dWCtrl.withdrawChequeDisplayInfo.fee }}</span>
+                                                <br>
+                                                <span><i class="fa fa-inr" aria-hidden="true"></i> {{ (dWCtrl.withdrawChequeDisplayInfo.net || 0) }}</span>
+                                                <br>
+                                            </div>
+
+                                            <div flex></div>
+
+                                        </div>
+
+                                        <md-input-container>
+                                            <label>Beneficiary Name</label>
+                                            <input disabled="" value="{{dWCtrl.userinfo.user_name}}">
+                                        </md-input-container>
+
+                                        <md-input-container>
+                                            <label>Address</label>
+                                            <input ng-model="dWCtrl.withdrawCheque.address" name="address" required
+                                                   md-no-asterisk>
+                                            <div ng-messages="chequeWithdrawForm.address.$error">
+                                                <div ng-message="required">Required field.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <md-input-container>
+                                            <label>Security Pin</label>
+                                            <input ng-model="dWCtrl.withdrawCheque.code" name="code"
+                                                   type="password" required md-no-asterisk>
+                                            <div ng-messages="chequeWithdrawForm.code.$error">
+                                                <div ng-message="required">Required field.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <md-button type="submit" class="md-primary md-raised">
+                                            Submit
+                                        </md-button>
+
+                                    </form>
+
+                                </div>
+
+                                <ul>
+                                    <li>Fee: 1% on the amount (Min: 40 INR)</li>
+                                    <li>Timeframe: 3 - 7 business days</li>
+                                    <li>Limits: 100 - 500,000 INR</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab-content>
+            </md-tab>
+
+
+            <md-tab label="Coupon">
+
+                <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                    <md-toolbar class="deposit-withdraw-toolbar">
+                        <span class="deposit-withdraw-title-span">Withdraw</span>
+                        <h1 class="md-display-2 deposit-withdraw-h1">Coupon</h1>
+                    </md-toolbar>
+
+                    <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+                        <div ng-if="(dWCtrl.verificationLevel == 1) || (dWCtrl.verificationLevel == 2)">
+
+                        <div class="dialog-margin">
+
+                            <div flex></div>
+
+                            <p>Please use the form below to create a coupon code. A copy of your coupon code will be
+                                emailed to you. We highly recommend that you use our PGP feature in order to encrypt
+                                communications.</p>
+
+                            <div flex></div>
+
+                            <div class="dialog-center-input">
+
+                                <form name="voucherWithdrawForm"
+                                      ng-submit="dWCtrl.withdrawVoucherSubmit(dWCtrl.withdrawVoucher)" layout="column">
+
+                                    <div flex></div>
+
+                                    <md-input-container class="mdi-icon-float">
+                                        <label>Amount</label>
+                                        <md-icon><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                                        <input ng-model="dWCtrl.withdrawVoucher.amount" name="amount" type="number"
+                                               min="5" max="999.99" required md-no-asterisk>
+                                        <div ng-messages="voucherWithdrawForm.amount.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <div flex></div>
+
+                                    <md-input-container class="md-block">
+                                        <label>Expiry</label>
+                                        <md-select id="select-voucher-expiry" name="expiry"
+                                                   ng-model="dWCtrl.withdrawVoucher.expiry" required md-no-asterisk>
+                                            <md-option ng-repeat="expiry in dWCtrl.expiryDateOptions"
+                                                       value="{{ expiry }}">
+                                                {{ expiry }}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="voucherWithdrawForm.expiry.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <div flex></div>
+
+                                    <md-input-container>
+                                        <label>Security Pin</label>
+                                        <input ng-model="dWCtrl.withdrawVoucher.code" name="code" type="password"
+                                               required md-no-asterisk>
+                                        <div ng-messages="voucherWithdrawForm.code.$error">
+                                            <div ng-message="required">Required field.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <div flex></div>
+
+                                    <md-button type="submit" class="md-primary md-raised">Submit</md-button>
+
+                                    <!-- <div flex></div> -->
+
+                                </form>
+                            </div>
+
+                            <div flex></div>
+
+                            <ul>
+                                <li>Fee: None</li>
+                                <li>Timeframe: Instant</li>
+                                <li>Limits: 5 - 999.99 INR</li>
+                            </ul>
+
+                            <div flex></div>
+
+                        </div>
+</div>
+
+
+                        <div ng-if="(dWCtrl.verificationLevel == 0) || (dWCtrl.verificationLevel == -1)">
+                            <div class="dialog-margin">
+
+                                <p>Please submit documents to verify your account for Level 1 at least in order to
+                                    use Canadian Dollars.</p>
+
+                            </div>
+                        </div>
+
+                    </md-content>
+
+                </md-tab-content>
+            </md-tab>
+        </md-tabs>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button type="button" aria-label="Cancel" ng-click="cancel()" style="margin-right:20px;">
+            Cancel
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

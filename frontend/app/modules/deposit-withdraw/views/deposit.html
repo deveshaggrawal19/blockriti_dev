@@ -1,0 +1,407 @@
+<md-dialog ng-controller="DepositWithdrawCtrl as dWCtrl" aria-label="Deposit" ng-cloak class="deposit-withdraw-dialog">
+
+        <md-dialog-content flex class="deposit-withdraw-dialog-content" layout="column">
+
+            <md-tabs flex class="deposit-withdraw-md-tabs">
+
+                <md-tab label="Bitcoin">
+
+                    <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                        <md-toolbar class="deposit-withdraw-toolbar">
+                            <span class="deposit-withdraw-title-span">Deposit</span>
+                            <h1 class="md-display-2 deposit-withdraw-h1">Bitcoin</h1>
+                        </md-toolbar>
+
+                        <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+
+                            <div class="dialog-margin" layout="column">
+
+                                <p>To fund your BTC Monk account with Bitcoin, send your payment to the Bitcoin address below.</p>
+
+                                <div flex="none" layout="column" layout-align="center center">                                    
+                                    <div>
+                                      <img ng-src="{{ dWCtrl.depositBtcQrCode.qrUrl }}">
+                                    </div>
+									
+									<p>{{ dWCtrl.depositBtcQrCode.address }}</p>
+                                </div>
+
+                                <p>Please note that BTC Monk requires 3 confirmations for your bitcoin balance to update. As soon as the transaction appears in the blockchain, you will find your transfer in the "Pending" bitcoin balance.</p>
+                                <ul>
+                                    <li>Fee: None</li>
+                                    <li>Timeframe: up to 40 minutes (3 confirmations)</li>
+                                    <li>Limits: None</li>
+                                </ul>
+                            </div>
+                        </md-content>
+
+                    </md-tab-content>
+
+                </md-tab>
+
+
+               <!--  <md-tab label="Cash">
+
+                    <md-tab-content flex layout-fill layout="column" class="deposit-withdraw-tab-scrolling" layout="column">
+
+                        <md-toolbar class="deposit-withdraw-toolbar">
+                            <span class="deposit-withdraw-title-span">Deposit</span>
+                            <h1 class="md-display-2 deposit-withdraw-h1">Cash</h1>
+                        </md-toolbar>
+
+                        <md-content flex class="md-padding deposit-withdraw-tab-scrolling">
+
+                            <div ng-if="(dWCtrl.verificationLevel == 0 || dWCtrl.verificationLevel == -1)">
+                                <div class="dialog-margin">
+
+                                    <p>Please submit documents to verify your account for Level 1 at least in order to use
+                                        Canadian Dollars.</p>
+
+                                </div>
+                            </div>
+
+
+                            <div ng-if="(dWCtrl.verificationLevel == 2) || (dWCtrl.verificationLevel == 1)">
+
+                            <div class="dialog-margin">
+
+                                <p>Please contact one of our agents to fund your BTC Monk account in person with cash.</p>
+                                <h3>Bitcoiniacs Vancouver</h3>
+                                <div>
+                                    <iframe
+                                            width="400"
+                                            height="300"
+                                            frameborder="0" style="border:0"
+                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBSmjWNA4hQsZNX6ErvXYRtV7fJO2goDmU&q=Bitcoiniacs+-+The+Bitcoin+Store"
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <i class='mdi mdi-map-marker'>Waves Coffee House, 900 Howe St, Vancouver, BC, V6Z 2S9, Canada</i><br>
+                                <i class='mdi mdi-clock'>Mon-Fri: 10am-9pm | Sat-Sun: By appointment</i><br>
+                                <i class='mdi mdi-phone'> +1 (604) 727-0170 (SMS only)</i><br>
+                                <i class='mdi mdi-email'>contact@bitcoiniacs.com</i><br>
+                                <i class='mdi mdi-percent'>Fee: 1%</i>
+                            </div>
+                                </div>
+
+                        </md-content>
+                    </md-tab-content>
+                </md-tab> -->
+
+
+                <md-tab label="Wire Transfer" layout="column" flex ng-click ="dWCtrl.depositBankSubmit()">
+
+                    <md-tab-content flex layout-fill layout="column" class="deposit-withdraw-tab-scrolling" layout="column">
+
+                        <md-toolbar class="deposit-withdraw-toolbar">
+                            <span class="deposit-withdraw-title-span">Deposit</span>
+                            <h1 class="md-display-2 deposit-withdraw-h1">Wire Transfer</h1>
+                        </md-toolbar>
+
+                        <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+
+                            <div ng-if="(dWCtrl.verificationLevel == 0) || (dWCtrl.verificationLevel == -1)">
+
+
+                            <div class="dialog-margin">
+
+                                    <p>Please submit documents to verify your account for Level 1 at least in order to
+                                        use Canadian Dollars.</p>
+
+                                </div>
+                            </div>
+
+                            <div ng-if="(dWCtrl.verificationLevel == 2) || (dWCtrl.verificationLevel == 1)">
+                            <div flex class="dialog-margin" layout="column">
+
+                                <p>Please use the banking information below to send your wire transfer. Make sure to include the details of payment exactly as they appear. Third-party deposits are not allowed.</p>
+
+                                <md-tabs id="domestic-international-wire-transfer" md-stretch-tabs="always" class="md-primary" md-no-paginmation="true">
+
+                                    <md-tab label="Domestic">
+
+                                        <md-content>
+                                            <!--<p>{{dWCtrl.bankDetails}}</p>-->
+                                            <table md-table>
+                                                <tbody md-body>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.beneficiary}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Address</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.beneficiary_address}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.bank}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank Address</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.bank_address}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank SWIFT</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.bank_swift}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Route and Transit Number</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.route_transit_number}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>IBAN / Account Number</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.account_number}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Details of Payment</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.domestic.details}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </md-content>
+
+                                    </md-tab>
+
+                                    <md-tab label="International">
+
+                                        <md-content>
+
+                                            <table md-table>
+                                                <tbody md-body>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.beneficiary}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Address</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.beneficiary_address}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.bank}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank Address</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.bank_address}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Beneficiary Bank SWIFT</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.bank_swift}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>IBAN / Account Number</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.account_number}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Additional Bank Information</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.bank_info}}</td>
+                                                </tr>
+                                                <tr md-row>
+                                                    <td md-cell><strong>Details of Payment</strong></td>
+                                                    <td md-cell>{{dWCtrl.bankDetails.international.details}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </md-content>
+
+                                    </md-tab>
+
+                                </md-tabs>
+
+                                <ul>
+                                    <li>Fee: 1% (Min: 12 INR, Max: 20 INR)</li>
+                                    <li>Timeframe: 2 - 5 business days</li>
+                                    <li>Limits: 50 - 500,000 INR</li>
+                                    </ul>
+</div>
+                            </div>
+
+
+                        </md-content>
+                    </md-tab-content>
+                </md-tab>
+
+
+               <!--  <md-tab label="INTERAC® Online" ng-click="dWCtrl.interacAccessCheck()">
+
+                    <md-tab-content flex layout-fill class="deposit-withdraw-tab-scrolling" layout="column">
+
+                        <md-toolbar class="deposit-withdraw-toolbar">
+                            <span class="deposit-withdraw-title-span">Deposit</span>
+                            <h1 class="md-display-2 deposit-withdraw-h1">INTERAC® <span id="deposit-interac-title-online">Online</span></h1>
+                        </md-toolbar>
+
+                        <md-content flex layout="column" class="md-padding deposit-withdraw-tab-scrolling">
+
+                            <div ng-if="(dWCtrl.interacAccess == 0) && (dWCtrl.verificationLevel == 2)">
+
+                            <div class="dialog-margin">
+
+                                <p>INTERAC® Online is the fastest and easiest way to fund your BTC Monk account. Institutions supported: BMO, RBC, Scotiabank, TD Canada Trust, Envision Financial, Libro Credit Union.</p>
+
+                                <div class="dialog-center-input">
+
+                                    <form name="interacDepositForm" ng-submit="dWCtrl.depositInteracOnlineSubmit(dWCtrl.depositInteracOnline)" layout="column">
+
+                                        <div flex></div>
+
+                                        <md-input-container class="mdi-icon-float">
+                                            <label>Amount</label>
+                                            <md-icon><i class="fa fa-inr" aria-hidden="true"></i></md-icon>
+                                            
+                                            <input ng-model="dWCtrl.depositInteracOnline.amount" name="amount" type="number" min="50" required md-no-asterisk md-autofocus>
+                                            <div ng-messages="interacDepositForm.amount.$error">
+                                                <div ng-message="required">Required field.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <div flex></div>
+
+                                        <div layout="row">
+
+                                            <div flex></div>
+
+                                            <div flex="none" layout="column" layout-align="start start">
+                                                <span>Fee:</span>
+                                                <br>
+                                                <span>Net Amount:</span>
+                                            </div>
+
+                                            <div flex></div>
+
+                                            <div flex="none" layout="column" layout-align="start end">
+                                                <span><i class="fa fa-inr" aria-hidden="true"></i> {{ dWCtrl.depositInteracOnlineDisplayInfo.fee }}</span>
+                                                <br>
+                                                <span><i class="fa fa-inr" aria-hidden="true"></i> {{ (dWCtrl.depositInteracOnlineDisplayInfo.net || 0) }}</span>
+                                                <br>
+                                            </div>
+
+                                            <div flex></div>
+
+                                        </div>
+
+                                        
+
+                                        <md-button type="submit" class="md-primary md-raised">Deposit</md-button>
+
+                                        <div flex></div>
+
+                                    </form>
+                                </div>
+                                <ul>
+                                    <li>Fee: 2% (Min: 5 INR)</li>
+                                    <li>Timeframe: the same day. For security reasons your first deposit may be delayed for up to 24 hours</li>
+                                    <li>Limits: 50 - 250.00 INR. Your limits increase automatically with more deposits</li>
+                                    <li>50 - 250 INR for transaction less than 3</li>
+                                    <li>50 - 500 INR for transaction between 3 - 6</li>
+                                    <li>50 - 2000 INR for transaction more than 6</li>
+                                </ul>
+                                <p>® Trademark of Interac Inc. Used under licence.</p>
+                            </div>
+                            </div>
+
+
+
+                            <div ng-if="(dWCtrl.verificationLevel != 2)">
+                                <div class="dialog-margin">
+
+                                    <p>Please submit documents to verify your account for Level 2 to be able to use
+                                        Interac.</p>
+
+                                </div>
+                            </div>
+
+                        </md-content>
+                    </md-tab-content>
+                </md-tab> -->
+
+
+                <md-tab label="Coupon">
+
+                    <md-tab-content flex layout-fill layout="column" class="deposit-withdraw-tab-scrolling" layout="column">
+
+                        <md-toolbar class="deposit-withdraw-toolbar">
+                            <span class="deposit-withdraw-title-span">Deposit</span>
+                            <h1 class="md-display-2 deposit-withdraw-h1">Coupon</h1>
+                        </md-toolbar>
+
+                        <md-content flex class="md-padding deposit-withdraw-tab-scrolling" layout="column">
+
+                            <div ng-if="(dWCtrl.verificationLevel == 1) || (dWCtrl.verificationLevel == 2)">
+
+                            <div flex class="dialog-margin" layout="column">
+
+                                <div flex></div>
+
+                                <p>To instantly redeem your coupon, enter your coupon code below.</p>
+
+                                <!-- <div flex></div> -->
+
+                                <div class="dialog-center-input">
+
+                                    <form name="depositVoucherForm" ng-submit="dWCtrl.depositVoucherSubmit(dWCtrl.depositVoucher);" layout="column">
+
+                                        <div flex></div>
+
+                                        <md-input-container class="md-block" style="text-align: center;">
+                                            <label>Coupon Code</label>
+                                            <input ng-model="dWCtrl.depositVoucher.code" name="code" required md-no-asterisk>
+                                            <div ng-messages="depositVoucherForm.code.$error">
+                                                <div ng-message="required">Required field.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <div flex></div>
+
+                                        <md-button class="md-primary md-raised" type="submit">Submit</md-button>
+
+                                        <div flex></div>
+
+                                    </form>
+
+                                </div>
+
+                                <div flex></div>
+
+                                <ul>
+                                    <li>Fee: None</li>
+                                    <li>Timeframe: Instant</li>
+                                    <li>Limits: 5 - 999.99 INR</li>
+                                </ul>
+
+                                <div flex></div>
+
+                            </div>
+
+                                </div>
+
+                            <div ng-if="(dWCtrl.verificationLevel == 0) || (dWCtrl.verificationLevel == -1)">
+                                <div class="dialog-margin">
+
+                                    <p>Please submit documents to verify your account for Level 1 at least in order to
+                                        use Canadian Dollars.</p>
+
+                                </div>
+                            </div>
+
+                        </md-content>
+
+                  </md-tab-content>
+
+                </md-tab>
+
+            </md-tabs>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="button" ng-click="cancel()" style="margin-right:20px;" >
+                CANCEL
+            </md-button>
+        </md-dialog-actions>
+
+</md-dialog>

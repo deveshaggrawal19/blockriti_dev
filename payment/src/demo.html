@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blockriti Payment Gateway Demo</title>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Blockriti Payment Gateway Merchant Integration Demo</h1>
+Public API key: <input id='apiPublic'>
+<br>
+Extra Info (JSON): <input id='info'>
+<br>
+Amount Satoshis (leave empty for INR): <input id='amountSatoshis'>
+<br>
+Amount INR (leave empty for BTC): <input id='amountInr'>
+<br>
+Unconfirmed Callback (JS code): <input id='jsCallback'>
+<br>
+Confirmed Callback (URL): <input id='confirmedCallback'>
+<br>
+<button id='start'>Start Transaction</button>
+<div id='render-widget-here'></div>
+<script src='apg.min.js'></script>
+<script>
+    function getText(eltId) {
+        return document.getElementById(eltId).value;
+    }
+    document.getElementById('start').onclick = function() {
+        apg({
+            elt: document.getElementById('render-widget-here'),
+            apiPublic: getText('apiPublic'),
+            info: getText('info'),
+            amountSatoshis: +getText('amountSatoshis'),
+            amountInr: +getText('amountInr'),
+            jsCallback: function() { /* ouch */ eval(getText('jsCallback'))},
+            confirmedCallback: getText('confirmedCallback'),
+        });
+    }
+</script>
+</body>
+</html>

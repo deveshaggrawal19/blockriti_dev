@@ -1,0 +1,32 @@
+<md-toolbar class="md-table-toolbar md-default" ng-if="cardTitle">
+    <div class="md-toolbar-tools">
+        <span>CURRENT {{ cardTitle }}</span>
+    </div>
+</md-toolbar>
+<md-list class="table-fixed-width">
+
+    <md-list layout="row">
+        <md-subheader class="new-shade" style="background: #313f46;" flex="30">Price</md-subheader>
+        <md-subheader style="background: #37474f;" flex="40">Amount</md-subheader>
+        <md-subheader style="background: #3f515a;" flex="30">Value</md-subheader>
+    </md-list>
+
+    <!-- <md-divider></md-divider> -->
+
+    <md-virtual-repeat-container id="vertical-container">
+
+        <md-list-item md-virtual-repeat="order in orders" class="repeated-item" flex="" md-item-size="28">
+
+            <md-list ng-class=" $index % 2 === 0 ? 'list-rotating-background' : '' " flex layout="row">
+            <!-- <md-list class="repeated-item" flex layout="row" ng-class="{$index % 2 === 0 ? list-rotating-background ? '' }"> -->
+                <md-list-item flex="30">{{ order.rate  | currency }}</md-list-item>
+                <md-list-item flex="40">{{ order.amount | currency : "&#579;" : 8 }}</md-list-item>
+                <md-list-item flex="30">{{ order.value  | currency }}</md-list-item>
+            </md-list>
+
+            <!-- <md-divider></md-divider> -->
+
+        </md-list-item>
+
+    </md-virtual-repeat-container>
+</md-list>

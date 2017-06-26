@@ -1,0 +1,32 @@
+.dialog-content-min-height {
+  min-height: 300px;
+  height: 100%;
+}
+
+.center-text {
+  text-align: center;
+}
+.login-form-dialog {
+  min-height: 300px;
+  min-width: 300px;
+}
+.login-form-dialog button {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+  .dialog-content-min-height {
+    min-height: 550px;
+    width: 100% !important;
+  }
+  .login-form-dialog {
+    min-height: 550px;
+  }
+}
+
+#login-dialog {
+  min-height: 450px;
+}
+#register-dialog {
+  min-height: 650px;
+}

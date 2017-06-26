@@ -1,0 +1,272 @@
+<md-dialog class="dialog-flex">
+
+<!--     <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+    </md-toolbar> -->
+
+    <md-dialog-content class="dialog-content-flex">
+        <div class="md-dialog-content" md-theme="altTheme">
+
+            <h2>Frequently Asked Questions</h2>
+            <div>
+                <div class="home-faq-question-container" id="question-what-is-bitcoin" layout="row">
+                    <h4>What is Bitcoin?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('what-is-bitcoin')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-what-is-bitcoin">
+                    <p>
+                        Bitcoin is a form of digital currency, created and held electronically. No one controls it. Bitcoins aren’t printed, like dollars or euros – they’re produced by lots of people running computers all around the world, using software that solves mathematical problems. It’s the first example of a growing category of money known as cryptocurrency.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="home-faq-question-container" id="question-what-is-taurus" layout="row">
+                    <h4>What is BTC Monk?</h4>
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('what-is-taurus')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-what-is-taurus">
+                    <p>
+                        BTC Monk Bitcoin Exchange is an online trading platform that allows users to trade bitcoins with each other in real time, 24/7/365. We are incorporated in the province of British Columbia, Canada and operate under a valid money services business (MSB) licence issued by Financial Transactions and Reports Analysis Centre of Canada (FINTRAC).
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-how-to-trade" layout="row">
+                    <h4>How do I trade?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('how-to-trade')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-how-to-trade">
+                    <p>
+                        After you have deposited funds you may place a live order. Please go to the Trade page and choose the type of order you would like to create: Instant or Limit. Your order will execute automatically when a matching order appears in the order book.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-how-to-cancel" layout="row">
+                    <h4>How do I cancel an open order?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('how-to-cancel')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-how-to-cancel">
+                    <p>
+                        To cancel your open order go to Open Orders and click the Cancel button. Please note that if your order has already been executed partially, only the remaining amount will be cancelled and restored in your balance.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="home-faq-question-container" id="question-what-is-instant" layout="row">
+                    <h4>What is an instant order?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('what-is-instant')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-what-is-instant">
+                    <p>
+                        An instant order, also known as a market order, is a type of order that executes instantly by going through the open orders in the order book until the full amount is fulfilled. In case of buying, you enter the fiat amount you would like to spend, and your order will go through the order book starting from the lowest asking price. When you place an instant sell order by specifying the amount of bitcoins you want to sell, it goes through the order book starting from the highest bid.
+                    </p>
+                    <p>
+                        Instant orders do not appear in the order book as they are executed instantly.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-what-is-limit" layout="row">
+                    <h4>What is a limit order?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('what-is-limit')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-what-is-limit">
+                    <p>
+                        A limit order is an order that lets you set the minimum price you would like to sell your bitcoins for or the maximum price you want to buy bitcoins for. When a matching order appears in the order book your order executes automatically in full or partially, depending on the matching order amount.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-is-taurus-secure" layout="row">
+                    <h4>Is BTC Monk secure?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('is-taurus-secure')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-is-taurus-secure">
+                    <p>
+                        One of our priorities is security of all the customer data. BTC Monk has a valid SSL certificate that encrypts all the connections by default. In addition, we implement various software solutions, such as CloudFlare, to further secure our platform from cyberattacks.
+                    </p>
+                    <p>
+                        Customers' personal data and verification documents are stored on secure encrypted hard drives and are never shared with any third parties except when it is required by law.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-how-to-deposit" layout="row">
+                    <h4>How do I deposit?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('how-to-deposit')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-how-to-deposit">
+                    <p>
+                        We offer multiple deposit options. Please go to the Deposit page and choose the option of your preference. Clear instructions on how to deposit will follow afterwards.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-how-to-withdraw" layout="row">
+                    <h4>How do I withdraw?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('how-to-withdraw')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-how-to-withdraw">
+                    <p>
+                        A third-party withdrawal is a withdrawal performed on behalf of another party such as an individual or an organization. Such withdrawals are not allowed. You can only withdraw funds to a bank account that belongs to you exclusively.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-forgotten-password" layout="row">
+                    <h4>I forgot my password. What should I do?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('forgotten-password')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-forgotten-password">
+                    <p>
+                        Please use our password reset feature on the Login page. You will receive an email with further instructions.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-what-is-2fa" layout="row">
+                    <h4>What is 2-Factor-Authentication?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('what-is-2fa')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-what-is-2fa">
+                    <p>
+                       2-Factor-Authentication (2FA) provides an additional layer of security by requesting a one-time password each time you perform an action such as login or withdrawal.
+                    </p>
+                    <p>
+                        We highly recommend that you enable the 2FA option for your BTC Monk account to prevent cyberattacks. Please go to the Settings page in your account to do so.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-bitcoin-deposit-time" layout="row">
+                    <h4>How long does a bitcoin deposit take?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('bitcoin-deposit-time')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-bitcoin-deposit-time">
+                    <p>
+                        BTC Monk requires 3 network confirmations for bitcoins to appear in your account. It may take from 15 minutes to 1 hour to clear depending on the network performance. We recommend that you pay a miner’s fee to ensure faster processing.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-withdrawal-fee" layout="row">
+                    <h4>Is there a fee to withdraw Bitcoin?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('withdrawal-fee')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-withdrawal-fee">
+                    <p>
+                        No. Bitcoin withdrawals are free of charge.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="home-faq-question-container" id="question-why-verify" layout="row">
+                    <h4>Why do I have to verify my account?</h4> 
+
+                    <div flex></div>
+
+                    <md-button class="md-icon-button md-accent" ng-click="home.toggleSlideAnswer('why-verify')">
+                        <i class="mdi mdi-menu-down"></i>
+                    </md-button>
+                </div>
+                <div class="home-faq-answer" id="answer-why-verify">
+                    <p>
+                        BTC Monk has developed an extensive Know Your Custom (KYC) / Anti-money Laundering (AML) policy to comply with international AML laws. Identity verification is a standard procedure required from all the entities that operate as money services businesses (MSB).
+                    </p>
+                    <p>
+                        BTC Monk is registered with the Financial Transactions and Reports Analysis Centre of Canada (FINTRAC) as an MSB and follows all the guidelines provided.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

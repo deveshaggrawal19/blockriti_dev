@@ -1,0 +1,168 @@
+<md-dialog ng-controller="AuthenticationCtrl as authentication" id="login-dialog">
+
+    <md-dialog-content flex class="login-register-dialog dialog-content-min-height" layout="column">
+        
+        <md-progress-linear md-mode="indeterminate" ng-disabled="authentication.showProgressBar"></md-progress-linear>
+
+        <div flex class="md-dialog-content" layout="column">
+
+            <div flex ng-hide="loginSubmit || authentication.needHelp" layout="column">
+
+                <form flex class="login-form-dialog" name="loginForm" layout="column" ng-submit="login()" autocomplete="off">
+
+                  <h2>Login</h2>
+
+                  <div flex></div>
+
+                  <md-input-container class="md-block">
+                      <label>Email Address or User ID</label>
+                      <input id="login-email-input" ng-model="user.login.id" name="email" required md-no-asterisk md-autofocus="!(loginSubmit || authentication.needHelp)">
+                      <div ng-messages="loginForm.email.$error">
+                          <div ng-message="required">Required field.</div>
+                      </div>
+                  </md-input-container>
+
+                  <div flex></div>
+
+                  <md-input-container class="md-block">
+                      <label>Password</label>
+                      <input ng-model="user.login.password" name="password" required type="password" md-no-asterisk>
+                      <div ng-messages="loginForm.password.$error">
+                          <div ng-message="required">Required field.</div>
+                      </div>
+                  </md-input-container>
+
+                  <div flex></div>
+
+                  <md-button type="submit" class="md-primary md-raised button-width-full" >Login</md-button>
+
+                  <div flex></div>
+
+                  <div class="center-text" layout="row">
+                      <span flex class="login-text-below-submit" ng-click="authentication.needHelp = true;">Forgot Password?</span>
+                  </div>
+
+                  <div flex></div>
+
+                </form>
+
+          </div>
+
+          <div flex ng-show="authentication.needHelp" layout="column">
+            <h2>Need help accessing your account?</h2>
+
+            <div flex></div>
+
+            <p>Please enter either your Email Address or User ID</p>
+
+            <div flex></div>
+            <form name="authentication.passwordResetForm" ng-submit="authentication.validateForgottenPasswordForm(authentication.passwordResetForm) && authentication.submitForgottenPassword(authentication.forgottenPasswordData)" layout="column" autocomplete="off">
+
+              <md-input-container class="md-block">
+                  <label>Email Address or User ID</label>
+                  <input id="forgot-password-autofocus" type="text" name="email" type="email" ng-model="authentication.forgottenPasswordData.email" md-autofocus="authentication.needHelp" required md-no-asterisk>
+                  <div ng-messages="authentication.passwordResetForm.email.$error">
+                    <div ng-message="required">Required field.</div>
+                  </div>
+              </md-input-container>
+
+              <div flex></div>
+
+              <div style="text-align: center">
+                <div id="registration-google-recaptcha"></div>
+              </div>
+              <br>
+
+              <md-button type="submit" class="md-primary md-raised">
+                  Continue
+              </md-button>
+              
+            </form>
+
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+            </script>
+
+            <div flex></div>
+
+            <div class="center-text" layout="row">
+                <span flex class="login-text-below-submit" ng-click="authentication.needHelp = false;">Back</span>
+            </div>
+
+            <div flex></div>
+
+          </div>
+
+          <div flex ng-show="loginSubmit" id="login-2fa" layout="column">
+
+              <h2>{{ authentication.displaySecondAuthenticationType() }}</h2>
+                <form class="login-form-dialog" name="authForm" layout="column" ng-submit="authenticate()" ng-show="authentication.isFirstLogin === 'false'">
+
+                  <div flex></div>
+
+                  <md-input-container class="md-block">
+                    <label>Code</label>
+                    <input id="login-2fa-code" ng-model="code" name="code" required ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9@_\-./]+$/" type="password" md-no-asterisk use-keyboard>
+                    <div ng-messages="authForm.code.$error">
+                        <div ng-message="required">Required field.</div>
+                    </div>
+                  </md-input-container>
+
+                  <div flex></div>
+
+                  <md-button type="submit" class="md-primary md-raised button-width-full">Authenticate</md-button>
+
+                  <div flex></div>
+
+                </form>
+
+                <form class="login-form-dialog" name="setPinForm" layout="column" ng-submit="setPinForm.$valid && authentication.setPinSubmit()" ng-show="authentication.isFirstLogin === 'true'">
+                    <!-- <div flex></div> -->
+                    <p>Set security PIN</p>
+
+                    <div flex></div>
+                    <md-input-container class="md-block">
+                        <label>New Pin</label>
+                        <input ng-model="authentication.setPin.code" type="password" minlength="4" maxlength="6" name="code" required md-no-asterisk ng-pattern="/^\d+$/">
+                        <div ng-messages="setPinForm.code.$error">
+                            <div ng-message="minlength">Min 4 characters.</div>
+                            <div ng-message="pattern">Only numbers allowed</div>
+                            <div ng-message="maxlength">Max 6 characters.</div>
+                            <div ng-message="required">Required field.</div>
+                        </div>
+                    </md-input-container>
+  <!--
+                    <md-input-container class="md-block">
+                        <label>Retype Pin</label>
+                        <input ng-model="authentication.setPin.confirm_pin" type="password" md-no-asterisk="" name="confirm_pin" required="">
+                        <div ng-messages="setPin.confirm_pin.$error">
+                            <div ng-message="required">Required field.</div>
+                        </div>
+                    </md-input-container>
+  -->
+                    <div flex></div>
+
+                    <md-button type="submit" class="md-primary md-raised button-width-full">Submit</md-button>
+
+                    <div flex></div>
+
+               <!--     <div class="center-text" layout="row">
+                        <span flex class="login-text-below-submit">Forgot your PIN?</span>
+                    </div>-->
+
+                    <div flex></div>
+
+                </form>
+
+          </div>
+
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button type="button" ng-click="cancel()">
+          Close
+      </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

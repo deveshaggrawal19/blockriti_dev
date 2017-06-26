@@ -1,0 +1,195 @@
+<div class="containe padding-t-20" role="main">
+    <div class="container panelBorder padding-t-20" ng-init="loadListOfLanguages()">
+        <form name="newUserSignInForm" ng-submit="newUserSignIn(newUserSignInForm)" novalidate="novalidate">
+            <div class="pageTitle loginTitle textAlign-L">
+                <span style="">{{'NEW_USER_SIGN_IN'}}</span>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'FIRST_NAME'}}<span class="mandatoryStar">*</span></label>
+                            <input ng-model="user.signIn.firstName" name="firstName" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" ng-disabled="true" required>
+                            <div ng-messages="newUserSignInForm.firstName.$error">
+                                <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'MIDDLE_NAME'}}</label>
+                            <input ng-model="user.signIn.middleName" name="middleName" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/">
+                            <div ng-messages="newUserSignInForm.middleName.$error">
+                                <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <md-input-container>
+                            <label>{{'LAST_NAME'}}<span class="mandatoryStar">*</span></label>
+                            <input ng-model="user.signIn.lastName" name="lastName" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" ng-disabled="true" required>
+                            <div ng-messages="newUserSignInForm.lastName.$error">
+                                <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'DISPLAY_NAME'}}<span class="mandatoryStar">*</span></label>
+                                    <input ng-model="user.signIn.displayName" name="displayName" ng-maxlength="50" required>
+                                    <div ng-messages="newUserSignInForm.displayName.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                        <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'PREFERRED_LANGUAGE'}}<span class="mandatoryStar">*</span></label>
+                                    <md-select ng-model="user.signIn.preferredLanguageId" name="preferredLang" required>
+                                        <md-option ng-repeat="language in languageList" value="{{language.id}}">
+                                            {{language.value}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="newUserSignInForm.preferredLang.$error" ng-if="newUserSignInForm.$submitted">
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'NEW_PASSWORD'}}<span class="mandatoryStar">*</span></label>
+                                    <input type="password" ng-model="user.signIn.newPassword" name="newPassword" ng-maxlength="50" ng-blur="checkPassword()" required>
+                                    <div ng-messages="newUserSignInForm.newPassword.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'CONFIRM_PASSWORD'}}<span class="mandatoryStar">*</span></label>
+                                    <input type="password" ng-model="user.signIn.confirmPassword" name="confirmPassword" ng-maxlength="50" ng-blur="repeatPasswordCheck()" required>
+                                    <div ng-messages="newUserSignInForm.confirmPassword.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'RETRIVAL_TEXT'}}<span class="mandatoryStar">*</span></label>
+                                    <input type="password" ng-model="user.signIn.retrievalText" name="retrivalText" placeholder="{{'REMEMBER_TEXT' }}" ng-maxlength="50" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                                    <div ng-messages="newUserSignInForm.retrivalText.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                        <div ng-message="pattern">{{'PATTERN_ERR' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'ACCESS_PIN'}}<span class="mandatoryStar">*</span></label>
+                                    <input ng-model="user.signIn.accessPin" name="accessPin" ng-maxlength="12" placeholder="{{'REMEMBER_PIN_NUMBER' }}" ng-pattern="/^[0-9]{6}$/" required>
+                                    <div ng-messages="newUserSignInForm.accessPin.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                        <div ng-message="pattern">{{'PATTERN_ACCESS_PIN_ERR' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'MOBILE_NUMBER'}}<span class="mandatoryStar">*</span></label>
+                                    <input ng-model="user.signIn.cell1" name="mobile" maxlength="10" placeholder="{{'MOBILE_HINT' }}" ng-disabled="true" ng-pattern="/^[0-9]{10}$/" required>
+                                    <div ng-messages="newUserSignInForm.mobile.$error">
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                        <div ng-message="pattern">{{'INVALID_MOBILE' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'ALT_MOBILE_NUMBER'}}</label>
+                                    <input ng-model="user.signIn.cell2" name="altMobile" maxlength="10" placeholder="{{'MOBILE_HINT' }}" ng-pattern="/^[0-9]{10}$/">
+                                    <div ng-messages="newUserSignInForm.altMobile.$error">
+                                        <div ng-message="pattern">{{'INVALID_MOBILE' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'EMAIL'}}<span class="mandatoryStar">*</span></label>
+                                    <input ng-model="user.signIn.email1" name="emailId" ng-maxlength="100" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-disabled="true" required>
+                                    <div ng-messages="newUserSignInForm.emailId.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="required">{{'INPUT_REQ' }}</div>
+                                        <div ng-message="pattern">{{'ENTER_VALID_EMAIL' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <md-input-container>
+                                    <label>{{'ALT_EMAIL'}}</label>
+                                    <input ng-model="user.signIn.email2" name="altEmailId" ng-maxlength="100" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+                                    <div ng-messages="newUserSignInForm.altEmailId.$error">
+                                        <div ng-message="maxlength">{{'MAXLENGTH_ERR' }}</div>
+                                        <div ng-message="pattern">{{'ENTER_VALID_EMAIL' }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 textAlign-R wizardFooter">
+                    <md-button type="reset" class="md-raised" ng-click="onCancelClick()">{{"CANCEL"}}</md-button>
+                    <md-button type="submit" class="md-raised md-warn">{{"SAVE"}}</md-button>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /container -->

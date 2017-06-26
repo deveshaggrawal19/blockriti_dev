@@ -1,0 +1,90 @@
+<md-dialog class="dialog-flex">
+
+<!--     <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Fee Schedule</h2>
+        </div>
+    </md-toolbar> -->
+
+    <md-dialog-content class="dialog-content-flex">
+        <div class="md-dialog-content">
+            <h2>Fee Schedule</h2>
+            <p>Trading fee: 0.5%.</p>
+            <p>BTC Monk offers multiple convenient options to fund accounts. Please see below the fee schedule for our funding methods.</p>
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column><span>Method</span></th>
+                        <th md-column><span>Transaction</span></th>
+                        <th md-column><span>Limit</span></th>
+                        <th md-column><span>Fee</span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row>
+                        <td md-cell>Bitcoin</td>
+                        <td md-cell>Deposit</td>
+                        <td md-cell>None</td>
+                        <td md-cell>None</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Bitcoin</td>
+                        <td md-cell>Withdrawal</td>
+                        <td md-cell>None</td>
+                        <td md-cell>None</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Wire Transfer</td>
+                        <td md-cell>Deposit</td>
+                        <td md-cell>50 - 500,000 CAD</td>
+                        <td md-cell>1% (Min: 12 CAD, Max: 20 CAD)</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Wire Transfer</td>
+                        <td md-cell>Withdrawal</td>
+                        <td md-cell>100 - 500,000 CAD</td>
+                        <td md-cell>1% (Min: 50 CAD)</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>INTERAC Online</td>
+                        <td md-cell>Deposit</td>
+                        <td md-cell>50 - 2,000 CAD (Increases with usage)</td>
+                        <td md-cell>2% (Min: 5 CAD)</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Cheque</td>
+                        <td md-cell>Withdrawal</td>
+                        <td md-cell>100 - 500,000 CAD</td>
+                        <td md-cell>10 CAD</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Cash (In-person)</td>
+                        <td md-cell>Deposit</td>
+                        <td md-cell>100 - 9,999 CAD</td>
+                        <td md-cell>1%</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Coupon</td>
+                        <td md-cell>Deposit</td>
+                        <td md-cell>5 - 999.99 CAD</td>
+                        <td md-cell>None</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Coupon</td>
+                        <td md-cell>Withdrawal</td>
+                        <td md-cell>5 - 999.99 CAD</td>
+                        <td md-cell>None</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Close
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

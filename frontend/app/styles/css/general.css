@@ -1,0 +1,103 @@
+/* Font (in Chrome) did not support down arrow unicode character, this is the workaround (md-select and md-menu use this icon) */
+span._md-select-icon:after, .md-select-icon:after {
+    font-family: sans-serif;
+}
+@font-face {
+    font-family: 'space-age';
+    src: url('../space-age.ttf');
+}
+body {
+    z-index: -2;
+}
+
+md-toast {
+    z-index: 111;
+}
+
+.nav-button {
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: 12px !important;
+    margin-right: 30px !important;
+}
+.nav-button-icons {
+    font-size: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    color: #03a9f4;
+}
+.nav-title {
+    height: 64px;
+    font-family: space-age;
+}
+.nav-title span {
+	font-size: 24px;
+    color: white;
+    line-height: 64px;
+}
+.nav-title span md-icon{
+	width:90px;
+	height: 80px;
+    color: white;
+    margin-top: 2px;
+	margin-left: 16px;
+}
+.taurus-logo-nav {
+    width: 70%!important;
+}
+
+md-toast {
+    position: fixed;
+}
+md-toast .md-toast-content {
+    text-align: center;
+}
+md-toast.md-success-toast-theme .md-toast-content {
+    background-color: rgba(0,255,0,0.9);
+}
+md-toast.md-failure-toast-theme .md-toast-content {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+md-toast.md-warn-toast-theme .md-toast-content {
+    background-color: rgba(255, 100, 0, 0.7);
+}
+md-content {
+    background: transparent;
+}
+
+/* /home sidenav help + deposit-withdraw help - FRESHDESK */
+.dialog-min-width-height {
+    max-width: 800px;
+    max-height: 810px;
+    min-width: 350px;
+}
+@media (max-width: 960px) {
+    .dialog-min-width-height {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+#registration-google-recaptcha {
+    display: inline-block;
+}
+
+.position-absolute {
+    position: absolute;
+}
+.freshdesk-dialog {
+    width: 500px;
+}
+.dialog-flex {
+    display: flex;
+    direction: column;
+}
+.dialog-content-flex {
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+/* Fixes firefox display issue on home page - highlight/dotted line around FAB*/
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
